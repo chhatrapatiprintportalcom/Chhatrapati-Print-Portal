@@ -3,1090 +3,1580 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Chhatrapati Print Portal</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-
 body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:#f7f8fc;
   color:#182033;
 }
-
+button,input{font:inherit}
 a{text-decoration:none;color:inherit}
 
+/* TOP BAR */
 .topbar{
-  background:#101828;
+  background:#151b2d;
   color:#fff;
-  padding:8px 6%;
-  display:flex;
-  justify-content:space-between;
-  font-size:13px;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
-  border-bottom:1px solid #eee;
-  box-shadow:0 2px 12px rgba(0,0,0,.05);
-}
-
-.nav{
-  max-width:1250px;
-  margin:auto;
-  height:72px;
-  display:flex;
-  align-items:center;
-  gap:22px;
-  padding:0 20px;
-}
-
-.logo{
-  font-size:21px;
-  font-weight:800;
-  color:#172554;
-  margin-right:auto;
-}
-
-.logo span{color:#e11d48}
-
-.nav a{
-  font-size:14px;
-  font-weight:600;
-  color:#344054;
-}
-
-.nav a:hover{color:#e11d48}
-
-.cafe{
-  background:#e11d48!important;
-  color:#fff!important;
-  padding:11px 17px;
-  border-radius:9px;
-}
-
-.login{
-  border:1px solid #e11d48;
-  color:#e11d48!important;
-  padding:10px 15px;
-  border-radius:9px;
-}
-
-.hero{
-  padding:75px 20px 85px;
-  background:linear-gradient(120deg,#fff0f5,#eef5ff);
-  text-align:center;
-}
-
-.badge{
-  display:inline-block;
-  background:#fff;
-  border:1px solid #ffd1df;
-  color:#e11d48;
-  padding:8px 15px;
-  border-radius:30px;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-size:48px;
-  line-height:1.12;
-  max-width:850px;
-  margin:auto;
-  color:#101828;
-}
-
-.hero h1 span{color:#e11d48}
-
-.hero p{
-  max-width:700px;
-  margin:18px auto 28px;
-  color:#667085;
-  font-size:17px;
-  line-height:1.6;
-}
-
-.search{
-  max-width:700px;
-  margin:auto;
-  background:#fff;
-  padding:8px;
-  border-radius:14px;
-  display:flex;
-  box-shadow:0 8px 35px rgba(0,0,0,.09);
-}
-
-.search input{
-  flex:1;
-  border:0;
-  outline:0;
-  padding:15px;
-  font-size:15px;
-}
-
-.search button{
-  border:0;
-  background:#e11d48;
-  color:#fff;
-  padding:0 25px;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.container{
-  max-width:1250px;
-  margin:auto;
-  padding:65px 20px;
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:25px;
-}
-
-.section-head h2{
-  font-size:30px;
-}
-
-.section-head p{
-  color:#667085;
-  margin-top:7px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-.card{
-  background:#fff;
-  border:1px solid #eaecf0;
-  border-radius:16px;
-  padding:23px;
-  transition:.25s;
-  position:relative;
-  cursor:pointer;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 15px 35px rgba(16,24,40,.10);
-  border-color:#f5a1b7;
-}
-
-.icon{
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  background:#fff1f4;
+  height:38px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:24px;
-  margin-bottom:16px;
-}
-
-.card h3{
-  font-size:17px;
-  margin-bottom:8px;
-}
-
-.card p{
   font-size:13px;
-  line-height:1.5;
-  color:#667085;
 }
+.topbar b{color:#ffd84d}
+.topbar span{margin:0 7px}
 
-.new{
-  position:absolute;
-  right:14px;
-  top:14px;
-  font-size:10px;
-  background:#e11d48;
-  color:#fff;
-  padding:4px 7px;
-  border-radius:5px;
+/* HEADER */
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid #e9ebf2;
 }
-
-.tools{
-  background:#101828;
-  color:#fff;
-}
-
-.tools .section-head p{color:#98a2b3}
-
-.tools .card{
-  background:#1d2939;
-  border-color:#344054;
-  color:#fff;
-}
-
-.tools .card p{color:#98a2b3}
-
-.tools .icon{background:#344054}
-
-.portal{
-  grid-template-columns:repeat(5,1fr);
-}
-
-.portal .card{
-  text-align:center;
-  padding:20px 12px;
-}
-
-.portal .icon{
-  margin:0 auto 12px;
-}
-
-.jobs{
-  background:#fff;
-}
-
-.job{
+.nav{
+  max-width:1400px;
+  height:74px;
+  margin:auto;
+  padding:0 22px;
   display:flex;
   align-items:center;
+  gap:22px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:245px;
+}
+.logoIcon{
+  width:42px;height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:23px;
+  background:linear-gradient(135deg,#7b4dff,#ff4d9d);
+  box-shadow:0 7px 18px #7b4dff30;
+}
+.logoText strong{display:block;font-size:17px}
+.logoText small{color:#858b9d;font-size:10px;letter-spacing:.5px}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex:1;
+}
+.navlinks a,.dropBtn{
+  border:0;
+  background:none;
+  padding:11px 12px;
+  border-radius:10px;
+  color:#4e5568;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+}
+.navlinks a:hover,.dropBtn:hover{background:#f1efff;color:#6b4cff}
+
+.navRight{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.iconBtn{
+  border:1px solid #e6e8ef;
+  background:#fff;
+  width:40px;height:40px;
+  border-radius:11px;
+  cursor:pointer;
+}
+.iconBtn:hover{background:#f4f1ff}
+
+.cyber{
+  border:0;
+  padding:11px 15px;
+  border-radius:11px;
+  background:#151b2d;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+.loginBtn{
+  border:1px solid #7454ff;
+  background:#fff;
+  color:#6949ee;
+  padding:10px 15px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+.joinBtn{
+  border:0;
+  background:linear-gradient(135deg,#7250ff,#a64dff);
+  color:#fff;
+  padding:11px 16px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* DROPDOWN */
+.dropdown{position:relative}
+.menu{
+  position:absolute;
+  top:50px;
+  left:0;
+  width:650px;
+  padding:18px;
+  background:white;
+  border:1px solid #e8e9f0;
+  border-radius:18px;
+  box-shadow:0 20px 60px #20204020;
+  display:none;
+}
+.dropdown:hover .menu{display:block}
+.menuTitle{
+  font-size:12px;
+  color:#8a90a2;
+  text-transform:uppercase;
+  margin:0 0 10px 5px;
+}
+.menuGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.menuItem{
+  padding:12px;
+  border-radius:12px;
+  background:#fafaff;
+}
+.menuItem:hover{background:#f0edff}
+.menuItem b{font-size:13px}
+.menuItem small{display:block;color:#8a90a2;margin-top:3px}
+
+/* HERO */
+.heroWrap{
+  max-width:1400px;
+  margin:28px auto 0;
+  padding:0 22px;
+}
+.hero{
+  min-height:360px;
+  border-radius:30px;
+  padding:55px 60px 40px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 20%,#ffffff45 0 90px,transparent 91px),
+    radial-gradient(circle at 15% 90%,#ffffff25 0 130px,transparent 131px),
+    linear-gradient(115deg,#ff6fae 0%,#9a63ff 48%,#5d8dff 100%);
+  color:white;
+  box-shadow:0 20px 55px #7a61ff25;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.12;
+  background-image:radial-gradient(#fff 1px,transparent 1px);
+  background-size:20px 20px;
+}
+.heroContent{position:relative;z-index:2;max-width:780px}
+.badge{
+  display:inline-flex;
+  background:#ffffff25;
+  border:1px solid #ffffff40;
+  padding:7px 12px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+.hero h1{
+  font-size:44px;
+  line-height:1.1;
+  letter-spacing:-1.5px;
+  margin-bottom:15px;
+}
+.hero p{
+  max-width:690px;
+  color:#fff;
+  opacity:.92;
+  line-height:1.7;
+  font-size:15px;
+}
+.heroButtons{margin-top:25px;display:flex;gap:10px}
+.heroPrimary,.heroSecondary{
+  padding:12px 19px;
+  border-radius:11px;
+  cursor:pointer;
+  font-weight:700;
+}
+.heroPrimary{border:0;background:#fff;color:#6649e8}
+.heroSecondary{border:1px solid #ffffff55;background:#ffffff18;color:#fff}
+
+.searchBox{
+  position:relative;
+  z-index:4;
+  max-width:850px;
+  margin:-30px auto 0;
+  padding:8px;
+  background:#fff;
+  border:1px solid #e8e8f1;
+  border-radius:18px;
+  box-shadow:0 16px 40px #2d315015;
+  display:flex;
+}
+.searchBox input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:15px 17px;
+  font-size:15px;
+  background:transparent;
+}
+.searchBtn{
+  border:0;
+  padding:0 25px;
+  border-radius:13px;
+  background:#6d4df5;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* SECTIONS */
+.section{
+  max-width:1400px;
+  margin:65px auto 0;
+  padding:0 22px;
+}
+.sectionHead{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-bottom:22px;
+}
+.sectionHead h2{
+  font-size:25px;
+  letter-spacing:-.5px;
+}
+.sectionHead p{
+  margin-top:5px;
+  color:#8a90a1;
+  font-size:13px;
+}
+.viewAll{
+  color:#6849ed;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+}
+.card{
+  min-height:155px;
+  position:relative;
+  padding:17px 14px;
+  background:#fff;
+  border:1px solid #e9eaf0;
+  border-radius:17px;
+  cursor:pointer;
+  transition:.25s ease;
+  overflow:visible;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#cfc7ff;
+  box-shadow:0 15px 35px #3b315d12;
+}
+.cardIcon{
+  width:52px;height:52px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  margin-bottom:13px;
+  background:#f0edff;
+}
+.card:nth-child(3n) .cardIcon{background:#fff0f5}
+.card:nth-child(3n+2) .cardIcon{background:#eaf8ff}
+.card h3{font-size:14px;line-height:1.3}
+.card p{
+  color:#9298a8;
+  font-size:11px;
+  margin-top:5px;
+  line-height:1.4;
+}
+.card .tag{
+  position:absolute;
+  top:9px;
+  right:9px;
+  font-size:8px;
+  font-weight:800;
+  color:white;
+  padding:4px 6px;
+  border-radius:5px;
+  background:#20b86b;
+}
+.card .hot{background:#ff5269}
+
+/* HOVER TOOLTIP */
+.cardTip{
+  pointer-events:none;
+  opacity:0;
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 10px);
+  transform:translateX(-50%) translateY(7px);
+  width:210px;
+  padding:12px;
+  border-radius:12px;
+  background:#171c2e;
+  color:white;
+  font-size:11px;
+  line-height:1.5;
+  z-index:20;
+  transition:.2s;
+  box-shadow:0 15px 35px #0003;
+}
+.cardTip:after{
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  left:50%;
+  transform:translateX(-50%) rotate(45deg);
+  width:12px;height:12px;
+  background:#171c2e;
+}
+.card:hover .cardTip{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* FEATURE STRIP */
+.featureStrip{
+  margin-top:60px;
+  padding:35px;
+  border-radius:23px;
+  background:#fff;
+  border:1px solid #e8e9ef;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.feature{
+  display:flex;
+  gap:13px;
+  align-items:center;
+}
+.featureIcon{
+  width:46px;height:46px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:#f0edff;
+  font-size:21px;
+}
+.feature b{font-size:13px}
+.feature span{display:block;color:#9298a8;font-size:11px;margin-top:3px}
+
+/* LOGIN */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:#101326a8;
+  backdrop-filter:blur(5px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal.active{display:flex}
+.modalBox{
+  width:420px;
+  max-width:100%;
+  background:#fff;
+  border-radius:23px;
+  padding:28px;
+  box-shadow:0 30px 80px #0004;
+  position:relative;
+}
+.close{
+  position:absolute;
+  top:14px;
+  right:15px;
+  width:35px;height:35px;
+  border:0;
+  border-radius:10px;
+  background:#f1f2f7;
+  cursor:pointer;
+}
+.modalLogo{
+  width:55px;height:55px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:linear-gradient(135deg,#7552ff,#ff579e);
+  color:white;
+  font-size:28px;
+  margin-bottom:16px;
+}
+.modalBox h2{font-size:24px}
+.modalBox>p{color:#8b91a1;font-size:13px;margin:6px 0 22px}
+.field{margin-bottom:14px}
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.field input{
+  width:100%;
+  border:1px solid #dddfea;
+  outline:0;
+  border-radius:11px;
+  padding:12px;
+}
+.field input:focus{border-color:#7454ff}
+.fullBtn{
+  width:100%;
+  border:0;
+  padding:13px;
+  border-radius:11px;
+  background:#6e4cf4;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+.divider{
+  text-align:center;
+  color:#999;
+  font-size:11px;
+  margin:17px 0;
+}
+
+/* PRICING */
+.priceGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
-
-.job .icon{
-  flex-shrink:0;
-}
-
-.job button{
-  margin-left:auto;
-  border:0;
-  background:#e11d48;
-  color:#fff;
-  padding:9px 15px;
-  border-radius:8px;
-}
-
-.pricing{
-  grid-template-columns:repeat(3,1fr);
-}
-
-.price-card{
-  background:#fff;
-  border:1px solid #eaecf0;
-  border-radius:18px;
-  padding:30px;
-  text-align:center;
-}
-
-.price-card.featured{
-  border:2px solid #e11d48;
-  transform:scale(1.03);
-}
-
 .price{
-  font-size:38px;
-  font-weight:800;
+  background:#fff;
+  border:1px solid #e7e8ef;
+  border-radius:20px;
+  padding:25px;
+}
+.price.featured{
+  border:2px solid #7554f6;
+  transform:translateY(-5px);
+}
+.price h3{font-size:18px}
+.price small{color:#9298a8}
+.price strong{
+  display:block;
+  font-size:31px;
   margin:18px 0;
 }
-
-.price-card ul{
-  list-style:none;
-  text-align:left;
-  line-height:2;
-  color:#667085;
-  margin:20px 0;
+.price ul{list-style:none}
+.price li{
+  font-size:13px;
+  padding:8px 0;
+  color:#62697a;
 }
-
-.price-card button{
+.price button{
   width:100%;
+  margin-top:16px;
   padding:12px;
   border:0;
-  border-radius:9px;
-  background:#e11d48;
-  color:#fff;
-  font-weight:bold;
+  border-radius:10px;
+  background:#171c2e;
+  color:white;
+  cursor:pointer;
 }
 
+/* FAQ */
 .faq{
-  max-width:850px;
+  max-width:900px;
   margin:auto;
 }
-
-.faq-item{
+.faqItem{
   background:#fff;
-  border:1px solid #eaecf0;
-  border-radius:12px;
-  margin-bottom:12px;
+  border:1px solid #e7e8ef;
+  border-radius:13px;
+  margin-bottom:9px;
   overflow:hidden;
 }
-
-.faq-q{
-  padding:18px;
+.faqQ{
+  padding:17px;
   cursor:pointer;
-  font-weight:bold;
   display:flex;
   justify-content:space-between;
+  font-weight:700;
+  font-size:14px;
 }
-
-.faq-a{
+.faqA{
   display:none;
-  padding:0 18px 18px;
-  color:#667085;
-  line-height:1.6;
+  padding:0 17px 17px;
+  color:#7d8494;
+  font-size:13px;
+  line-height:1.7;
 }
+.faqItem.open .faqA{display:block}
 
+/* ABOUT */
 .about{
-  text-align:center;
-  max-width:800px;
-  margin:auto;
-}
-
-footer{
-  background:#101828;
+  background:linear-gradient(120deg,#171c2e,#252b43);
   color:#fff;
-  padding:45px 20px 20px;
+  border-radius:24px;
+  padding:40px;
+}
+.about p{
+  color:#c7cad5;
+  max-width:850px;
+  line-height:1.8;
+  font-size:14px;
+  margin-top:10px;
+}
+.aboutGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:25px;
+}
+.aboutBox{
+  padding:18px;
+  border:1px solid #ffffff18;
+  border-radius:15px;
+  background:#ffffff08;
+}
+.aboutBox b{font-size:14px}
+.aboutBox span{display:block;color:#adb2c1;font-size:11px;margin-top:5px}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:900;
+  background:#1fbd69;
+  color:#fff;
+  border:0;
+  padding:13px 18px;
+  border-radius:50px;
+  box-shadow:0 12px 30px #1fbd6940;
+  font-weight:800;
+  cursor:pointer;
 }
 
-.footer-grid{
-  max-width:1200px;
+/* FOOTER */
+footer{
+  margin-top:70px;
+  background:#121728;
+  color:#fff;
+  padding:45px 22px 25px;
+}
+.footerInner{
+  max-width:1400px;
   margin:auto;
   display:grid;
   grid-template-columns:2fr 1fr 1fr 1fr;
   gap:35px;
 }
-
-footer h3{margin-bottom:15px}
-footer p,footer a{
-  color:#98a2b3;
-  font-size:14px;
-  line-height:2;
-  display:block;
+.footerBrand p{
+  color:#9da4b7;
+  font-size:12px;
+  line-height:1.7;
+  max-width:400px;
+  margin-top:12px;
 }
-
-.copy{
-  max-width:1200px;
+footer h4{font-size:13px;margin-bottom:12px}
+footer a{
+  display:block;
+  color:#9da4b7;
+  font-size:12px;
+  padding:5px 0;
+}
+footer a:hover{color:white}
+.copyright{
+  max-width:1400px;
   margin:30px auto 0;
   padding-top:20px;
-  border-top:1px solid #344054;
-  text-align:center;
-  color:#98a2b3;
-  font-size:13px;
+  border-top:1px solid #ffffff12;
+  color:#777f94;
+  font-size:11px;
 }
 
-.whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:2000;
-  background:#16a34a;
-  color:#fff;
-  padding:14px 20px;
-  border-radius:50px;
-  box-shadow:0 8px 25px rgba(0,0,0,.2);
-  font-weight:bold;
+/* MOBILE */
+.mobileMenuBtn{display:none}
+
+@media(max-width:1200px){
+  .cards{grid-template-columns:repeat(4,1fr)}
+  .navlinks{gap:0}
+  .logo{min-width:210px}
 }
 
-/* MEGA MENU */
-
-.services-menu{
-  position:relative;
+@media(max-width:850px){
+  .nav{height:65px}
+  .mobileMenuBtn{display:block}
+  .navlinks{display:none}
+  .logo{flex:1;min-width:0}
+  .logoText strong{font-size:14px}
+  .cyber{display:none}
+  .joinBtn{display:none}
+  .hero{padding:40px 28px;min-height:330px}
+  .hero h1{font-size:34px}
+  .featureStrip{grid-template-columns:repeat(2,1fr)}
+  .footerInner{grid-template-columns:1fr 1fr}
 }
 
-.mega{
+@media(max-width:600px){
+  .topbar{font-size:10px}
+  .heroWrap{padding:0 12px}
+  .section{padding:0 12px;margin-top:48px}
+  .hero{border-radius:22px;padding:32px 22px}
+  .hero h1{font-size:29px}
+  .hero p{font-size:13px}
+  .heroButtons{flex-wrap:wrap}
+  .searchBox{margin:-22px 10px 0}
+  .searchBtn{padding:0 15px}
+  .cards{grid-template-columns:repeat(2,1fr);gap:10px}
+  .card{min-height:145px;padding:13px 11px}
+  .cardIcon{width:44px;height:44px;font-size:22px}
+  .card h3{font-size:12px}
+  .card p{font-size:10px}
+  .featureStrip{padding:20px;grid-template-columns:1fr}
+  .priceGrid,.aboutGrid{grid-template-columns:1fr}
+  .price.featured{transform:none}
+  .footerInner{grid-template-columns:1fr}
+  .about{padding:25px}
+  .sectionHead h2{font-size:21px}
+}
+
+/* SEARCH HIDDEN */
+.card.hidden{display:none}
+.noResult{
   display:none;
-  position:absolute;
-  top:30px;
-  left:-300px;
-  width:650px;
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:15px;
-  padding:25px;
-  box-shadow:0 20px 50px rgba(0,0,0,.15);
-}
-
-.services-menu:hover .mega{
-  display:block;
-}
-
-.mega-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-}
-
-.mega h4{
-  color:#e11d48;
-  font-size:13px;
-  margin-bottom:14px;
-}
-
-.mega a{
-  display:block;
-  padding:8px 0;
-  color:#344054;
-}
-
-.mega a:hover{color:#e11d48}
-
-.mega-bottom{
-  border-top:1px solid #eee;
-  margin-top:15px;
-  padding-top:15px;
-  color:#e11d48!important;
-}
-
-/* LOGIN */
-
-.login-section{
-  min-height:600px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(120deg,#fff1f5,#eef5ff);
-}
-
-.login-box{
-  width:420px;
-  max-width:95%;
-  background:#fff;
-  padding:35px;
-  border-radius:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,.12);
-}
-
-.login-box h2{
   text-align:center;
-  margin-bottom:8px;
-}
-
-.login-box .subtitle{
-  text-align:center;
-  color:#667085;
-  margin-bottom:25px;
-  font-size:14px;
-}
-
-.input-group{
-  margin-bottom:16px;
-}
-
-.input-group label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-.input-group input{
-  width:100%;
-  padding:13px;
-  border:1px solid #d0d5dd;
-  border-radius:9px;
-  outline:0;
-}
-
-.input-group input:focus{
-  border-color:#e11d48;
-}
-
-.login-btn{
-  width:100%;
-  border:0;
-  background:#e11d48;
-  color:#fff;
-  padding:13px;
-  border-radius:9px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.login-links{
-  display:flex;
-  justify-content:space-between;
-  margin-top:15px;
-  font-size:13px;
-}
-
-.login-links a{color:#e11d48}
-
-.divider{
-  text-align:center;
-  margin:20px 0;
-  color:#98a2b3;
-  font-size:13px;
-}
-
-.google{
-  width:100%;
-  padding:12px;
-  border:1px solid #d0d5dd;
-  background:#fff;
-  border-radius:9px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1000px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .portal{grid-template-columns:repeat(3,1fr)}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .nav{gap:12px}
-}
-
-@media(max-width:700px){
-
-  .topbar{
-    display:none;
-  }
-
-  .nav{
-    height:auto;
-    min-height:65px;
-    flex-wrap:wrap;
-    padding:12px 15px;
-  }
-
-  .logo{
-    width:100%;
-  }
-
-  .nav>a,
-  .services-menu{
-    display:none;
-  }
-
-  .hero{
-    padding:55px 15px;
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  .search{
-    display:block;
-    background:transparent;
-    box-shadow:none;
-  }
-
-  .search input{
-    width:100%;
-    background:#fff;
-    border-radius:10px;
-    margin-bottom:8px;
-  }
-
-  .search button{
-    width:100%;
-    height:48px;
-  }
-
-  .grid,
-  .pricing,
-  .portal{
-    grid-template-columns:1fr;
-  }
-
-  .price-card.featured{
-    transform:none;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-  }
-
-  .job{
-    align-items:flex-start;
-  }
+  padding:30px;
+  color:#8b91a1;
+  grid-column:1/-1;
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- TOP PROMO -->
 <div class="topbar">
-  <span>⚔ Chhatrapati Print Portal</span>
-  <span>Fast • Simple • Professional</span>
+  ⚡ <b>Chhatrapati Cyber Cafe Partner</b>
+  <span>•</span>
+  2 Months Free Trial
+  <span>•</span>
+  Fast Online Services
 </div>
 
 <!-- HEADER -->
-<header>
+<header class="header">
 <nav class="nav">
 
-  <a href="#home" class="logo">⚔ <span>Chhatrapati</span> Print Portal</a>
-
-  <a href="#home">Home</a>
-
-  <div class="services-menu">
-    <a href="#services">Services ▾</a>
-
-    <div class="mega">
-
-      <div class="mega-grid">
-
-        <div>
-          <h4>IMPORTANT SERVICES</h4>
-
-          <a href="#services">💼 Govt Job</a>
-          <a href="#services">📝 Mock Test</a>
-          <a href="#services">🪪 ID Card Print</a>
-          <a href="#services">📷 Passport Photo</a>
-          <a href="#services">📄 Resume Maker</a>
-          <a href="#services">🖼️ Photo Resize</a>
-        </div>
-
-        <div>
-          <h4>CONVERT TOOLS</h4>
-
-          <a href="#pdf">JPG to PDF</a>
-          <a href="#pdf">Merge PDF</a>
-          <a href="#pdf">Delete PDF</a>
-          <a href="#pdf">PNG to PDF</a>
-          <a href="#pdf">PDF to JPG</a>
-          <a href="#pdf">PNG to JPG</a>
-        </div>
-
-      </div>
-
-      <a class="mega-bottom" href="#services">
-        View All Tools →
-      </a>
-
+  <a href="#" class="logo">
+    <div class="logoIcon">⚔️</div>
+    <div class="logoText">
+      <strong>Chhatrapati Print Portal</strong>
+      <small>ONLINE SERVICES • PRINTING • TOOLS</small>
     </div>
+  </a>
+
+  <div class="navlinks">
+
+    <a href="#">Home</a>
+
+    <div class="dropdown">
+      <button class="dropBtn">Services ▾</button>
+
+      <div class="menu">
+        <div class="menuTitle">Important Services</div>
+
+        <div class="menuGrid">
+          <a href="#essential" class="menuItem">
+            🧾 <b>Essential Services</b>
+            <small>Daily cyber cafe tools</small>
+          </a>
+
+          <a href="#creative" class="menuItem">
+            🎨 <b>Creative Studio</b>
+            <small>Design & maker tools</small>
+          </a>
+
+          <a href="#pdf" class="menuItem">
+            📄 <b>PDF Tools</b>
+            <small>Smart PDF utilities</small>
+          </a>
+
+          <a href="#portal" class="menuItem">
+            🏛️ <b>Portal Services</b>
+            <small>Government portals</small>
+          </a>
+
+          <a href="#jobs" class="menuItem">
+            💼 <b>Latest Jobs</b>
+            <small>Job updates</small>
+          </a>
+
+          <a href="#pricing" class="menuItem">
+            💳 <b>Pricing</b>
+            <small>Plans & services</small>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#jobs">Latest Jobs</a>
+    <a href="#pricing">Pricing</a>
+
+    <div class="dropdown">
+      <button class="dropBtn">More ▾</button>
+      <div class="menu" style="width:390px">
+        <div class="menuGrid">
+          <a href="#about" class="menuItem">ℹ️ <b>About Us</b></a>
+          <a href="#faq" class="menuItem">❓ <b>FAQ</b></a>
+          <a href="#contact" class="menuItem">📞 <b>Contact</b></a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <a href="#jobs">Latest Jobs</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#more">More ▾</a>
-
-  <a href="#login">🔐 Login</a>
-
-  <a class="cafe" href="#services">Cyber Cafe</a>
+  <div class="navRight">
+    <button class="iconBtn" title="Language">🌐</button>
+    <button class="iconBtn" title="Apps">▦</button>
+    <button class="cyber">🖥️ Cyber Cafe</button>
+    <button class="loginBtn" onclick="openLogin()">Login</button>
+    <button class="joinBtn" onclick="openLogin()">Join</button>
+    <button class="iconBtn mobileMenuBtn">☰</button>
+  </div>
 
 </nav>
 </header>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<div class="heroWrap">
+<section class="hero">
 
-  <div class="badge">🚀 All-in-One Online Service Portal</div>
+  <div class="heroContent">
 
-  <h1>
-    Online Printing, PDF, Passport Photo &
-    <span>Cyber Cafe Tools</span>
-  </h1>
+    <div class="badge">⚡ India's Smart Digital Service Portal</div>
 
-  <p>
-    Powerful online tools for cyber cafes, students,
-    print shops and everyday digital services.
-  </p>
+    <h1>
+      Online Printing, PDF,<br>
+      Passport Photo & Cyber Cafe Tools
+    </h1>
 
-  <div class="search">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search services, tools..."
-      onkeyup="searchTools()"
-    >
-    <button onclick="searchTools()">Search</button>
+    <p>
+      Chhatrapati Print Portal provides fast and simple online tools for
+      printing, photo editing, PDF conversion, document services,
+      government portals and cyber cafe work.
+    </p>
+
+    <div class="heroButtons">
+      <button class="heroPrimary" onclick="document.getElementById('essential').scrollIntoView()">
+        Explore Services →
+      </button>
+      <button class="heroSecondary" onclick="openLogin()">
+        🔐 Login / Join
+      </button>
+    </div>
+
   </div>
 
 </section>
 
-<!-- SERVICES -->
-<section class="container" id="services">
+<div class="searchBox">
+  <input id="searchInput"
+         type="text"
+         placeholder="Search services, tools, portals...">
+  <button class="searchBtn">🔍 Search</button>
+</div>
+</div>
 
-  <div class="section-head">
-    <div>
-      <h2>Essential & Services</h2>
-      <p>Popular tools used every day</p>
-    </div>
+
+<!-- ESSENTIAL -->
+<section class="section" id="essential">
+
+<div class="sectionHead">
+  <div>
+    <h2>Essential & Services</h2>
+    <p>Most useful tools for daily cyber cafe work</p>
+  </div>
+  <a class="viewAll" href="#">View All →</a>
+</div>
+
+<div class="cards serviceCards">
+
+  <div class="card">
+    <span class="tag">NEW</span>
+    <div class="cardIcon">💼</div>
+    <h3>Latest Jobs</h3>
+    <p>Government & private job updates</p>
+    <div class="cardTip">Find latest government and private job notifications and application information.</div>
   </div>
 
-  <div class="grid" id="serviceGrid">
-
-    <div class="card tool-card">
-      <span class="new">NEW</span>
-      <div class="icon">🪪</div>
-      <h3>ID Card Print</h3>
-      <p>Upload front and back images and create printable ID cards.</p>
-    </div>
-
-    <div class="card tool-card">
-      <div class="icon">📷</div>
-      <h3>Passport Photo</h3>
-      <p>Create passport-size photos quickly.</p>
-    </div>
-
-    <div class="card tool-card">
-      <span class="new">NEW</span>
-      <div class="icon">📄</div>
-      <h3>Resume Maker</h3>
-      <p>Create a professional resume easily.</p>
-    </div>
-
-    <div class="card tool-card">
-      <div class="icon">🖼️</div>
-      <h3>Photo Resize</h3>
-      <p>Resize and compress photos for online forms.</p>
-    </div>
-
-    <div class="card tool-card">
-      <div class="icon">📝</div>
-      <h3>Application Maker</h3>
-      <p>Create applications and printable documents.</p>
-    </div>
-
-    <div class="card tool-card">
-      <div class="icon">💼</div>
-      <h3>Govt Job</h3>
-      <p>Find government job information and applications.</p>
-    </div>
-
-    <div class="card tool-card">
-      <div class="icon">🧪</div>
-      <h3>Mock Test</h3>
-      <p>Practice tests for competitive examinations.</p>
-    </div>
-
-    <div class="card tool-card">
-      <div class="icon">💳</div>
-      <h3>Payment Lock QR</h3>
-      <p>Create payment QR codes for your cyber cafe.</p>
-    </div>
-
+  <div class="card">
+    <div class="cardIcon">📝</div>
+    <h3>Mock Test</h3>
+    <p>Practice online examinations</p>
+    <div class="cardTip">Practice with useful mock tests for competitive examinations.</div>
   </div>
+
+  <div class="card">
+    <span class="tag hot">HOT</span>
+    <div class="cardIcon">🪪</div>
+    <h3>ID Card Print</h3>
+    <p>Quick ID card printing</p>
+    <div class="cardTip">Create and prepare ID cards for easy printing.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">📇</div>
+    <h3>PVC Auto Crop</h3>
+    <p>Automatic PVC photo crop</p>
+    <div class="cardTip">Crop photos quickly for PVC cards and ID printing.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">🖨️</div>
+    <h3>Auto Print</h3>
+    <p>Quick print preparation</p>
+    <div class="cardTip">Prepare documents and images quickly for printing.</div>
+  </div>
+
+  <div class="card">
+    <span class="tag">NEW</span>
+    <div class="cardIcon">📸</div>
+    <h3>Passport Photo</h3>
+    <p>Passport size photo</p>
+    <div class="cardTip">Prepare passport-size photos with easy layout options.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">✂️</div>
+    <h3>Photo Crop & Resize</h3>
+    <p>Resize photos easily</p>
+    <div class="cardTip">Crop, resize and prepare photographs for different forms.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">📄</div>
+    <h3>Resume / CV</h3>
+    <p>Create professional resume</p>
+    <div class="cardTip">Create a clean resume suitable for job applications.</div>
+  </div>
+
+  <div class="card">
+    <span class="tag">NEW</span>
+    <div class="cardIcon">📢</div>
+    <h3>New Service Post</h3>
+    <p>Service announcement</p>
+    <div class="cardTip">Publish new service information for your customers.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">🔐</div>
+    <h3>Payment Lock QR</h3>
+    <p>Secure payment QR</p>
+    <div class="cardTip">Create a payment QR display for your cyber cafe.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">🗂️</div>
+    <h3>Document Album</h3>
+    <p>Organize documents</p>
+    <div class="cardTip">Keep frequently used document layouts organized.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">🧑‍💻</div>
+    <h3>Online Application</h3>
+    <p>Application assistance</p>
+    <div class="cardTip">Useful workspace for filling online applications.</div>
+  </div>
+
+  <div class="noResult">No service found.</div>
+
+</div>
 </section>
 
-<!-- QUICK APPS -->
-<section class="container" id="quick">
 
-  <div class="section-head">
-    <div>
-      <h2>Quick Apps</h2>
-      <p>Frequently used services</p>
-    </div>
+<!-- CREATIVE -->
+<section class="section" id="creative">
+
+<div class="sectionHead">
+  <div>
+    <h2>Creative Design Studio</h2>
+    <p>Professional designs made simple</p>
+  </div>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <span class="tag">NEW</span>
+    <div class="cardIcon">📑</div>
+    <h3>Pro Resume Maker</h3>
+    <p>Professional resume designs</p>
+    <div class="cardTip">Build attractive resumes with a professional layout.</div>
   </div>
 
-  <div class="grid">
-
-    <div class="card">
-      <div class="icon">🪪</div>
-      <h3>Aadhaar Services</h3>
-      <p>Quick access to Aadhaar related services.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">💳</div>
-      <h3>PAN Card</h3>
-      <p>PAN related online services.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🗳️</div>
-      <h3>Voter Services</h3>
-      <p>Access voter related services.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🚗</div>
-      <h3>Driving Licence</h3>
-      <p>Driving licence services.</p>
-    </div>
-
+  <div class="card">
+    <div class="cardIcon">💍</div>
+    <h3>Marriage Biodata</h3>
+    <p>Marriage biodata maker</p>
+    <div class="cardTip">Create beautiful marriage biodata documents.</div>
   </div>
+
+  <div class="card">
+    <div class="cardIcon">🪪</div>
+    <h3>Pro ID Maker</h3>
+    <p>Professional ID cards</p>
+    <div class="cardTip">Design professional-looking ID cards.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">🎨</div>
+    <h3>Pro Poster Maker</h3>
+    <p>Poster & advertisement</p>
+    <div class="cardTip">Create promotional posters for shops and services.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">📝</div>
+    <h3>Application Maker</h3>
+    <p>Ready application formats</p>
+    <div class="cardTip">Prepare common applications and letters.</div>
+  </div>
+
+  <div class="card">
+    <span class="tag hot">HOT</span>
+    <div class="cardIcon">🏪</div>
+    <h3>Shop Promotion</h3>
+    <p>Business promotion design</p>
+    <div class="cardTip">Create promotional designs for local businesses.</div>
+  </div>
+
+</div>
 </section>
 
-<!-- CREATIVE STUDIO -->
-<section class="container">
 
-  <div class="section-head">
-    <div>
-      <h2>Creative Design Studio</h2>
-      <p>Create professional documents and designs</p>
-    </div>
+<!-- PDF -->
+<section class="section" id="pdf">
+
+<div class="sectionHead">
+  <div>
+    <h2>Smart PDF & Image Tools</h2>
+    <p>Fast document conversion and editing tools</p>
+  </div>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <span class="tag">NEW</span>
+    <div class="cardIcon">🖼️</div>
+    <h3>JPG To PDF</h3>
+    <p>Convert images to PDF</p>
+    <div class="cardTip">Convert JPG images into a PDF document.</div>
   </div>
 
-  <div class="grid">
-
-    <div class="card">
-      <div class="icon">📄</div>
-      <h3>Pro Resume Maker</h3>
-      <p>Modern professional resume templates.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">💍</div>
-      <h3>Marriage Biodata</h3>
-      <p>Create beautiful marriage biodata.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🪪</div>
-      <h3>Pro ID Maker</h3>
-      <p>Create professional ID cards.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🎨</div>
-      <h3>Poster Maker</h3>
-      <p>Create posters for business and events.</p>
-    </div>
-
+  <div class="card">
+    <div class="cardIcon">📄</div>
+    <h3>PDF To JPG</h3>
+    <p>Convert PDF pages</p>
+    <div class="cardTip">Convert PDF pages into image files.</div>
   </div>
+
+  <div class="card">
+    <div class="cardIcon">🖼️</div>
+    <h3>PNG To PDF</h3>
+    <p>PNG image to PDF</p>
+    <div class="cardTip">Convert PNG files into PDF documents.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">🔄</div>
+    <h3>PNG To JPG</h3>
+    <p>Image conversion</p>
+    <div class="cardTip">Convert PNG images into JPG format.</div>
+  </div>
+
+  <div class="card">
+    <span class="tag hot">HOT</span>
+    <div class="cardIcon">🗑️</div>
+    <h3>Delete PDF</h3>
+    <p>Remove PDF pages</p>
+    <div class="cardTip">Remove unwanted pages from a PDF document.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">📚</div>
+    <h3>Merge PDF</h3>
+    <p>Combine PDF files</p>
+    <div class="cardTip">Merge multiple PDF documents into one file.</div>
+  </div>
+
+</div>
 </section>
 
-<!-- PDF TOOLS -->
-<section class="container tools" id="pdf">
-
-  <div class="section-head">
-    <div>
-      <h2>Smart PDF & Image Tools</h2>
-      <p>Easy document conversion tools</p>
-    </div>
-  </div>
-
-  <div class="grid">
-
-    <div class="card" onclick="toolAlert('JPG to PDF')">
-      <div class="icon">📕</div>
-      <h3>JPG to PDF</h3>
-      <p>Convert JPG images into PDF.</p>
-    </div>
-
-    <div class="card" onclick="toolAlert('PDF to JPG')">
-      <div class="icon">🖼️</div>
-      <h3>PDF to JPG</h3>
-      <p>Convert PDF pages into JPG images.</p>
-    </div>
-
-    <div class="card" onclick="toolAlert('PNG to PDF')">
-      <div class="icon">📄</div>
-      <h3>PNG to PDF</h3>
-      <p>Convert PNG images into PDF.</p>
-    </div>
-
-    <div class="card" onclick="toolAlert('PNG to JPG')">
-      <div class="icon">🖼️</div>
-      <h3>PNG to JPG</h3>
-      <p>Convert PNG files into JPG.</p>
-    </div>
-
-    <div class="card" onclick="toolAlert('Delete PDF Page')">
-      <div class="icon">🗑️</div>
-      <h3>Delete PDF Page</h3>
-      <p>Remove unwanted pages from PDF.</p>
-    </div>
-
-    <div class="card" onclick="toolAlert('Merge PDF')">
-      <div class="icon">📚</div>
-      <h3>Merge PDF</h3>
-      <p>Combine multiple PDF files.</p>
-    </div>
-
-  </div>
-</section>
 
 <!-- PORTAL SERVICES -->
-<section class="container">
+<section class="section" id="portal">
 
-  <div class="section-head">
-    <div>
-      <h2>Portal Services</h2>
-      <p>Useful government and digital services</p>
-    </div>
+<div class="sectionHead">
+  <div>
+    <h2>Portal Services</h2>
+    <p>Useful government and online service portals</p>
   </div>
+</div>
 
-  <div class="grid portal">
+<div class="cards">
 
-    <div class="card"><div class="icon">🪪</div><h3>Aadhaar</h3></div>
-    <div class="card"><div class="icon">💳</div><h3>PAN Card</h3></div>
-    <div class="card"><div class="icon">🗳️</div><h3>Voter ID</h3></div>
-    <div class="card"><div class="icon">🏥</div><h3>Ayushman Bharat</h3></div>
-    <div class="card"><div class="icon">🚗</div><h3>Driving Licence</h3></div>
-    <div class="card"><div class="icon">🚘</div><h3>RC Services</h3></div>
-    <div class="card"><div class="icon">📜</div><h3>Birth & Death</h3></div>
-    <div class="card"><div class="icon">🌱</div><h3>Soil Health Card</h3></div>
-    <div class="card"><div class="icon">🚨</div><h3>E-Challan</h3></div>
-    <div class="card"><div class="icon">👷</div><h3>E-Shram</h3></div>
-    <div class="card"><div class="icon">❤️</div><h3>ABHA</h3></div>
-    <div class="card"><div class="icon">🏠</div><h3>PMAY</h3></div>
-    <div class="card"><div class="icon">🏦</div><h3>EPFO</h3></div>
-    <div class="card"><div class="icon">🛡️</div><h3>LIC</h3></div>
-    <div class="card"><div class="icon">🏢</div><h3>GST</h3></div>
-    <div class="card"><div class="icon">⛽</div><h3>Gas Services</h3></div>
-    <div class="card"><div class="icon">♿</div><h3>Disability ID</h3></div>
-    <div class="card"><div class="icon">📱</div><h3>Fancy Mobile</h3></div>
-    <div class="card"><div class="icon">🚙</div><h3>PUC</h3></div>
-    <div class="card"><div class="icon">🌾</div><h3>PMFBY</h3></div>
+  <div class="card"><div class="cardIcon">🇮🇳</div><h3>Census Of India</h3><p>Official census service</p><div class="cardTip">Access Census of India information and services.</div></div>
 
-  </div>
+  <div class="card"><div class="cardIcon">🪪</div><h3>Aadhaar Beta Service</h3><p>Aadhaar related services</p><div class="cardTip">Useful Aadhaar service links and information.</div></div>
+
+  <div class="card"><div class="cardIcon">🔗</div><h3>Aadhaar Information</h3><p>UIDAI Link</p><div class="cardTip">Access official Aadhaar information.</div></div>
+
+  <div class="card"><div class="cardIcon">💳</div><h3>PAN Card Service</h3><p>PAN related services</p><div class="cardTip">Access PAN card services and information.</div></div>
+
+  <div class="card"><div class="cardIcon">🗳️</div><h3>Voter ID</h3><p>Correction & status</p><div class="cardTip">Useful voter ID services and status links.</div></div>
+
+  <div class="card"><div class="cardIcon">🏥</div><h3>Ayushman Bharat</h3><p>PM-JAY service</p><div class="cardTip">Access Ayushman Bharat PM-JAY services.</div></div>
+
+  <div class="card"><div class="cardIcon">🚘</div><h3>Driving Licence</h3><p>DL services</p><div class="cardTip">Driving licence related online services.</div></div>
+
+  <div class="card"><div class="cardIcon">📋</div><h3>RC Service</h3><p>Registration certificate</p><div class="cardTip">Vehicle registration certificate related services.</div></div>
+
+  <div class="card"><div class="cardIcon">🚗</div><h3>Vehicle Service</h3><p>Vehicle information</p><div class="cardTip">Useful online vehicle services.</div></div>
+
+  <div class="card"><div class="cardIcon">👶</div><h3>Birth & Death Certificate</h3><p>Certificate services</p><div class="cardTip">Information and links for birth and death certificates.</div></div>
+
+  <div class="card"><div class="cardIcon">👷</div><h3>E-Shram Card</h3><p>Worker registration</p><div class="cardTip">Access E-Shram related services.</div></div>
+
+  <div class="card"><div class="cardIcon">🆔</div><h3>ABHA Card</h3><p>Health ID</p><div class="cardTip">Access ABHA health ID services.</div></div>
+
+  <div class="card"><div class="cardIcon">🌾</div><h3>PMFBY</h3><p>Fasal Bima Yojana</p><div class="cardTip">Pradhan Mantri Fasal Bima Yojana information.</div></div>
+
+  <div class="card"><div class="cardIcon">🏠</div><h3>PMAY-Gramin</h3><p>Rural housing</p><div class="cardTip">Pradhan Mantri Awas Yojana Gramin.</div></div>
+
+  <div class="card"><div class="cardIcon">🏙️</div><h3>PMAY-Urban</h3><p>Urban housing</p><div class="cardTip">Pradhan Mantri Awas Yojana Urban.</div></div>
+
+  <div class="card"><div class="cardIcon">💼</div><h3>EPFO</h3><p>Employee Provident Fund</p><div class="cardTip">Access EPFO related services.</div></div>
+
+  <div class="card"><div class="cardIcon">🛡️</div><h3>LIC Service</h3><p>Insurance services</p><div class="cardTip">Access LIC related information and services.</div></div>
+
+  <div class="card"><div class="cardIcon">🌾</div><h3>E-NAM</h3><p>Agriculture market</p><div class="cardTip">National Agriculture Market services.</div></div>
+
+  <div class="card"><div class="cardIcon">🏪</div><h3>PM SVANidhi</h3><p>Street vendor scheme</p><div class="cardTip">PM SVANidhi related services.</div></div>
+
+  <div class="card"><div class="cardIcon">🌱</div><h3>Soil Health Card</h3><p>Soil information</p><div class="cardTip">Access soil health card information.</div></div>
+
+  <div class="card"><div class="cardIcon">👨‍🌾</div><h3>MKisan Portal</h3><p>Farmer services</p><div class="cardTip">Useful farmer-related services.</div></div>
+
+  <div class="card"><div class="cardIcon">☀️</div><h3>PM Surya Ghar</h3><p>Solar scheme</p><div class="cardTip">PM Surya Ghar scheme information.</div></div>
+
+  <div class="card"><div class="cardIcon">🏭</div><h3>Udyam Aadhaar</h3><p>MSME service</p><div class="cardTip">MSME and Udyam registration services.</div></div>
+
+  <div class="card"><div class="cardIcon">🎓</div><h3>Scholarship Portal</h3><p>NSP services</p><div class="cardTip">National Scholarship Portal services.</div></div>
+
+  <div class="card"><div class="cardIcon">📱</div><h3>Lost / Found Mobile</h3><p>Mobile services</p><div class="cardTip">Useful services for lost or found mobile devices.</div></div>
+
+  <div class="card"><div class="cardIcon">🚆</div><h3>Railway Service</h3><p>Railway information</p><div class="cardTip">Useful railway service links.</div></div>
+
+  <div class="card"><div class="cardIcon">🛂</div><h3>Passport Seva</h3><p>Passport services</p><div class="cardTip">Access Passport Seva services.</div></div>
+
+  <div class="card"><div class="cardIcon">🌾</div><h3>PM Kisan</h3><p>Kisan Samman Nidhi</p><div class="cardTip">PM Kisan related information and services.</div></div>
+
+  <div class="card"><div class="cardIcon">🧾</div><h3>GST Verification</h3><p>GST services</p><div class="cardTip">GST related verification services.</div></div>
+
+  <div class="card"><div class="cardIcon">🛣️</div><h3>Road Tax</h3><p>Checkpost Tax</p><div class="cardTip">Road tax and checkpost related services.</div></div>
+
+  <div class="card"><div class="cardIcon">🌳</div><h3>Vahan Green Sewa</h3><p>Vehicle environment service</p><div class="cardTip">Vehicle and green service information.</div></div>
+
+  <div class="card"><div class="cardIcon">🌿</div><h3>PUC Service</h3><p>Pollution certificate</p><div class="cardTip">Vehicle pollution certificate services.</div></div>
+
+  <div class="card"><div class="cardIcon">💰</div><h3>NPCI</h3><p>Payment services</p><div class="cardTip">National Payments Corporation of India services.</div></div>
+
+  <div class="card"><div class="cardIcon">📞</div><h3>Consumer Helpline</h3><p>NCH service</p><div class="cardTip">National Consumer Helpline information.</div></div>
+
+</div>
 </section>
+
+
+<!-- FEATURES -->
+<section class="section">
+<div class="featureStrip">
+
+  <div class="feature">
+    <div class="featureIcon">⚡</div>
+    <div><b>Fast Tools</b><span>Quick online utilities</span></div>
+  </div>
+
+  <div class="feature">
+    <div class="featureIcon">🔒</div>
+    <div><b>Secure</b><span>Privacy focused workflow</span></div>
+  </div>
+
+  <div class="feature">
+    <div class="featureIcon">📱</div>
+    <div><b>Mobile Friendly</b><span>Works on every device</span></div>
+  </div>
+
+  <div class="feature">
+    <div class="featureIcon">💬</div>
+    <div><b>Help & Support</b><span>Easy customer assistance</span></div>
+  </div>
+
+</div>
+</section>
+
 
 <!-- JOBS -->
-<section class="container jobs" id="jobs">
+<section class="section" id="jobs">
 
-  <div class="section-head">
-    <div>
-      <h2>Latest Jobs</h2>
-      <p>Latest job updates will appear here</p>
-    </div>
+<div class="sectionHead">
+  <div>
+    <h2>Latest Jobs</h2>
+    <p>Latest recruitment and application updates</p>
+  </div>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <span class="tag">NEW</span>
+    <div class="cardIcon">🏛️</div>
+    <h3>Government Jobs</h3>
+    <p>Latest government recruitment</p>
+    <div class="cardTip">Add your latest government recruitment updates here.</div>
   </div>
 
-  <div class="card job">
-    <div class="icon">💼</div>
-    <div>
-      <h3>Government Job Updates</h3>
-      <p>New recruitment notifications and application links.</p>
-    </div>
-    <button onclick="toolAlert('Job Updates')">View</button>
+  <div class="card">
+    <div class="cardIcon">👨‍💼</div>
+    <h3>Private Jobs</h3>
+    <p>Private sector opportunities</p>
+    <div class="cardTip">Add private company job updates here.</div>
   </div>
 
-  <br>
-
-  <div class="card job">
-    <div class="icon">📢</div>
-    <div>
-      <h3>New Recruitment</h3>
-      <p>Check latest government recruitment information.</p>
-    </div>
-    <button onclick="toolAlert('Recruitment')">View</button>
+  <div class="card">
+    <div class="cardIcon">🎓</div>
+    <h3>Exam Updates</h3>
+    <p>Exam notifications</p>
+    <div class="cardTip">Keep important examination notifications here.</div>
   </div>
 
+  <div class="card">
+    <div class="cardIcon">📢</div>
+    <h3>Admit Card</h3>
+    <p>Download information</p>
+    <div class="cardTip">Add admit card download links here.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">📊</div>
+    <h3>Results</h3>
+    <p>Latest results</p>
+    <div class="cardTip">Add latest examination results here.</div>
+  </div>
+
+  <div class="card">
+    <div class="cardIcon">📅</div>
+    <h3>Important Dates</h3>
+    <p>Application deadlines</p>
+    <div class="cardTip">Show important application dates here.</div>
+  </div>
+
+</div>
 </section>
+
 
 <!-- PRICING -->
-<section class="container" id="pricing">
+<section class="section" id="pricing">
 
-  <div class="section-head">
-    <div>
-      <h2>Pricing</h2>
-      <p>Plans for everyone</p>
-    </div>
+<div class="sectionHead">
+  <div>
+    <h2>Plans & Pricing</h2>
+    <p>Simple plans for digital service operators</p>
+  </div>
+</div>
+
+<div class="priceGrid">
+
+  <div class="price">
+    <h3>Free</h3>
+    <small>For starting users</small>
+    <strong>₹0</strong>
+    <ul>
+      <li>✓ Basic tools</li>
+      <li>✓ PDF utilities</li>
+      <li>✓ Portal links</li>
+      <li>✓ Mobile access</li>
+    </ul>
+    <button onclick="openLogin()">Get Started</button>
   </div>
 
-  <div class="grid pricing">
-
-    <div class="price-card">
-      <h3>Free</h3>
-      <div class="price">₹0</div>
-      <ul>
-        <li>✓ Basic Tools</li>
-        <li>✓ PDF Tools</li>
-        <li>✓ Image Tools</li>
-        <li>✓ Portal Services</li>
-      </ul>
-      <button onclick="toolAlert('Free Plan')">Get Started</button>
-    </div>
-
-    <div class="price-card featured">
-      <h3>Pro</h3>
-      <div class="price">₹99</div>
-      <ul>
-        <li>✓ All Free Features</li>
-        <li>✓ Pro Design Tools</li>
-        <li>✓ Advanced Tools</li>
-        <li>✓ Priority Support</li>
-      </ul>
-      <button onclick="toolAlert('Pro Plan')">Choose Pro</button>
-    </div>
-
-    <div class="price-card">
-      <h3>Cyber Cafe</h3>
-      <div class="price">₹199</div>
-      <ul>
-        <li>✓ All Pro Features</li>
-        <li>✓ Print Tools</li>
-        <li>✓ Business Tools</li>
-        <li>✓ Cafe Support</li>
-      </ul>
-      <button onclick="toolAlert('Cyber Cafe Plan')">Choose Plan</button>
-    </div>
-
+  <div class="price featured">
+    <h3>Cyber Cafe</h3>
+    <small>For daily service work</small>
+    <strong>₹199<span style="font-size:13px">/month</span></strong>
+    <ul>
+      <li>✓ All basic tools</li>
+      <li>✓ Creative tools</li>
+      <li>✓ Service workspace</li>
+      <li>✓ Priority support</li>
+    </ul>
+    <button onclick="openLogin()">Choose Plan</button>
   </div>
+
+  <div class="price">
+    <h3>Pro</h3>
+    <small>For advanced operators</small>
+    <strong>₹399<span style="font-size:13px">/month</span></strong>
+    <ul>
+      <li>✓ Pro tools</li>
+      <li>✓ Advanced workspace</li>
+      <li>✓ Business features</li>
+      <li>✓ Premium support</li>
+    </ul>
+    <button onclick="openLogin()">Choose Plan</button>
+  </div>
+
+</div>
 </section>
 
-<!-- LOGIN -->
-<section class="login-section" id="login">
-
-  <div class="login-box">
-
-    <h2>🔐 Welcome Back</h2>
-
-    <div class="subtitle">
-      Login to Chhatrapati Print Portal
-    </div>
-
-    <div class="input-group">
-      <label>Email or Mobile Number</label>
-      <input
-        type="text"
-        id="loginUser"
-        placeholder="Enter email or mobile"
-      >
-    </div>
-
-    <div class="input-group">
-      <label>Password</label>
-      <input
-        type="password"
-        id="loginPassword"
-        placeholder="Enter password"
-      >
-    </div>
-
-    <button class="login-btn" onclick="loginUser()">
-      Login
-    </button>
-
-    <div class="login-links">
-      <a href="#" onclick="forgotPassword()">Forgot Password?</a>
-      <a href="#" onclick="createAccount()">Create Account</a>
-    </div>
-
-    <div class="divider">
-      ───── OR ─────
-    </div>
-
-    <button class="google" onclick="googleLogin()">
-      🌐 Continue with Google
-    </button>
-
-  </div>
-
-</section>
 
 <!-- FAQ -->
-<section class="container" id="more">
+<section class="section" id="faq">
 
-  <div class="section-head">
-    <div>
-      <h2>Frequently Asked Questions</h2>
-      <p>Common questions about our portal</p>
-    </div>
+<div class="sectionHead">
+  <div>
+    <h2>Frequently Asked Questions</h2>
+    <p>Some common questions</p>
+  </div>
+</div>
+
+<div class="faq">
+
+  <div class="faqItem">
+    <div class="faqQ">What is Chhatrapati Print Portal? <span>＋</span></div>
+    <div class="faqA">Chhatrapati Print Portal is a digital service platform designed for printing, photo, PDF, cyber cafe and online service workflows.</div>
   </div>
 
-  <div class="faq">
+  <div class="faqItem">
+    <div class="faqQ">Can I use it on mobile? <span>＋</span></div>
+    <div class="faqA">Yes. The website is designed to work on mobile phones, tablets and desktop computers.</div>
+  </div>
 
-    <div class="faq-item">
-      <div class="faq-q" onclick="faq(this)">
-        What is
+  <div class="faqItem">
+    <div class="faqQ">Will Login work? <span>＋</span></div>
+    <div class="faqA">The login interface is included in this version. Secure account authentication can be connected later using a backend authentication service.</div>
+  </div>
+
+  <div class="faqItem">
+    <div class="faqQ">Can I add more services? <span>＋</span></div>
+    <div class="faqA">Yes. New tools, service cards, job updates and portal links can be added to the website.</div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="section" id="about">
+
+<div class="about">
+
+  <h2>About Chhatrapati Print Portal</h2>
+
+  <p>
+    Chhatrapati Print Portal is designed as a modern digital workspace
+    for cyber cafes, online service centers and everyday users.
+    The platform brings printing tools, PDF utilities, photo tools,
+    creative designs and useful online service portals together in one place.
+  </p>
+
+  <div class="aboutGrid">
+
+    <div class="aboutBox">
+      <b>🖨️ Printing</b>
+      <span>Easy printing and document preparation tools.</span>
+    </div>
+
+    <div class="aboutBox">
+      <b>📄 PDF Tools</b>
+      <span>Useful conversion and document utilities.</span>
+    </div>
+
+    <div class="aboutBox">
+      <b>🏛️ Online Services</b>
+      <span>Quick access to useful service portals.</span>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+
+<div class="sectionHead">
+  <div>
+    <h2>Help & Feedback</h2>
+    <p>Need help? Contact Chhatrapati Print Portal.</p>
+  </div>
+</div>
+
+<div style="
+background:#fff;
+border:1px solid #e7e8ef;
+border-radius:20px;
+padding:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+">
+  <div>
+    <h3 style="font-size:17px">Have a question or suggestion?</h3>
+    <p style="color:#8b91a1;font-size:13px;margin-top:6px">
+      Contact us for support, feedback and new service requests.
+    </p>
+  </div>
+
+  <button class="joinBtn" onclick="contactWhatsApp()">
+    💬 WhatsApp Help
+  </button>
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<div class="footerInner">
+
+  <div class="footerBrand">
+    <div class="logo">
+      <div class="logoIcon">⚔️</div>
+      <div class="logoText">
+        <strong style="color:white">Chhatrapati Print Portal</strong>
+        <small style="color:#858da2">DIGITAL SERVICE PORTAL</small>
+      </div>
+    </div>
+
+    <p>
+      Online printing, PDF tools, photo services,
+      cyber cafe utilities and useful online service portals.
+    </p>
+  </div>
+
+  <div>
+    <h4>Quick Links</h4>
+    <a href="#">Home</a>
+    <a href="#essential">Services</a>
+    <a href="#jobs">Latest Jobs</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+
+  <div>
+    <h4>Tools</h4>
+    <a href="#creative">Creative Studio</a>
+    <a href="#pdf">PDF Tools</a>
+    <a href="#portal">Portal Services</a>
+    <a href="#faq">FAQ</a>
+  </div>
+
+  <div>
+    <h4>Support</h4>
+    <a href="#contact">Help & Feedback</a>
+    <a href="#" onclick="openLogin()">Login</a>
+    <a href="#" onclick="openLogin()">Join</a>
+    <a href="#about">About</a>
+  </div>
+
+</div>
+
+<div class="copyright">
+  © 2026 Chhatrapati Print Portal. All Rights Reserved.
+</div>
+
+</footer>
+
+
+<!-- WHATSAPP -->
+<button class="whatsapp" onclick="contactWhatsApp()">
+  💬 Help & Feedback
+</button>
+
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+
+<div class="modalBox">
+
+  <button class="close" onclick="closeLogin()">✕</button>
+
+  <div class="modalLogo">⚔️</div>
+
+  <h2>Welcome Back!</h2>
+  <p>Login to Chhatrapati Print Portal</p>
+
+  <div class="field">
+    <label>Mobile Number / Email</label>
+    <input type="text" id="loginUser" placeholder="Enter mobile or email">
+  </div>
+
+  <div class="field">
+    <label>Password</label>
+    <input type="password" id="loginPass" placeholder="Enter password">
+  </div>
+
+  <button class="fullBtn" onclick="fakeLogin()">
+    Login →
+  </button>
+
+  <div class="divider">OR</div>
+
+  <button class="fullBtn"
+          style="background:#f0edff;color:#6547e8"
+          onclick="fakeJoin()">
+    Create New Account
+  </button>
+
+</div>
+</div>
+
+
+<script>
+
+/* LOGIN */
+function openLogin(){
+  document.getElementById("loginModal").classList.add("active");
+}
+
+function closeLogin(){
+  document.getElementById("loginModal").classList.remove("active");
+}
+
+function fakeLogin(){
+  const user=document.getElementById("loginUser").value;
+
+  if(!user){
+    alert("Please enter your mobile number or email.");
+    return;
+  }
+
+  alert("Login system ready. Secure authentication will be connected in the next step.");
+}
+
+function fakeJoin(){
+  alert("Registration page will be connected here.");
+}
+
+
+/* WHATSAPP */
+function contactWhatsApp(){
+
+  const number="9359457762";
+
+  const message=
+  "Hello Chhatrapati Print Portal, I need help.";
+
+  window.open(
+    "https://wa.me/91"+number+
+    "?text="+encodeURIComponent(message),
+    "_blank"
+  );
+}
+
+
+/* SEARCH */
+const searchInput=document.getElementById("searchInput");
+
+searchInput.addEventListener("input",function(){
+
+  const query=this.value.toLowerCase().trim();
+
+  document.querySelectorAll(".serviceCards .card").forEach(card=>{
+
+    const text=card.innerText.toLowerCase();
+
+    if(text.includes(query)){
+      card.classList.remove("hidden");
+    }else{
+      card.classList.add("hidden");
+    }
+
+  });
+
+});
+
+
+/* FAQ */
+document.querySelectorAll(".faqQ").forEach(question=>{
+
+  question.addEventListener("click",function(){
+
+    const item=this.parentElement;
+
+    item.classList.toggle("open");
+
+    const sign=this.querySelector("span");
+
+    sign.textContent=
+      item.classList.contains("open") ? "−" : "＋";
+
+  });
+
+});
+
+
+/* CLOSE MODAL OUTSIDE */
+document.getElementById("loginModal").addEventListener("click",function(e){
+
+  if(e.target===this){
+    closeLogin();
+  }
+
+});
+
+
+/* ESC CLOSE */
+document.addEventListener("keydown",function(e){
+
+  if(e.key==="Escape"){
+    closeLogin();
+  }
+
+});
+
+</script>
+
+</body>
+</html>
