@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chhatrapati Print Portal V1</title>
+  <meta name="description" content="Chhatrapati Print Portal - Print, Card, Photo and File Tools">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">⚔️</div>
+      <div><b>Chhatrapati</b><span>Print Portal</span></div>
+    </div>
+    <a class="call-btn" href="tel:9359457762">📞 9359457762</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="badge">V1 • Free Starter Portal</span>
+        <h1>Print, Cards & File Tools<br><span>एकाच ठिकाणी</span></h1>
+        <p>Card layouts, photo printing, PDF/image tools आणि print-ready downloads.</p>
+        <div class="hero-actions">
+          <button onclick="showSection('print')">🖨️ Print Order</button>
+          <button class="secondary" onclick="showSection('cards')">🪪 Card Generator</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="mini-icon">📄</div>
+        <b>Print Ready</b>
+        <small>A4 • 4×6 • PDF • JPG • PNG</small>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <button class="tab active" data-section="home" onclick="showSection('home')">🏠 Home</button>
+      <button class="tab" data-section="print" onclick="showSection('print')">🖨️ Print</button>
+      <button class="tab" data-section="cards" onclick="showSection('cards')">🪪 Cards</button>
+      <button class="tab" data-section="tools" onclick="showSection('tools')">🛠️ Tools</button>
+      <button class="tab" data-section="orders" onclick="showSection('orders')">📋 Orders</button>
+    </nav>
+
+    <section id="home" class="section active">
+      <h2>Services</h2>
+      <div class="grid">
+        <article class="service" onclick="showSection('cards')"><span>🪪</span><h3>Card Generator</h3><p>Custom printable card layouts.</p></article>
+        <article class="service" onclick="showSection('print')"><span>🖨️</span><h3>Print Order</h3><p>A4 आणि 4×6 print calculation.</p></article>
+        <article class="service" onclick="showSection('tools')"><span>📄</span><h3>PDF Tools</h3><p>PDF/image conversion utilities.</p></article>
+        <article class="service" onclick="showSection('tools')"><span>📐</span><h3>Image Tools</h3><p>Resize, compress आणि format tools.</p></article>
+      </div>
+      <div class="notice">ℹ️ सरकारी ओळखपत्रांसाठी अधिकृत कागदपत्रांची प्रिंट/फॉरमॅटिंग वापरा. बनावट किंवा बदलता येणारे official IDs तयार करण्यासाठी हे portal वापरू नका.</div>
+    </section>
+
+    <section id="print" class="section">
+      <div class="section-head"><div><h2>🖨️ Print Order</h2><p>Size, quantity आणि paper निवडा.</p></div><span id="orderId" class="order-id"></span></div>
+      <div class="form-grid">
+        <label>Print Size
+          <select id="printSize" onchange="calculatePrice()">
+            <option value="4x6">4×6 Photo/Card</option>
+            <option value="a4">A4</option>
+          </select>
+        </label>
+        <label>Quantity
+          <input id="quantity" type="number" min="1" value="1" oninput="calculatePrice()">
+        </label>
+        <label>Paper
+          <select id="paper" onchange="calculatePrice()">
+            <option value="photo">Photo / Glossy</option>
+            <option value="plain">Plain</option>
+          </select>
+        </label>
+        <label>Upload Image
+          <input id="printImage" type="file" accept="image/*" onchange="previewImage(event)">
+        </label>
+      </div>
+      <div class="preview-box">
+        <img id="imagePreview" alt="Preview" hidden>
+        <div id="previewPlaceholder">📸 Image preview येथे दिसेल</div>
+      </div>
+      <div class="price-box">
+        <div><small>Estimated Price</small><strong>₹<span id="price">10</span></strong></div>
+        <button onclick="placeOrder()">Generate Order ID</button>
+      </div>
+    </section>
+
+    <section id="cards" class="section">
+      <h2>🪪 Card Generator</h2>
+      <p>सामान्य/custom print layouts तयार करा. अधिकृत ID चे content स्वतः बदलून तयार करू नका.</p>
+      <div class="form-grid">
+        <label>Card Type
+          <select id="cardType">
+            <option>Farmer / Service Card Layout</option>
+            <option>Photo ID - Custom</option>
+            <option>Employee / Member Card</option>
+            <option>School / Student Card</option>
+            <option>Custom Card</option>
+          </select>
+        </label>
+        <label>Name<input id="cardName" placeholder="नाव"></label>
+        <label>Mobile<input id="cardMobile" placeholder="मोबाईल नंबर"></label>
+        <label>Photo<input id="cardPhoto" type="file" accept="image/*" onchange="cardPhotoPreview(event)"></label>
+      </div>
+      <div class="card-preview" id="cardPreview">
+        <div class="card-photo"><img id="cardImg" alt="" hidden><span>PHOTO</span></div>
+        <div><small id="cardTypeText">Custom Card</small><h3 id="cardNameText">Your Name</h3><p id="cardMobileText">Mobile Number</p></div>
+      </div>
+      <button onclick="downloadCard()">⬇️ Download Card (PNG)</button>
+    </section>
+
+    <section id="tools" class="section">
+      <h2>🛠️ File & Image Tools</h2>
+      <div class="grid">
+        <article class="tool"><span>🖼️</span><h3>Image Preview</h3><p>Upload करून preview पाहा.</p><input type="file" accept="image/*" onchange="toolPreview(event)"><img id="toolImg" class="tool-img" hidden></article>
+        <article class="tool"><span>📉</span><h3>Image Size Converter</h3><p>Width/height सेट करून PNG download करा.</p><input id="toolWidth" type="number" placeholder="Width px"><input id="toolHeight" type="number" placeholder="Height px"><button onclick="resizeImage()">Resize & Download</button></article>
+        <article class="tool"><span>📄</span><h3>Print-ready Download</h3><p>Browser मधून print करून PDF save करू शकता.</p><button onclick="window.print()">🖨️ Print / Save PDF</button></article>
+        <article class="tool"><span>🔄</span><h3>JPG / PNG</h3><p>Image ला PNG मध्ये convert करा.</p><button onclick="downloadToolPNG()">⬇️ Download PNG</button></article>
+      </div>
+      <div class="notice">टीप: V1 हा browser-only starter आहे. Advanced PDF merge/split किंवा server-side conversion साठी पुढच्या version मध्ये backend/API जोडता येईल.</div>
+    </section>
+
+    <section id="orders" class="section">
+      <div class="section-head"><div><h2>📋 Local Orders</h2><p>या browser मध्ये local storage वापरून orders जतन केले जातात.</p></div><button class="danger" onclick="clearOrders()">Clear All</button></div>
+      <div id="ordersList" class="orders-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <b>Chhatrapati Print Portal V1</b>
+    <span>📞 9359457762</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
