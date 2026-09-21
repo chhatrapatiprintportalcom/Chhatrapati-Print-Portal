@@ -176,7 +176,25 @@ def parse_rss(xml_data, source_name):
 
         title = clean_text(title)
         link = clean_text(link)
+# Ignore old/archive/non-current recruitment pages
+        title_lower = title.lower()
 
+        blocked_terms = [
+            "2023",
+            "2022",
+            "2021",
+            "2020",
+            "archive",
+            "archives",
+            "page 2",
+            "page 3",
+            "page 4",
+            "page 5",
+            "page 6",
+        ]
+
+        if any(term in title_lower for term in blocked_terms):
+            continue
         if not title or not link:
             continue
 
