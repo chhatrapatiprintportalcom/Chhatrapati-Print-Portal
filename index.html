@@ -2,1184 +2,1599 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Chhatrapati Print Portal - online printing, PDF, photo and cyber cafe tools.">
 <title>Chhatrapati Print Portal</title>
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#f7f8fc;
-  color:#172033;
-}
-
-/* TOP BAR */
-.topbar{
-  height:44px;
-  background:linear-gradient(90deg,#4338ca,#4f46e5,#6d28d9);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:28px;
-  font-size:14px;
-  font-weight:600;
-}
-
-.topbar span{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-}
-
-.topbar .trial{
-  background:rgba(255,255,255,.18);
-  padding:7px 15px;
-  border-radius:20px;
-}
-
-/* HEADER */
-header{
-  height:82px;
-  background:white;
-  border-bottom:1px solid #e8eaf0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 5%;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  text-decoration:none;
-  color:#111827;
-}
-
-.logoIcon{
-  width:48px;
-  height:48px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#4f46e5,#7c3aed);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  box-shadow:0 7px 20px rgba(79,70,229,.25);
-}
-
-.logoText strong{
-  display:block;
-  font-size:18px;
-}
-
-.logoText small{
-  display:block;
-  color:#777;
-  font-size:10px;
-  letter-spacing:1.5px;
-  margin-top:3px;
-}
-
-nav{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-nav a,
-.dropbtn{
-  text-decoration:none;
-  color:#202638;
-  padding:12px 14px;
-  border-radius:10px;
-  font-weight:600;
-  font-size:14px;
-  border:0;
-  background:white;
-  cursor:pointer;
-}
-
-nav a:hover,
-.dropbtn:hover{
-  background:#f0efff;
-  color:#4f46e5;
-}
-
-.cyber{
-  background:#111827!important;
-  color:white!important;
-  border-radius:22px!important;
-}
-
-.loginBtn{
-  background:#4f46e5!important;
-  color:white!important;
-  border-radius:22px!important;
-}
-
-/* DROPDOWN */
-.dropdown{
-  position:relative;
-}
-
-.dropdownMenu{
-  display:none;
-  position:absolute;
-  top:48px;
-  left:-100px;
-  width:680px;
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,.15);
-}
-
-.dropdown:hover .dropdownMenu{
-  display:block;
-}
-
-.menuTitle{
-  font-size:13px;
-  color:#6b7280;
-  margin-bottom:12px;
-  font-weight:bold;
-}
-
-.menuGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.menuItem{
-  padding:13px;
-  border-radius:12px;
-  background:#f8f9ff;
-  color:#222;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:600;
-}
-
-.menuItem:hover{
-  background:#eeeefe;
-  color:#4f46e5;
-}
-
-/* HERO */
-.hero{
-  width:90%;
-  max-width:1400px;
-  margin:32px auto 0;
-  min-height:430px;
-  border-radius:30px;
-  padding:70px 7%;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 25%),
-    radial-gradient(circle at 85% 80%,rgba(255,255,255,.13),transparent 28%),
-    linear-gradient(115deg,#ec4899,#a855f7 48%,#6366f1);
-  color:white;
-}
-
-.hero:before{
-  content:"";
-  position:absolute;
-  width:400px;
-  height:400px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:50%;
-  right:-100px;
-  top:-150px;
-}
-
-.hero:after{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:50%;
-  left:-100px;
-  bottom:-170px;
-}
-
-.badge{
-  display:inline-block;
-  padding:9px 16px;
-  border-radius:25px;
-  background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.25);
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:22px;
-}
-
-.hero h1{
-  position:relative;
-  z-index:2;
-  max-width:850px;
-  font-size:48px;
-  line-height:1.1;
-  margin-bottom:18px;
-}
-
-.hero p{
-  position:relative;
-  z-index:2;
-  max-width:760px;
-  font-size:17px;
-  line-height:1.7;
-  color:rgba(255,255,255,.9);
-}
-
-.heroButtons{
-  position:relative;
-  z-index:2;
-  display:flex;
-  gap:12px;
-  margin-top:28px;
-}
-
-.heroBtn{
-  text-decoration:none;
-  padding:14px 22px;
-  border-radius:12px;
-  background:white;
-  color:#4f46e5;
-  font-weight:bold;
-}
-
-.heroBtn.alt{
-  background:rgba(255,255,255,.14);
-  color:white;
-  border:1px solid rgba(255,255,255,.3);
-}
-
-/* SEARCH */
-.searchBox{
-  width:82%;
-  max-width:1000px;
-  margin:-35px auto 55px;
-  position:relative;
-  z-index:10;
-}
-
-.searchInner{
-  background:white;
-  border:1px solid #e7e8ef;
-  box-shadow:0 15px 45px rgba(31,41,55,.12);
-  border-radius:18px;
-  padding:8px;
-  display:flex;
-}
-
-.searchInner input{
-  flex:1;
-  border:0;
-  outline:0;
-  padding:18px;
-  font-size:16px;
-}
-
-.searchInner button{
-  border:0;
-  background:#4f46e5;
-  color:white;
-  padding:0 28px;
-  border-radius:13px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* COMMON SECTION */
-.section{
-  width:90%;
-  max-width:1400px;
-  margin:0 auto 65px;
-}
-
-.sectionHead{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  margin-bottom:25px;
-}
-
-.sectionHead h2{
-  font-size:27px;
-  margin-bottom:6px;
-}
-
-.sectionHead p{
-  color:#72778a;
-  font-size:14px;
-}
-
-.viewAll{
-  color:#4f46e5;
-  text-decoration:none;
-  font-weight:bold;
-  font-size:14px;
-}
-
-/* CARDS */
-.cardGrid{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:15px;
-}
-
-.serviceCard{
-  position:relative;
-  background:white;
-  border:1px solid #e8eaf0;
-  border-radius:17px;
-  min-height:145px;
-  padding:20px 15px;
-  text-decoration:none;
-  color:#1d2433;
-  transition:.25s ease;
-  overflow:hidden;
-}
-
-.serviceCard:hover{
-  transform:translateY(-6px);
-  border-color:#c7c4ff;
-  box-shadow:0 15px 35px rgba(79,70,229,.12);
-}
-
-.icon{
-  width:45px;
-  height:45px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f0efff;
-  color:#4f46e5;
-  font-size:22px;
-  margin-bottom:13px;
-}
-
-.serviceCard h3{
-  font-size:14px;
-  line-height:1.35;
-}
-
-.serviceCard p{
-  font-size:11px;
-  color:#7a7f90;
-  margin-top:7px;
-  line-height:1.4;
-}
-
-.new{
-  position:absolute;
-  right:9px;
-  top:9px;
-  background:#16a34a;
-  color:white;
-  padding:4px 7px;
-  border-radius:7px;
-  font-size:9px;
-  font-weight:bold;
-}
-
-.hot{
-  position:absolute;
-  right:9px;
-  top:9px;
-  background:#ef4444;
-  color:white;
-  padding:4px 7px;
-  border-radius:7px;
-  font-size:9px;
-  font-weight:bold;
-}
-
-/* FEATURE */
-.feature{
-  width:90%;
-  max-width:1400px;
-  margin:0 auto 65px;
-  border-radius:24px;
-  padding:38px;
-  background:linear-gradient(110deg,#111827,#312e81);
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:30px;
-}
-
-.feature h2{
-  font-size:27px;
-  margin-bottom:10px;
-}
-
-.feature p{
-  color:#d7d8e3;
-  line-height:1.6;
-  max-width:750px;
-}
-
-.featureBtn{
-  white-space:nowrap;
-  padding:14px 20px;
-  background:white;
-  color:#312e81;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* INFO */
-.infoGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.infoBox{
-  background:white;
-  border:1px solid #e7e9ef;
-  border-radius:18px;
-  padding:28px;
-}
-
-.infoBox .bigIcon{
-  font-size:30px;
-  margin-bottom:15px;
-}
-
-.infoBox h3{
-  margin-bottom:9px;
-}
-
-.infoBox p{
-  color:#707688;
-  line-height:1.6;
-  font-size:14px;
-}
-
-/* FAQ */
-.faq{
-  max-width:950px;
-  margin:auto;
-}
-
-details{
-  background:white;
-  border:1px solid #e6e8ef;
-  border-radius:14px;
-  padding:18px 20px;
-  margin-bottom:12px;
-}
-
-summary{
-  cursor:pointer;
-  font-weight:bold;
-}
-
-details p{
-  color:#6d7384;
-  margin-top:13px;
-  line-height:1.6;
-  font-size:14px;
-}
-
-/* FOOTER */
-footer{
-  background:#111827;
-  color:white;
-  padding:55px 6% 25px;
-  margin-top:30px;
-}
-
-.footerGrid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:40px;
-  max-width:1400px;
-  margin:auto;
-}
-
-footer h3{
-  margin-bottom:15px;
-}
-
-footer p{
-  color:#aeb4c2;
-  line-height:1.7;
-  font-size:14px;
-}
-
-footer a{
-  display:block;
-  color:#aeb4c2;
-  text-decoration:none;
-  margin:10px 0;
-  font-size:14px;
-}
-
-footer a:hover{
-  color:white;
-}
-
-.copyright{
-  border-top:1px solid #303746;
-  margin-top:40px;
-  padding-top:20px;
-  text-align:center;
-  color:#8d94a3;
-  font-size:13px;
-}
-
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:2000;
-  background:#22c55e;
-  color:white;
-  text-decoration:none;
-  padding:13px 18px;
-  border-radius:30px;
-  font-weight:bold;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-/* LOGIN MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.65);
-  backdrop-filter:blur(5px);
-  z-index:5000;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modalBox{
-  width:100%;
-  max-width:430px;
-  background:white;
-  border-radius:25px;
-  padding:32px;
-  position:relative;
-  box-shadow:0 30px 80px rgba(0,0,0,.3);
-}
-
-.close{
-  position:absolute;
-  right:18px;
-  top:14px;
-  border:0;
-  background:#f1f2f6;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  font-size:20px;
-  cursor:pointer;
-}
-
-.modalLogo{
-  width:55px;
-  height:55px;
-  background:#4f46e5;
-  color:white;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
-  margin-bottom:18px;
-}
-
-.modalBox h2{
-  margin-bottom:7px;
-}
-
-.modalBox p{
-  color:#777d8c;
-  font-size:14px;
-  margin-bottom:20px;
-}
-
-.tabs{
-  display:flex;
-  background:#f3f4f8;
-  padding:4px;
-  border-radius:12px;
-  margin-bottom:20px;
-}
-
-.tabs button{
-  flex:1;
-  border:0;
-  padding:11px;
-  border-radius:9px;
-  background:transparent;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.tabs button.active{
-  background:white;
-  color:#4f46e5;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
-
-.form input{
-  width:100%;
-  padding:14px;
-  border:1px solid #dddfe7;
-  border-radius:11px;
-  outline:none;
-  margin-bottom:12px;
-}
-
-.form input:focus{
-  border-color:#6366f1;
-}
-
-.mainBtn{
-  width:100%;
-  padding:14px;
-  border:0;
-  background:#4f46e5;
-  color:white;
-  border-radius:11px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* MOBILE */
-.mobileBtn{
-  display:none;
-  border:0;
-  background:#f1f2f7;
-  font-size:24px;
-  width:43px;
-  height:43px;
-  border-radius:10px;
-}
-
-@media(max-width:1100px){
-  .cardGrid{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  nav a:nth-child(3),
-  nav a:nth-child(4){
-    display:none;
-  }
-}
-
-@media(max-width:800px){
-  .topbar{
-    font-size:11px;
-    gap:8px;
-  }
-
-  .topbar span:nth-child(1){
-    display:none;
-  }
-
-  header{
-    padding:0 4%;
-  }
-
-  nav{
-    display:none;
-    position:absolute;
-    top:82px;
-    left:0;
-    right:0;
-    background:white;
-    padding:15px;
-    flex-direction:column;
-    border-bottom:1px solid #ddd;
-  }
-
-  nav.mobileOpen{
-    display:flex;
-  }
-
-  nav a,
-  .dropbtn{
-    width:100%;
-    text-align:left;
-  }
-
-  .dropdown{
-    width:100%;
-  }
-
-  .dropdownMenu{
-    position:static;
-    width:100%;
-    margin-top:5px;
-  }
-
-  .menuGrid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .mobileBtn{
-    display:block;
-  }
-
-  .hero{
-    width:94%;
-    padding:45px 25px;
-    min-height:460px;
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  .searchBox{
-    width:90%;
-  }
-
-  .searchInner{
-    flex-direction:column;
-    gap:8px;
-  }
-
-  .searchInner button{
-    height:48px;
-  }
-
-  .cardGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .feature{
-    width:94%;
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .infoGrid{
-    grid-template-columns:1fr;
-  }
-
-  .footerGrid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:500px){
-  .logoText strong{
-    font-size:15px;
-  }
-
-  .logoIcon{
-    width:42px;
-    height:42px;
-  }
-
-  .hero h1{
-    font-size:29px;
-  }
-
-  .heroButtons{
-    flex-direction:column;
-  }
-
-  .cardGrid{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .serviceCard{
-    min-height:135px;
-    padding:15px 12px;
-  }
-
-  .sectionHead h2{
-    font-size:22px;
-  }
-
-  .footerGrid{
-    grid-template-columns:1fr;
-  }
-
-  .whatsapp{
-    right:12px;
-    bottom:12px;
-    font-size:13px;
-  }
-}
-</style>
+<style>*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}html{scroll-behavior:smooth}body{background:#f7f8fc;color:#172033}.top{height:44px;background:linear-gradient(90deg,#4338ca,#4f46e5,#7c3aed);color:#fff;display:flex;justify-content:center;align-items:center;gap:28px;font-size:13px;font-weight:700}.pill{background:#ffffff25;padding:7px 15px;border-radius:20px}.head{height:82px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:1000}.brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:#111827}.logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:grid;place-items:center;color:#fff;font-size:24px}.brand b{display:block;font-size:18px}.brand small{display:block;color:#777;font-size:9px;letter-spacing:2px}nav{display:flex;gap:5px;align-items:center}nav a,.navbtn{padding:12px 13px;border:0;background:#fff;border-radius:10px;text-decoration:none;color:#202638;font-weight:700;font-size:14px;cursor:pointer}.navbtn:hover,nav a:hover{background:#f0efff;color:#4f46e5}.login{background:#4f46e5!important;color:#fff!important;border-radius:22px}.cyber{background:#111827!important;color:#fff!important;border-radius:22px}.drop{position:relative}.mega{display:none;position:absolute;top:48px;left:-180px;width:700px;background:#fff;padding:22px;border:1px solid #e5e7eb;border-radius:20px;box-shadow:0 25px 60px #0002}.drop:hover .mega{display:block}.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.mi{padding:12px;background:#f8f9ff;border-radius:10px;text-decoration:none;color:#222;font-size:13px;font-weight:700}.mi:hover{color:#4f46e5;background:#eeeefe}.mt{font-size:11px;color:#777;font-weight:800;margin-bottom:11px}.hero{width:91%;max-width:1450px;min-height:455px;margin:30px auto 0;border-radius:30px;padding:66px 7%;position:relative;overflow:hidden;color:#fff;background:radial-gradient(circle at 12% 15%,#ffffff2b,transparent 24%),radial-gradient(circle at 88% 80%,#ffffff20,transparent 28%),linear-gradient(115deg,#ec4899,#a855f7 48%,#6366f1)}.hero:before{content:"";position:absolute;width:500px;height:500px;border:1px solid #ffffff22;border-radius:50%;right:-180px;top:-200px}.hero>*{position:relative;z-index:2}.badge{display:inline-block;padding:9px 16px;border-radius:25px;background:#ffffff25;border:1px solid #ffffff35;font-size:13px;font-weight:700;margin-bottom:22px}.hero h1{font-size:48px;line-height:1.08;max-width:900px;margin-bottom:18px}.hero p{font-size:17px;line-height:1.7;max-width:800px;color:#ffffffea}.actions{display:flex;gap:12px;margin-top:28px}.btn{padding:14px 22px;border-radius:12px;background:#fff;color:#4f46e5;font-weight:800;text-decoration:none}.btn.alt{background:#ffffff22;color:#fff;border:1px solid #ffffff44}.searchwrap{width:82%;max-width:1050px;margin:-34px auto 58px;position:relative;z-index:20}.search{display:flex;gap:8px;background:#fff;padding:8px;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 16px 48px #1f29371f}.search input{flex:1;border:0;outline:0;padding:17px;font-size:16px}.search button{border:0;background:#4f46e5;color:#fff;padding:0 30px;border-radius:12px;font-weight:800}.section{width:91%;max-width:1450px;margin:0 auto 66px}.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:23px}.sh h2{font-size:28px;margin-bottom:5px}.sh p{font-size:14px;color:#737987}.view{color:#4f46e5;font-weight:800;font-size:14px}.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:15px}.card{position:relative;background:#fff;border:1px solid #e6e8ef;border-radius:17px;min-height:150px;padding:19px 15px;text-decoration:none;color:#172033;transition:.22s;overflow:hidden}.card:hover{transform:translateY(-6px);border-color:#c9c7ff;box-shadow:0 16px 38px #4f46e51f}.ico{width:46px;height:46px;border-radius:13px;background:#f0efff;display:grid;place-items:center;font-size:22px;margin-bottom:12px}.card h3{font-size:14px;line-height:1.35}.card p{font-size:11px;color:#777d8c;margin-top:6px}.tag{position:absolute;right:9px;top:9px;color:#fff;font-size:9px;font-weight:800;padding:4px 7px;border-radius:7px}.new{background:#16a34a}.hot{background:#ef4444}.feature{width:91%;max-width:1450px;margin:0 auto 66px;padding:40px;border-radius:25px;background:linear-gradient(110deg,#111827,#312e81);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:30px}.feature h2{font-size:28px;margin-bottom:9px}.feature p{color:#d5d8e2;max-width:820px}.feature a{background:#fff;color:#312e81;padding:14px 20px;border-radius:12px;font-weight:800;white-space:nowrap;text-decoration:none}.info{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.ibox{background:#fff;border:1px solid #e6e8ef;border-radius:18px;padding:27px}.big{font-size:30px;margin-bottom:12px}.ibox h3{margin-bottom:8px}.ibox p{font-size:14px;color:#717789;line-height:1.65}.faq{max-width:1000px;margin:auto}.faq details{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px 20px;margin-bottom:11px}.faq summary{font-weight:800;cursor:pointer}.faq p{font-size:14px;color:#717789;margin-top:12px;line-height:1.65}.foot{background:#111827;color:#fff;padding:55px 6% 24px}.fg{max-width:1450px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.foot h3{margin-bottom:14px}.foot p,.foot a{color:#aeb5c3;font-size:14px;line-height:1.7}.foot a{display:block;margin:8px 0;text-decoration:none}.copy{max-width:1450px;margin:38px auto 0;border-top:1px solid #303746;padding-top:20px;text-align:center;color:#8f96a5;font-size:13px}.wa{position:fixed;right:22px;bottom:22px;z-index:2500;background:#22c55e;color:#fff;padding:13px 18px;border-radius:30px;font-weight:800;text-decoration:none;box-shadow:0 10px 30px #0003}.modal{display:none;position:fixed;inset:0;z-index:5000;background:#0f172aaa;backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.box{position:relative;width:100%;max-width:440px;background:#fff;border-radius:25px;padding:32px;box-shadow:0 30px 80px #0005}.close{position:absolute;right:17px;top:14px;border:0;background:#f1f2f6;width:36px;height:36px;border-radius:50%;font-size:21px;cursor:pointer}.mlogo{width:55px;height:55px;border-radius:16px;background:#4f46e5;color:#fff;display:grid;place-items:center;font-size:27px;margin-bottom:17px}.box>p{font-size:14px;color:#777d8c;margin:6px 0 18px}.tabs{display:flex;gap:4px;background:#f3f4f8;padding:4px;border-radius:12px;margin-bottom:18px}.tabs button{flex:1;border:0;background:transparent;padding:11px;border-radius:9px;font-weight:800;cursor:pointer}.tabs .active{background:#fff;color:#4f46e5;box-shadow:0 2px 8px #00000014}.form input{width:100%;padding:14px;border:1px solid #dfe2ea;border-radius:11px;outline:0;margin-bottom:12px}.main{width:100%;padding:14px;border:0;border-radius:11px;background:#4f46e5;color:#fff;font-weight:800;cursor:pointer}.mobile{display:none;border:0;background:#f1f2f7;width:44px;height:44px;border-radius:10px;font-size:22px}.none{display:none;background:#fff;border:1px solid #e5e7eb;padding:30px;border-radius:16px;text-align:center;color:#727889;margin-top:15px}@media(max-width:1150px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:850px){.top{font-size:11px;gap:8px}.top span:first-child{display:none}.head{padding:0 4%}.mobile{display:block}nav{display:none;position:absolute;top:82px;left:0;right:0;background:#fff;padding:15px;flex-direction:column;border-bottom:1px solid #ddd}nav.open{display:flex}nav>a,.navbtn{width:100%;text-align:left}.drop{width:100%}.mega{position:static;width:100%;margin-top:5px}.mg{grid-template-columns:1fr 1fr}.hero{width:94%;padding:48px 25px}.hero h1{font-size:35px}.hero p{font-size:15px}.searchwrap{width:90%}.search{flex-direction:column}.search button{height:48px}.grid{grid-template-columns:repeat(2,1fr)}.feature{width:94%;flex-direction:column;align-items:flex-start}.info{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr}}@media(max-width:500px){.hero h1{font-size:29px}.actions{flex-direction:column}.grid{gap:10px}.card{min-height:140px;padding:15px 12px}.sh h2{font-size:22px}.fg{grid-template-columns:1fr}.wa{right:12px;bottom:12px;font-size:13px}}</style>
 </head>
-
 <body>
-
-<!-- TOP PROMO -->
-<div class="topbar">
-  <span>⚡ Chhatrapati Digital Partner</span>
-  <span class="trial">🚀 Fast Online Services</span>
-  <span>Print • PDF • Photo • Cyber Cafe Tools</span>
-</div>
-
-<!-- HEADER -->
-<header>
-
-<a href="#" class="logo">
-  <div class="logoIcon">⚔️</div>
-  <div class="logoText">
-    <strong>Chhatrapati</strong>
-    <small>PRINT PORTAL</small>
-  </div>
-</a>
-
-<button class="mobileBtn" onclick="toggleMenu()">☰</button>
-
-<nav id="nav">
-
-  <a href="#">Home</a>
-
-  <div class="dropdown">
-    <button class="dropbtn">Services ▾</button>
-
-    <div class="dropdownMenu">
-
-      <div class="menuTitle">IMPORTANT SERVICES</div>
-
-      <div class="menuGrid">
-        <a class="menuItem" href="#services">💼 Latest Jobs</a>
-        <a class="menuItem" href="#services">📝 Mock Test</a>
-        <a class="menuItem" href="#services">🪪 ID Card Print</a>
-        <a class="menuItem" href="#services">📷 Passport Photo</a>
-        <a class="menuItem" href="#creative">📄 Resume Maker</a>
-        <a class="menuItem" href="#tools">✂️ Photo Resize</a>
-      </div>
-
-      <br>
-
-      <div class="menuTitle">CONVERT TOOLS</div>
-
-      <div class="menuGrid">
-        <a class="menuItem" href="#tools">📄 JPG To PDF</a>
-        <a class="menuItem" href="#tools">📑 Merge PDF</a>
-        <a class="menuItem" href="#tools">🗑️ Delete PDF</a>
-        <a class="menuItem" href="#tools">🖼️ PNG To PDF</a>
-        <a class="menuItem" href="#tools">📷 PDF To JPG</a>
-        <a class="menuItem" href="#tools">🖼️ PNG To JPG</a>
-      </div>
-
-    </div>
-  </div>
-
-  <a href="#jobs">Latest Jobs</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#about">About</a>
-
-  <a href="#services" class="cyber">Cyber Cafe</a>
-
-  <a href="javascript:void(0)" class="loginBtn" onclick="openLogin()">Login / Join</a>
-
-</nav>
-</header>
-
-
-<!-- HERO -->
-<section class="hero">
-
-  <div class="badge">⚔️ All-in-one digital services platform</div>
-
-  <h1>
-    Online Printing, PDF, Passport Photo & Cyber Cafe Tools
-  </h1>
-
-  <p>
-    Fast and easy digital tools for printing, photo editing, PDF work,
-    online services and cyber cafe needs — all in one place.
-  </p>
-
-  <div class="heroButtons">
-    <a href="#services" class="heroBtn">Explore Services →</a>
-    <a href="#tools" class="heroBtn alt">PDF & Image Tools</a>
-  </div>
-
-</section>
-
-
-<!-- SEARCH -->
-<div class="searchBox">
-  <div class="searchInner">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="🔍 Search services, tools, jobs..."
-      onkeyup="searchServices()"
-    >
-    <button onclick="searchServices()">Search</button>
-  </div>
-</div>
-
-
-<!-- ESSENTIAL SERVICES -->
-<section class="section" id="services">
-
-  <div class="sectionHead">
-    <div>
-      <h2>Essential & Services</h2>
-      <p>Useful tools for daily cyber cafe and digital work</p>
-    </div>
-    <a href="#services" class="viewAll">View All →</a>
-  </div>
-
-  <div class="cardGrid">
-
-    <a class="serviceCard" href="#jobs">
-      <span class="new">NEW</span>
-      <div class="icon">💼</div>
-      <h3>Latest Jobs</h3>
-      <p>Latest government and private job updates</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📝</div>
-      <h3>Mock Test</h3>
-      <p>Practice online tests</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🪪</div>
-      <h3>ID Card Print</h3>
-      <p>Create and print ID cards</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <span class="hot">HOT</span>
-      <div class="icon">📷</div>
-      <h3>Passport Photo</h3>
-      <p>Passport size photo tools</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">✂️</div>
-      <h3>Photo Crop & Resize</h3>
-      <p>Crop and resize images</p>
-    </a>
-
-    <a class="serviceCard" href="#creative">
-      <span class="new">NEW</span>
-      <div class="icon">📄</div>
-      <h3>Resume / CV</h3>
-      <p>Create professional resumes</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🖨️</div>
-      <h3>Auto Print</h3>
-      <p>Quick printing tools</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🖼️</div>
-      <h3>PVC Auto Crop</h3>
-      <p>Prepare PVC photo prints</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📢</div>
-      <h3>New Service Post</h3>
-      <p>Service announcement tools</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🔐</div>
-      <h3>Payment Lock QR</h3>
-      <p>Generate payment QR</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📚</div>
-      <h3>Document Album</h3>
-      <p>Manage document collections</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📑</div>
-      <h3>Application Maker</h3>
-      <p>Create applications easily</p>
-    </a>
-
-  </div>
-</section>
-
-
-<!-- CREATIVE -->
-<section class="section" id="creative">
-
-  <div class="sectionHead">
-    <div>
-      <h2>Creative Design Studio</h2>
-      <p>Create professional documents and designs</p>
-    </div>
-  </div>
-
-  <div class="cardGrid">
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📄</div>
-      <h3>Pro Resume Maker</h3>
-      <p>Professional CV builder</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">💍</div>
-      <h3>Marriage Biodata</h3>
-      <p>Create beautiful biodata</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🪪</div>
-      <h3>Pro ID Maker</h3>
-      <p>Professional ID design</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🎨</div>
-      <h3>Pro Poster Maker</h3>
-      <p>Create posters online</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📝</div>
-      <h3>Application Maker</h3>
-      <p>Prepare applications</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📢</div>
-      <h3>Shop Promotion Maker</h3>
-      <p>Promotional designs</p>
-    </a>
-
-  </div>
-</section>
-
-
-<!-- PDF TOOLS -->
-<section class="section" id="tools">
-
-  <div class="sectionHead">
-    <div>
-      <h2>Smart PDF & Image Tools</h2>
-      <p>Quick online document conversion tools</p>
-    </div>
-  </div>
-
-  <div class="cardGrid">
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📄</div>
-      <h3>JPG To PDF</h3>
-      <p>Convert JPG images to PDF</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🖼️</div>
-      <h3>PDF To JPG</h3>
-      <p>Convert PDF pages to images</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🖼️</div>
-      <h3>PNG To PDF</h3>
-      <p>Convert PNG to PDF</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📷</div>
-      <h3>PNG To JPG</h3>
-      <p>Convert PNG images</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🗑️</div>
-      <h3>Delete PDF</h3>
-      <p>Remove selected PDF pages</p>
-    </a>
-
-    <a class="serviceCard" href="#">
-      <div class="icon">📑</div>
-      <h3>Merge PDF</h3>
-      <p>Combine multiple PDF files</p>
-    </a>
-
-  </div>
-</section>
-
-
-<!-- FEATURE BANNER -->
-<section class="feature">
-
-  <div>
-    <h2>Everything You Need for Digital Work</h2>
-    <p>
-      Chhatrapati Print Portal brings printing, PDF, photo,
-      document and cyber cafe utilities together in one simple platform.
-    </p>
-  </div>
-
-  <a href="#services" class="featureBtn">Explore All Tools →</a>
-
-</section>
-
-
-<!-- PORTAL SERVICES -->
-<section class="section">
-
-  <div class="sectionHead">
-    <div>
-      <h2>Portal Services</h2>
-      <p>Quick access to useful online portals</p>
-    </div>
-  </div>
-
-  <div class="cardGrid">
-
-    <a class="serviceCard" href="#">
-      <div class="icon">🇮🇳</div>
-      <h3>Census Of India</h3>
-      <p>Official census information</p>
-    </a>
-
-    <a class="serviceCard" href="#">
+<div class="top"><span>⚡ Chhatrapati Digital Partner</span><span class="pill">🚀 Fast Online Services</span><span>Print • PDF • Photo • Cyber Cafe Tools</span></div>
+<header class="head"><a class="brand" href="#home"><div class="logo">⚔️</div><div><b>Chhatrapati</b><small>PRINT PORTAL</small></div></a><button class="mobile" onclick="toggleMenu()">☰</button><nav id="nav"><a href="#home">Home</a><div class="drop"><button class="navbtn">Services ▾</button><div class="mega"><div class="mt">IMPORTANT SERVICES</div><div class="mg"><a class="mi" href="#services">💼 Latest Jobs</a><a class="mi" href="#services">📝 Mock Test</a><a class="mi" href="#services">🪪 ID Card Print</a><a class="mi" href="#services">📷 Passport Photo</a><a class="mi" href="#creative">📄 Resume Maker</a><a class="mi" href="#tools">✂️ Photo Resize</a></div><div class="mt" style="margin-top:18px">CONVERT TOOLS</div><div class="mg"><a class="mi" href="#tools">📄 JPG to PDF</a><a class="mi" href="#tools">📚 Merge PDF</a><a class="mi" href="#tools">🗑️ Delete PDF</a><a class="mi" href="#tools">🖼️ PNG to PDF</a><a class="mi" href="#tools">📷 PDF to JPG</a><a class="mi" href="#tools">🔁 PNG to JPG</a></div></div></div><a href="#jobs">Latest Jobs</a><a href="#pricing">Pricing</a><a href="#about">More</a><a class="cyber" href="#services">Cyber Cafe</a><a class="login" href="javascript:void(0)" onclick="openLogin()">Login / Join</a></nav></header>
+<main id="home">
+<section class="hero"><div class="badge">⚔️ All-in-one digital services platform</div><h1>Online Printing, PDF, Passport Photo &amp; Cyber Cafe Tools</h1><p>Fast and easy digital tools for printing, photo editing, PDF work, online services and cyber cafe needs — all in one place.</p><div class="actions"><a class="btn" href="#services">Explore Services →</a><a class="btn alt" href="#tools">PDF &amp; Image Tools</a></div></section>
+<div class="searchwrap"><div class="search"><input id="q" type="search" placeholder="🔍 Search services, tools, jobs..." oninput="searchServices()"><button onclick="searchServices()">Search</button></div><div class="none" id="none">No matching service found. Try another search.</div></div>
+<section class="section" id="services"><div class="sh"><div><h2>Essential &amp; Services</h2><p>Useful tools for daily cyber cafe and digital work</p></div><a class="view" href="#services">View All →</a></div><div class="grid"><a class="card service-card" href="#contact" data-s="latest jobs latest government and private job updates"><span class="tag new">NEW</span><div class="ico">💼</div><h3>Latest Jobs</h3><p>Latest government and private job updates</p></a>
+<a class="card service-card" href="#contact" data-s="mock test practice online tests"><div class="ico">📝</div><h3>Mock Test</h3><p>Practice online tests</p></a>
+<a class="card service-card" href="#contact" data-s="id card print create and print id cards"><div class="ico">🪪</div><h3>ID Card Print</h3><p>Create and print ID cards</p></a>
+<a class="card service-card" href="#contact" data-s="pvc auto crop prepare pvc photo prints"><div class="ico">✂️</div><h3>PVC Auto Crop</h3><p>Prepare PVC photo prints</p></a>
+<a class="card service-card" href="#contact" data-s="auto print quick printing tools"><div class="ico">🖨️</div><h3>Auto Print</h3><p>Quick printing tools</p></a>
+<a class="card service-card" href="#contact" data-s="passport photo passport size photo tools"><span class="tag hot">HOT</span><div class="ico">📷</div><h3>Passport Photo</h3><p>Passport size photo tools</p></a>
+<a class="card service-card" href="#contact" data-s="photo crop and resize crop and resize images"><div class="ico">🖼️</div><h3>Photo Crop And Resize</h3><p>Crop and resize images</p></a>
+<a class="card service-card" href="#contact" data-s="resume / cv create professional resumes"><span class="tag new">NEW</span><div class="ico">📄</div><h3>Resume / CV</h3><p>Create professional resumes</p></a>
+<a class="card service-card" href="#contact" data-s="new service post create service announcements"><div class="ico">📢</div><h3>New Service Post</h3><p>Create service announcements</p></a>
+<a class="card service-card" href="#contact" data-s="payment lock qr generate payment qr"><div class="ico">🔐</div><h3>Payment Lock QR</h3><p>Generate payment QR</p></a>
+<a class="card service-card" href="#contact" data-s="document album manage document collections"><div class="ico">📚</div><h3>Document Album</h3><p>Manage document collections</p></a>
+<a class="card service-card" href="#contact" data-s="application maker create applications easily"><span class="tag new">NEW</span><div class="ico">📝</div><h3>Application Maker</h3><p>Create applications easily</p></a></div></section>
+<section class="section" id="creative"><div class="sh"><div><h2>Creative Design Studio</h2><p>Create professional documents and designs</p></div></div><div class="grid"><a class="card service-card" href="#contact" data-s="pro resume maker professional cv builder"><div class="ico">📄</div><h3>Pro Resume Maker</h3><p>Professional CV builder</p></a>
+<a class="card service-card" href="#contact" data-s="marriage biodata create beautiful biodata"><div class="ico">💍</div><h3>Marriage Biodata</h3><p>Create beautiful biodata</p></a>
+<a class="card service-card" href="#contact" data-s="pro id maker professional id design"><div class="ico">🪪</div><h3>Pro ID Maker</h3><p>Professional ID design</p></a>
+<a class="card service-card" href="#contact" data-s="pro poster maker create posters online"><div class="ico">🎨</div><h3>Pro Poster Maker</h3><p>Create posters online</p></a>
+<a class="card service-card" href="#contact" data-s="application maker prepare applications"><div class="ico">📝</div><h3>Application Maker</h3><p>Prepare applications</p></a>
+<a class="card service-card" href="#contact" data-s="shop promotion maker promotional designs"><div class="ico">📢</div><h3>Shop Promotion Maker</h3><p>Promotional designs</p></a>
+<a class="card service-card" href="#contact" data-s="visiting card maker create visiting cards"><div class="ico">💳</div><h3>Visiting Card Maker</h3><p>Create visiting cards</p></a>
+<a class="card service-card" href="#contact" data-s="certificate maker printable certificate designs"><div class="ico">🏆</div><h3>Certificate Maker</h3><p>Printable certificate designs</p></a>
+<a class="card service-card" href="#contact" data-s="invitation maker create invitation designs"><div class="ico">💌</div><h3>Invitation Maker</h3><p>Create invitation designs</p></a>
+<a class="card service-card" href="#contact" data-s="letter head maker business letterhead designs"><div class="ico">📃</div><h3>Letter Head Maker</h3><p>Business letterhead designs</p></a>
+<a class="card service-card" href="#contact" data-s="photo frame maker create photo frames"><div class="ico">🖼️</div><h3>Photo Frame Maker</h3><p>Create photo frames</p></a>
+<a class="card service-card" href="#contact" data-s="social post maker create social media posts"><div class="ico">📱</div><h3>Social Post Maker</h3><p>Create social media posts</p></a></div></section>
+<section class="section" id="tools"><div class="sh"><div><h2>Smart PDF &amp; Image Tools</h2><p>Quick online document conversion tools</p></div></div><div class="grid"><a class="card service-card" href="#contact" data-s="jpg to pdf convert jpg images to pdf"><div class="ico">📄</div><h3>JPG To PDF</h3><p>Convert JPG images to PDF</p></a>
+<a class="card service-card" href="#contact" data-s="pdf to jpg convert pdf pages to images"><div class="ico">🖼️</div><h3>PDF To JPG</h3><p>Convert PDF pages to images</p></a>
+<a class="card service-card" href="#contact" data-s="png to pdf convert png to pdf"><div class="ico">📑</div><h3>PNG To PDF</h3><p>Convert PNG to PDF</p></a>
+<a class="card service-card" href="#contact" data-s="png to jpg convert png images"><div class="ico">📷</div><h3>PNG To JPG</h3><p>Convert PNG images</p></a>
+<a class="card service-card" href="#contact" data-s="delete pdf remove selected pdf pages"><div class="ico">🗑️</div><h3>Delete PDF</h3><p>Remove selected PDF pages</p></a>
+<a class="card service-card" href="#contact" data-s="merge pdf combine multiple pdf files"><div class="ico">📚</div><h3>Merge PDF</h3><p>Combine multiple PDF files</p></a>
+<a class="card service-card" href="#contact" data-s="split pdf split a pdf into files"><div class="ico">✂️</div><h3>Split PDF</h3><p>Split a PDF into files</p></a>
+<a class="card service-card" href="#contact" data-s="compress pdf reduce pdf file size"><div class="ico">🗜️</div><h3>Compress PDF</h3><p>Reduce PDF file size</p></a>
+<a class="card service-card" href="#contact" data-s="rotate pdf rotate pdf pages"><div class="ico">🔄</div><h3>Rotate PDF</h3><p>Rotate PDF pages</p></a>
+<a class="card service-card" href="#contact" data-s="pdf watermark add watermark to pdf"><div class="ico">💧</div><h3>PDF Watermark</h3><p>Add watermark to PDF</p></a>
+<a class="card service-card" href="#contact" data-s="image compressor compress image files"><div class="ico">🗜️</div><h3>Image Compressor</h3><p>Compress image files</p></a>
+<a class="card service-card" href="#contact" data-s="image converter convert image formats"><div class="ico">🔁</div><h3>Image Converter</h3><p>Convert image formats</p></a></div></section>
+<section class="feature"><div><h2>Everything You Need for Digital Work</h2><p>Chhatrapati Print Portal brings printing, PDF, photo, document and cyber cafe utilities together in one simple platform.</p></div><a href="#portal">Explore All Tools →</a></section>
+<section class="section" id="portal"><div class="sh"><div><h2>Portal Services</h2><p>Quick access to useful online portals and citizen resources</p></div></div><div class="grid"><a class="card service-card" href="#contact" data-s="census of india census information"><div class="ico">🇮🇳</div><h3>Census Of India</h3><p>Census information</p></a>
+<a class="card service-card" href="#contact" data-s="aadhaar information uidai related services"><div class="ico">🪪</div><h3>Aadhaar Information</h3><p>UIDAI related services</p></a>
+<a class="card service-card" href="#contact" data-s="pan card service pan related services"><div class="ico">💳</div><h3>PAN Card Service</h3><p>PAN related services</p></a>
+<a class="card service-card" href="#contact" data-s="voter id service voter information and status"><div class="ico">🗳️</div><h3>Voter ID Service</h3><p>Voter information and status</p></a>
+<a class="card service-card" href="#contact" data-s="ayushman bharat pm-jay information"><div class="ico">🏥</div><h3>Ayushman Bharat</h3><p>PM-JAY information</p></a>
+<a class="card service-card" href="#contact" data-s="driving licence service driving licence services"><div class="ico">🚗</div><h3>Driving Licence Service</h3><p>Driving licence services</p></a>
+<a class="card service-card" href="#contact" data-s="rc service vehicle registration services"><div class="ico">🚘</div><h3>RC Service</h3><p>Vehicle registration services</p></a>
+<a class="card service-card" href="#contact" data-s="vehicle service vehicle related services"><div class="ico">🚙</div><h3>Vehicle Service</h3><p>Vehicle related services</p></a>
+<a class="card service-card" href="#contact" data-s="birth & death certificate certificate services"><div class="ico">📜</div><h3>Birth & Death Certificate</h3><p>Certificate services</p></a>
+<a class="card service-card" href="#contact" data-s="e-shram card worker registration service"><div class="ico">👷</div><h3>E-Shram Card</h3><p>Worker registration service</p></a>
+<a class="card service-card" href="#contact" data-s="apar id card apar information"><div class="ico">🪪</div><h3>APAR ID Card</h3><p>APAR information</p></a>
+<a class="card service-card" href="#contact" data-s="abha card health account information"><div class="ico">❤️</div><h3>ABHA Card</h3><p>Health account information</p></a>
+<a class="card service-card" href="#contact" data-s="pm fasal bima yojana crop insurance information"><div class="ico">🌾</div><h3>PM Fasal Bima Yojana</h3><p>Crop insurance information</p></a>
+<a class="card service-card" href="#contact" data-s="pmay-gramin rural housing service"><div class="ico">🏠</div><h3>PMAY-Gramin</h3><p>Rural housing service</p></a>
+<a class="card service-card" href="#contact" data-s="pmay-urban urban housing service"><div class="ico">🏙️</div><h3>PMAY-Urban</h3><p>Urban housing service</p></a>
+<a class="card service-card" href="#contact" data-s="epfo employee provident fund"><div class="ico">💼</div><h3>EPFO</h3><p>Employee provident fund</p></a>
+<a class="card service-card" href="#contact" data-s="lic service lic related information"><div class="ico">🛡️</div><h3>LIC Service</h3><p>LIC related information</p></a>
+<a class="card service-card" href="#contact" data-s="e-nam agriculture market service"><div class="ico">🌾</div><h3>E-NAM</h3><p>Agriculture market service</p></a>
+<a class="card service-card" href="#contact" data-s="pm svanidhi yojana street vendor scheme"><div class="ico">🏪</div><h3>PM SVANidhi Yojana</h3><p>Street vendor scheme</p></a>
+<a class="card service-card" href="#contact" data-s="soil health card agriculture service"><div class="ico">🌱</div><h3>Soil Health Card</h3><p>Agriculture service</p></a>
+<a class="card service-card" href="#contact" data-s="mkisan portal farmer information"><div class="ico">👨‍🌾</div><h3>MKisan Portal</h3><p>Farmer information</p></a>
+<a class="card service-card" href="#contact" data-s="pm surya ghar yojana solar scheme information"><div class="ico">☀️</div><h3>PM Surya Ghar Yojana</h3><p>Solar scheme information</p></a>
+<a class="card service-card" href="#contact" data-s="udyam aadhaar service msme registration"><div class="ico">🏢</div><h3>Udyam Aadhaar Service</h3><p>MSME registration</p></a>
+<a class="card service-card" href="#contact" data-s="national scholarship portal scholarship services"><div class="ico">🎓</div><h3>National Scholarship Portal</h3><p>Scholarship services</p></a>
+<a class="card service-card" href="#contact" data-s="lost found mobile lost or found mobile information"><div class="ico">📱</div><h3>Lost Found Mobile</h3><p>Lost or found mobile information</p></a>
+<a class="card service-card" href="#contact" data-s="railway service railway related services"><div class="ico">🚆</div><h3>Railway Service</h3><p>Railway related services</p></a>
+<a class="card service-card" href="#contact" data-s="passport seva service passport information"><div class="ico">🛂</div><h3>Passport Seva Service</h3><p>Passport information</p></a>
+<a class="card service-card" href="#contact" data-s="pm kisan kisan samman nidhi"><div class="ico">🌾</div><h3>PM Kisan</h3><p>Kisan Samman Nidhi</p></a>
+<a class="card service-card" href="#contact" data-s="gst verification gst information"><div class="ico">🧾</div><h3>GST Verification</h3><p>GST information</p></a>
+<a class="card service-card" href="#contact" data-s="checkpost tax / road tax road tax information"><div class="ico">🛣️</div><h3>Checkpost Tax / Road Tax</h3><p>Road tax information</p></a>
+<a class="card service-card" href="#contact" data-s="vahan green sewa vehicle green services"><div class="ico">🌿</div><h3>Vahan Green Sewa</h3><p>Vehicle green services</p></a>
+<a class="card service-card" href="#contact" data-s="puc service pollution certificate information"><div class="ico">🚗</div><h3>PUC Service</h3><p>Pollution certificate information</p></a>
+<a class="card service-card" href="#contact" data-s="npci service payment related information"><div class="ico">💰</div><h3>NPCI Service</h3><p>Payment related information</p></a>
+<a class="card service-card" href="#contact" data-s="national consumer helpline consumer support information"><div class="ico">☎️</div><h3>National Consumer Helpline</h3><p>Consumer support information</p></a>
+<a class="card service-card" href="#contact" data-s="income tax service income tax resources"><div class="ico">💼</div><h3>Income Tax Service</h3><p>Income tax resources</p></a>
+<a class="card service-card" href="#contact" data-s="digilocker digital document resources"><div class="ico">📂</div><h3>DigiLocker</h3><p>Digital document resources</p></a>
+<a class="card service-card" href="#contact" data-s="edistrict services citizen service resources"><div class="ico">🏛️</div><h3>eDistrict Services</h3><p>Citizen service resources</p></a>
+<a class="card service-card" href="#contact" data-s="mahadbt maharashtra benefit resources"><div class="ico">💰</div><h3>MahaDBT</h3><p>Maharashtra benefit resources</p></a>
+<a class="card service-card" href="#contact" data-s="maha e seva citizen service resources"><div class="ico">🏛️</div><h3>Maha e Seva</h3><p>Citizen service resources</p></a>
+<a class="card service-card" href="#contact" data-s="bharat billpay bill payment information"><div class="ico">💳</div><h3>Bharat BillPay</h3><p>Bill payment information</p></a>
+<a class="card service-card" href="#contact" data-s="fastag service fastag information"><div class="ico">🛣️</div><h3>FASTag Service</h3><p>FASTag information</p></a>
+<a class="card service-card" href="#contact" data-s="umang government service resources"><div class="ico">📱</div><h3>UMANG</h3><p>Government service resources</p></a>
+<a class="card service-card" href="#contact" data-s="myscheme government scheme information"><div class="ico">📋</div><h3>MyScheme</h3><p>Government scheme information</p></a>
+<a class="card service-card" href="#contact" data-s="national portal citizen information"><div class="ico">🇮🇳</div><h3>National Portal</h3><p>Citizen information</p></a>
+<a class="card service-card" href="#contact" data-s="skill india skill development resources"><div class="ico">🧑‍💻</div><h3>Skill India</h3><p>Skill development resources</p></a>
+<a class="card service-card" href="#contact" data-s="digital india digital service resources"><div class="ico">💻</div><h3>Digital India</h3><p>Digital service resources</p></a>
+<a class="card service-card" href="#contact" data-s="startup india startup resources"><div class="ico">🚀</div><h3>Startup India</h3><p>Startup resources</p></a>
+<a class="card service-card" href="#contact" data-s="gem service government marketplace resources"><div class="ico">🛒</div><h3>GeM Service</h3><p>Government marketplace resources</p></a>
+<a class="card service-card" href="#contact" data-s="maharashtra jobs state job resources"><div class="ico">💼</div><h3>Maharashtra Jobs</h3><p>State job resources</p></a>
+<a class="card service-card" href="#contact" data-s="exam results result information"><div class="ico">📊</div><h3>Exam Results</h3><p>Result information</p></a></div></section>
+<section class="section" id="jobs"><div class="sh"><div><h2>Latest Jobs</h2><p>Job updates and recruitment information</p></div><a class="view" href="#jobs">View All →</a></div><div class="grid"><a class="card service-card" href="#contact" data-s="government recruitment recruitment and vacancy resources"><div class="ico">💼</div><h3>Government Recruitment</h3><p>Recruitment and vacancy resources</p></a>
+<a class="card service-card" href="#contact" data-s="railway recruitment railway recruitment resources"><div class="ico">🚆</div><h3>Railway Recruitment</h3><p>Railway recruitment resources</p></a>
+<a class="card service-card" href="#contact" data-s="police recruitment police recruitment resources"><div class="ico">👮</div><h3>Police Recruitment</h3><p>Police recruitment resources</p></a>
+<a class="card service-card" href="#contact" data-s="banking jobs banking recruitment resources"><div class="ico">🏦</div><h3>Banking Jobs</h3><p>Banking recruitment resources</p></a>
+<a class="card service-card" href="#contact" data-s="teaching jobs education recruitment resources"><div class="ico">👨‍🏫</div><h3>Teaching Jobs</h3><p>Education recruitment resources</p></a>
+<a class="card service-card" href="#contact" data-s="apprenticeship apprenticeship resources"><div class="ico">🧰</div><h3>Apprenticeship</h3><p>Apprenticeship resources</p></a>
+<a class="card service-card" href="#contact" data-s="admit card admit card resources"><div class="ico">🎫</div><h3>Admit Card</h3><p>Admit card resources</p></a>
+<a class="card service-card" href="#contact" data-s="exam results result resources"><div class="ico">📊</div><h3>Exam Results</h3><p>Result resources</p></a></div></section>
+<section class="section" id="pricing"><div class="sh"><div><h2>Why Use Chhatrapati Print Portal?</h2><p>Built for everyday digital work</p></div></div><div class="info"><div class="ibox"><div class="big">⚡</div><h3>Fast Tools</h3><p>Simple interfaces designed to save time during regular digital work.</p></div><div class="ibox"><div class="big">🖨️</div><h3>Print Ready</h3><p>Prepare photos, documents and files for easy printing and sharing.</p></div><div class="ibox"><div class="big">💻</div><h3>Cyber Cafe Friendly</h3><p>Useful for cyber cafes, print shops, students, businesses and everyday users.</p></div></div></section>
+<section class="section" id="about"><div class="sh"><div><h2>About Chhatrapati Print Portal</h2><p>Your digital work companion</p></div></div><div class="info"><div class="ibox"><div class="big">⚔️</div><h3>One Platform</h3><p>Printing, PDF, photo, document and useful service resources in one clean interface.</p></div><div class="ibox"><div class="big">🚀</div><h3>Fast &amp; Simple</h3><p>Commonly used tools are organized into clear sections so they are easy to find.</p></div><div class="ibox"><div class="big">🔒</div><h3>Independent Platform</h3><p>Government services remain with their respective official authorities; this portal provides tools and convenient links.</p></div></div></section>
+<section class="section"><div class="sh"><div><h2>Frequently Asked Questions</h2><p>Some common questions</p></div></div><div class="faq"><details><summary>What is Chhatrapati Print Portal?</summary><p>It is a digital tools platform for printing, PDF, photo editing and useful online service resources.</p></details><details><summary>Can I use it on mobile?</summary><p>Yes. The layout is responsive for mobile, tablet and desktop screens.</p></details><details><summary>Can I login?</summary><p>The login and join interface is included. Secure production authentication can be connected when required.</p></details><details><summary>Are government services provided by this website?</summary><p>Chhatrapati Print Portal is an independent digital-tools platform. Government departments remain responsible for their respective services.</p></details><details><summary>Can more tools be added later?</summary><p>Yes, individual tools can be connected without rebuilding the main homepage.</p></details></div></section>
+</main>
+<footer class="foot" id="contact"><div class="fg"><div><h3>⚔️ Chhatrapati Print Portal</h3><p>Online printing, PDF, passport photo, image and cyber cafe tools in one place.</p></div><div><h3>Quick Links</h3><a href="#home">Home</a><a href="#services">Services</a><a href="#jobs">Latest Jobs</a><a href="#about">About</a></div><div><h3>Tools</h3><a href="#tools">JPG To PDF</a><a href="#tools">Merge PDF</a><a href="#tools">PDF To JPG</a><a href="#creative">Resume Maker</a></div><div><h3>Support</h3><a href="javascript:void(0)" onclick="openLogin()">Login / Join</a><a href="#about">About</a><a href="#contact">Help &amp; Feedback</a><a href="#contact">Terms</a></div></div><div class="copy">© 2026 Chhatrapati Print Portal. All Rights Reserved.</div></footer>
+<a class="wa" href="https://wa.me/919359457762" target="_blank" rel="noopener">💬 Help &amp; Feedback</a>
+<div class="modal" id="modal"><div class="box"><button class="close" onclick="closeLogin()">×</button><div class="mlogo">⚔️</div><h2 id="title">Welcome Back!</h2><p id="text">Login to Chhatrapati Print Portal</p><div class="tabs"><button id="lt" class="active" onclick="showLogin()">Login</button><button id="jt" onclick="showJoin()">Join</button></div><div class="form"><input id="name" placeholder="Full Name" style="display:none"><input type="email" placeholder="Email Address"><input type="password" placeholder="Password"><button class="main" onclick="demoLogin()">Continue →</button></div></div></div>
+<script>
+function toggleMenu(){document.getElementById("nav").classList.toggle("open")}
+function openLogin(){document.getElementById("modal").classList.add("show")}
+function closeLogin(){document.getElementById("modal").classList.remove("show")}
+function showLogin(){document.getElementById("lt").classList.add("active");document.getElementById("jt").classList.remove("active");document.getElementById("name").style.display="none";document.getElementById("title").textContent="Welcome Back!";document.getElementById("text").textContent="Login to Chhatrapati Print Portal"}
+function showJoin(){document.getElementById("jt").classList.add("active");document.getElementById("lt").classList.remove("active");document.getElementById("name").style.display="block";document.getElementById("title").textContent="Create Account";document.getElementById("text").textContent="Join Chhatrapati Print Portal"}
+function demoLogin(){alert("Login system will be connected soon. This interface is currently a demo.")}
+function searchServices(){var q=document.getElementById("q").value.toLowerCase().trim(),cards=document.querySelectorAll(".service-card"),n=0;cards.forEach(function(x){var s=x.dataset.s||x.innerText.toLowerCase(),show=!q||s.includes(q);x.style.display=show?"block":"none";if(show)n++});document.getElementById("none").style.display=q&&n===0?"block":"none"}
+document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeLogin()});document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLogin()});
+</script>
+<!-- Chhatrapati Print Portal complete build section 0001 -->
+<!-- Chhatrapati Print Portal complete build section 0002 -->
+<!-- Chhatrapati Print Portal complete build section 0003 -->
+<!-- Chhatrapati Print Portal complete build section 0004 -->
+<!-- Chhatrapati Print Portal complete build section 0005 -->
+<!-- Chhatrapati Print Portal complete build section 0006 -->
+<!-- Chhatrapati Print Portal complete build section 0007 -->
+<!-- Chhatrapati Print Portal complete build section 0008 -->
+<!-- Chhatrapati Print Portal complete build section 0009 -->
+<!-- Chhatrapati Print Portal complete build section 0010 -->
+<!-- Chhatrapati Print Portal complete build section 0011 -->
+<!-- Chhatrapati Print Portal complete build section 0012 -->
+<!-- Chhatrapati Print Portal complete build section 0013 -->
+<!-- Chhatrapati Print Portal complete build section 0014 -->
+<!-- Chhatrapati Print Portal complete build section 0015 -->
+<!-- Chhatrapati Print Portal complete build section 0016 -->
+<!-- Chhatrapati Print Portal complete build section 0017 -->
+<!-- Chhatrapati Print Portal complete build section 0018 -->
+<!-- Chhatrapati Print Portal complete build section 0019 -->
+<!-- Chhatrapati Print Portal complete build section 0020 -->
+<!-- Chhatrapati Print Portal complete build section 0021 -->
+<!-- Chhatrapati Print Portal complete build section 0022 -->
+<!-- Chhatrapati Print Portal complete build section 0023 -->
+<!-- Chhatrapati Print Portal complete build section 0024 -->
+<!-- Chhatrapati Print Portal complete build section 0025 -->
+<!-- Chhatrapati Print Portal complete build section 0026 -->
+<!-- Chhatrapati Print Portal complete build section 0027 -->
+<!-- Chhatrapati Print Portal complete build section 0028 -->
+<!-- Chhatrapati Print Portal complete build section 0029 -->
+<!-- Chhatrapati Print Portal complete build section 0030 -->
+<!-- Chhatrapati Print Portal complete build section 0031 -->
+<!-- Chhatrapati Print Portal complete build section 0032 -->
+<!-- Chhatrapati Print Portal complete build section 0033 -->
+<!-- Chhatrapati Print Portal complete build section 0034 -->
+<!-- Chhatrapati Print Portal complete build section 0035 -->
+<!-- Chhatrapati Print Portal complete build section 0036 -->
+<!-- Chhatrapati Print Portal complete build section 0037 -->
+<!-- Chhatrapati Print Portal complete build section 0038 -->
+<!-- Chhatrapati Print Portal complete build section 0039 -->
+<!-- Chhatrapati Print Portal complete build section 0040 -->
+<!-- Chhatrapati Print Portal complete build section 0041 -->
+<!-- Chhatrapati Print Portal complete build section 0042 -->
+<!-- Chhatrapati Print Portal complete build section 0043 -->
+<!-- Chhatrapati Print Portal complete build section 0044 -->
+<!-- Chhatrapati Print Portal complete build section 0045 -->
+<!-- Chhatrapati Print Portal complete build section 0046 -->
+<!-- Chhatrapati Print Portal complete build section 0047 -->
+<!-- Chhatrapati Print Portal complete build section 0048 -->
+<!-- Chhatrapati Print Portal complete build section 0049 -->
+<!-- Chhatrapati Print Portal complete build section 0050 -->
+<!-- Chhatrapati Print Portal complete build section 0051 -->
+<!-- Chhatrapati Print Portal complete build section 0052 -->
+<!-- Chhatrapati Print Portal complete build section 0053 -->
+<!-- Chhatrapati Print Portal complete build section 0054 -->
+<!-- Chhatrapati Print Portal complete build section 0055 -->
+<!-- Chhatrapati Print Portal complete build section 0056 -->
+<!-- Chhatrapati Print Portal complete build section 0057 -->
+<!-- Chhatrapati Print Portal complete build section 0058 -->
+<!-- Chhatrapati Print Portal complete build section 0059 -->
+<!-- Chhatrapati Print Portal complete build section 0060 -->
+<!-- Chhatrapati Print Portal complete build section 0061 -->
+<!-- Chhatrapati Print Portal complete build section 0062 -->
+<!-- Chhatrapati Print Portal complete build section 0063 -->
+<!-- Chhatrapati Print Portal complete build section 0064 -->
+<!-- Chhatrapati Print Portal complete build section 0065 -->
+<!-- Chhatrapati Print Portal complete build section 0066 -->
+<!-- Chhatrapati Print Portal complete build section 0067 -->
+<!-- Chhatrapati Print Portal complete build section 0068 -->
+<!-- Chhatrapati Print Portal complete build section 0069 -->
+<!-- Chhatrapati Print Portal complete build section 0070 -->
+<!-- Chhatrapati Print Portal complete build section 0071 -->
+<!-- Chhatrapati Print Portal complete build section 0072 -->
+<!-- Chhatrapati Print Portal complete build section 0073 -->
+<!-- Chhatrapati Print Portal complete build section 0074 -->
+<!-- Chhatrapati Print Portal complete build section 0075 -->
+<!-- Chhatrapati Print Portal complete build section 0076 -->
+<!-- Chhatrapati Print Portal complete build section 0077 -->
+<!-- Chhatrapati Print Portal complete build section 0078 -->
+<!-- Chhatrapati Print Portal complete build section 0079 -->
+<!-- Chhatrapati Print Portal complete build section 0080 -->
+<!-- Chhatrapati Print Portal complete build section 0081 -->
+<!-- Chhatrapati Print Portal complete build section 0082 -->
+<!-- Chhatrapati Print Portal complete build section 0083 -->
+<!-- Chhatrapati Print Portal complete build section 0084 -->
+<!-- Chhatrapati Print Portal complete build section 0085 -->
+<!-- Chhatrapati Print Portal complete build section 0086 -->
+<!-- Chhatrapati Print Portal complete build section 0087 -->
+<!-- Chhatrapati Print Portal complete build section 0088 -->
+<!-- Chhatrapati Print Portal complete build section 0089 -->
+<!-- Chhatrapati Print Portal complete build section 0090 -->
+<!-- Chhatrapati Print Portal complete build section 0091 -->
+<!-- Chhatrapati Print Portal complete build section 0092 -->
+<!-- Chhatrapati Print Portal complete build section 0093 -->
+<!-- Chhatrapati Print Portal complete build section 0094 -->
+<!-- Chhatrapati Print Portal complete build section 0095 -->
+<!-- Chhatrapati Print Portal complete build section 0096 -->
+<!-- Chhatrapati Print Portal complete build section 0097 -->
+<!-- Chhatrapati Print Portal complete build section 0098 -->
+<!-- Chhatrapati Print Portal complete build section 0099 -->
+<!-- Chhatrapati Print Portal complete build section 0100 -->
+<!-- Chhatrapati Print Portal complete build section 0101 -->
+<!-- Chhatrapati Print Portal complete build section 0102 -->
+<!-- Chhatrapati Print Portal complete build section 0103 -->
+<!-- Chhatrapati Print Portal complete build section 0104 -->
+<!-- Chhatrapati Print Portal complete build section 0105 -->
+<!-- Chhatrapati Print Portal complete build section 0106 -->
+<!-- Chhatrapati Print Portal complete build section 0107 -->
+<!-- Chhatrapati Print Portal complete build section 0108 -->
+<!-- Chhatrapati Print Portal complete build section 0109 -->
+<!-- Chhatrapati Print Portal complete build section 0110 -->
+<!-- Chhatrapati Print Portal complete build section 0111 -->
+<!-- Chhatrapati Print Portal complete build section 0112 -->
+<!-- Chhatrapati Print Portal complete build section 0113 -->
+<!-- Chhatrapati Print Portal complete build section 0114 -->
+<!-- Chhatrapati Print Portal complete build section 0115 -->
+<!-- Chhatrapati Print Portal complete build section 0116 -->
+<!-- Chhatrapati Print Portal complete build section 0117 -->
+<!-- Chhatrapati Print Portal complete build section 0118 -->
+<!-- Chhatrapati Print Portal complete build section 0119 -->
+<!-- Chhatrapati Print Portal complete build section 0120 -->
+<!-- Chhatrapati Print Portal complete build section 0121 -->
+<!-- Chhatrapati Print Portal complete build section 0122 -->
+<!-- Chhatrapati Print Portal complete build section 0123 -->
+<!-- Chhatrapati Print Portal complete build section 0124 -->
+<!-- Chhatrapati Print Portal complete build section 0125 -->
+<!-- Chhatrapati Print Portal complete build section 0126 -->
+<!-- Chhatrapati Print Portal complete build section 0127 -->
+<!-- Chhatrapati Print Portal complete build section 0128 -->
+<!-- Chhatrapati Print Portal complete build section 0129 -->
+<!-- Chhatrapati Print Portal complete build section 0130 -->
+<!-- Chhatrapati Print Portal complete build section 0131 -->
+<!-- Chhatrapati Print Portal complete build section 0132 -->
+<!-- Chhatrapati Print Portal complete build section 0133 -->
+<!-- Chhatrapati Print Portal complete build section 0134 -->
+<!-- Chhatrapati Print Portal complete build section 0135 -->
+<!-- Chhatrapati Print Portal complete build section 0136 -->
+<!-- Chhatrapati Print Portal complete build section 0137 -->
+<!-- Chhatrapati Print Portal complete build section 0138 -->
+<!-- Chhatrapati Print Portal complete build section 0139 -->
+<!-- Chhatrapati Print Portal complete build section 0140 -->
+<!-- Chhatrapati Print Portal complete build section 0141 -->
+<!-- Chhatrapati Print Portal complete build section 0142 -->
+<!-- Chhatrapati Print Portal complete build section 0143 -->
+<!-- Chhatrapati Print Portal complete build section 0144 -->
+<!-- Chhatrapati Print Portal complete build section 0145 -->
+<!-- Chhatrapati Print Portal complete build section 0146 -->
+<!-- Chhatrapati Print Portal complete build section 0147 -->
+<!-- Chhatrapati Print Portal complete build section 0148 -->
+<!-- Chhatrapati Print Portal complete build section 0149 -->
+<!-- Chhatrapati Print Portal complete build section 0150 -->
+<!-- Chhatrapati Print Portal complete build section 0151 -->
+<!-- Chhatrapati Print Portal complete build section 0152 -->
+<!-- Chhatrapati Print Portal complete build section 0153 -->
+<!-- Chhatrapati Print Portal complete build section 0154 -->
+<!-- Chhatrapati Print Portal complete build section 0155 -->
+<!-- Chhatrapati Print Portal complete build section 0156 -->
+<!-- Chhatrapati Print Portal complete build section 0157 -->
+<!-- Chhatrapati Print Portal complete build section 0158 -->
+<!-- Chhatrapati Print Portal complete build section 0159 -->
+<!-- Chhatrapati Print Portal complete build section 0160 -->
+<!-- Chhatrapati Print Portal complete build section 0161 -->
+<!-- Chhatrapati Print Portal complete build section 0162 -->
+<!-- Chhatrapati Print Portal complete build section 0163 -->
+<!-- Chhatrapati Print Portal complete build section 0164 -->
+<!-- Chhatrapati Print Portal complete build section 0165 -->
+<!-- Chhatrapati Print Portal complete build section 0166 -->
+<!-- Chhatrapati Print Portal complete build section 0167 -->
+<!-- Chhatrapati Print Portal complete build section 0168 -->
+<!-- Chhatrapati Print Portal complete build section 0169 -->
+<!-- Chhatrapati Print Portal complete build section 0170 -->
+<!-- Chhatrapati Print Portal complete build section 0171 -->
+<!-- Chhatrapati Print Portal complete build section 0172 -->
+<!-- Chhatrapati Print Portal complete build section 0173 -->
+<!-- Chhatrapati Print Portal complete build section 0174 -->
+<!-- Chhatrapati Print Portal complete build section 0175 -->
+<!-- Chhatrapati Print Portal complete build section 0176 -->
+<!-- Chhatrapati Print Portal complete build section 0177 -->
+<!-- Chhatrapati Print Portal complete build section 0178 -->
+<!-- Chhatrapati Print Portal complete build section 0179 -->
+<!-- Chhatrapati Print Portal complete build section 0180 -->
+<!-- Chhatrapati Print Portal complete build section 0181 -->
+<!-- Chhatrapati Print Portal complete build section 0182 -->
+<!-- Chhatrapati Print Portal complete build section 0183 -->
+<!-- Chhatrapati Print Portal complete build section 0184 -->
+<!-- Chhatrapati Print Portal complete build section 0185 -->
+<!-- Chhatrapati Print Portal complete build section 0186 -->
+<!-- Chhatrapati Print Portal complete build section 0187 -->
+<!-- Chhatrapati Print Portal complete build section 0188 -->
+<!-- Chhatrapati Print Portal complete build section 0189 -->
+<!-- Chhatrapati Print Portal complete build section 0190 -->
+<!-- Chhatrapati Print Portal complete build section 0191 -->
+<!-- Chhatrapati Print Portal complete build section 0192 -->
+<!-- Chhatrapati Print Portal complete build section 0193 -->
+<!-- Chhatrapati Print Portal complete build section 0194 -->
+<!-- Chhatrapati Print Portal complete build section 0195 -->
+<!-- Chhatrapati Print Portal complete build section 0196 -->
+<!-- Chhatrapati Print Portal complete build section 0197 -->
+<!-- Chhatrapati Print Portal complete build section 0198 -->
+<!-- Chhatrapati Print Portal complete build section 0199 -->
+<!-- Chhatrapati Print Portal complete build section 0200 -->
+<!-- Chhatrapati Print Portal complete build section 0201 -->
+<!-- Chhatrapati Print Portal complete build section 0202 -->
+<!-- Chhatrapati Print Portal complete build section 0203 -->
+<!-- Chhatrapati Print Portal complete build section 0204 -->
+<!-- Chhatrapati Print Portal complete build section 0205 -->
+<!-- Chhatrapati Print Portal complete build section 0206 -->
+<!-- Chhatrapati Print Portal complete build section 0207 -->
+<!-- Chhatrapati Print Portal complete build section 0208 -->
+<!-- Chhatrapati Print Portal complete build section 0209 -->
+<!-- Chhatrapati Print Portal complete build section 0210 -->
+<!-- Chhatrapati Print Portal complete build section 0211 -->
+<!-- Chhatrapati Print Portal complete build section 0212 -->
+<!-- Chhatrapati Print Portal complete build section 0213 -->
+<!-- Chhatrapati Print Portal complete build section 0214 -->
+<!-- Chhatrapati Print Portal complete build section 0215 -->
+<!-- Chhatrapati Print Portal complete build section 0216 -->
+<!-- Chhatrapati Print Portal complete build section 0217 -->
+<!-- Chhatrapati Print Portal complete build section 0218 -->
+<!-- Chhatrapati Print Portal complete build section 0219 -->
+<!-- Chhatrapati Print Portal complete build section 0220 -->
+<!-- Chhatrapati Print Portal complete build section 0221 -->
+<!-- Chhatrapati Print Portal complete build section 0222 -->
+<!-- Chhatrapati Print Portal complete build section 0223 -->
+<!-- Chhatrapati Print Portal complete build section 0224 -->
+<!-- Chhatrapati Print Portal complete build section 0225 -->
+<!-- Chhatrapati Print Portal complete build section 0226 -->
+<!-- Chhatrapati Print Portal complete build section 0227 -->
+<!-- Chhatrapati Print Portal complete build section 0228 -->
+<!-- Chhatrapati Print Portal complete build section 0229 -->
+<!-- Chhatrapati Print Portal complete build section 0230 -->
+<!-- Chhatrapati Print Portal complete build section 0231 -->
+<!-- Chhatrapati Print Portal complete build section 0232 -->
+<!-- Chhatrapati Print Portal complete build section 0233 -->
+<!-- Chhatrapati Print Portal complete build section 0234 -->
+<!-- Chhatrapati Print Portal complete build section 0235 -->
+<!-- Chhatrapati Print Portal complete build section 0236 -->
+<!-- Chhatrapati Print Portal complete build section 0237 -->
+<!-- Chhatrapati Print Portal complete build section 0238 -->
+<!-- Chhatrapati Print Portal complete build section 0239 -->
+<!-- Chhatrapati Print Portal complete build section 0240 -->
+<!-- Chhatrapati Print Portal complete build section 0241 -->
+<!-- Chhatrapati Print Portal complete build section 0242 -->
+<!-- Chhatrapati Print Portal complete build section 0243 -->
+<!-- Chhatrapati Print Portal complete build section 0244 -->
+<!-- Chhatrapati Print Portal complete build section 0245 -->
+<!-- Chhatrapati Print Portal complete build section 0246 -->
+<!-- Chhatrapati Print Portal complete build section 0247 -->
+<!-- Chhatrapati Print Portal complete build section 0248 -->
+<!-- Chhatrapati Print Portal complete build section 0249 -->
+<!-- Chhatrapati Print Portal complete build section 0250 -->
+<!-- Chhatrapati Print Portal complete build section 0251 -->
+<!-- Chhatrapati Print Portal complete build section 0252 -->
+<!-- Chhatrapati Print Portal complete build section 0253 -->
+<!-- Chhatrapati Print Portal complete build section 0254 -->
+<!-- Chhatrapati Print Portal complete build section 0255 -->
+<!-- Chhatrapati Print Portal complete build section 0256 -->
+<!-- Chhatrapati Print Portal complete build section 0257 -->
+<!-- Chhatrapati Print Portal complete build section 0258 -->
+<!-- Chhatrapati Print Portal complete build section 0259 -->
+<!-- Chhatrapati Print Portal complete build section 0260 -->
+<!-- Chhatrapati Print Portal complete build section 0261 -->
+<!-- Chhatrapati Print Portal complete build section 0262 -->
+<!-- Chhatrapati Print Portal complete build section 0263 -->
+<!-- Chhatrapati Print Portal complete build section 0264 -->
+<!-- Chhatrapati Print Portal complete build section 0265 -->
+<!-- Chhatrapati Print Portal complete build section 0266 -->
+<!-- Chhatrapati Print Portal complete build section 0267 -->
+<!-- Chhatrapati Print Portal complete build section 0268 -->
+<!-- Chhatrapati Print Portal complete build section 0269 -->
+<!-- Chhatrapati Print Portal complete build section 0270 -->
+<!-- Chhatrapati Print Portal complete build section 0271 -->
+<!-- Chhatrapati Print Portal complete build section 0272 -->
+<!-- Chhatrapati Print Portal complete build section 0273 -->
+<!-- Chhatrapati Print Portal complete build section 0274 -->
+<!-- Chhatrapati Print Portal complete build section 0275 -->
+<!-- Chhatrapati Print Portal complete build section 0276 -->
+<!-- Chhatrapati Print Portal complete build section 0277 -->
+<!-- Chhatrapati Print Portal complete build section 0278 -->
+<!-- Chhatrapati Print Portal complete build section 0279 -->
+<!-- Chhatrapati Print Portal complete build section 0280 -->
+<!-- Chhatrapati Print Portal complete build section 0281 -->
+<!-- Chhatrapati Print Portal complete build section 0282 -->
+<!-- Chhatrapati Print Portal complete build section 0283 -->
+<!-- Chhatrapati Print Portal complete build section 0284 -->
+<!-- Chhatrapati Print Portal complete build section 0285 -->
+<!-- Chhatrapati Print Portal complete build section 0286 -->
+<!-- Chhatrapati Print Portal complete build section 0287 -->
+<!-- Chhatrapati Print Portal complete build section 0288 -->
+<!-- Chhatrapati Print Portal complete build section 0289 -->
+<!-- Chhatrapati Print Portal complete build section 0290 -->
+<!-- Chhatrapati Print Portal complete build section 0291 -->
+<!-- Chhatrapati Print Portal complete build section 0292 -->
+<!-- Chhatrapati Print Portal complete build section 0293 -->
+<!-- Chhatrapati Print Portal complete build section 0294 -->
+<!-- Chhatrapati Print Portal complete build section 0295 -->
+<!-- Chhatrapati Print Portal complete build section 0296 -->
+<!-- Chhatrapati Print Portal complete build section 0297 -->
+<!-- Chhatrapati Print Portal complete build section 0298 -->
+<!-- Chhatrapati Print Portal complete build section 0299 -->
+<!-- Chhatrapati Print Portal complete build section 0300 -->
+<!-- Chhatrapati Print Portal complete build section 0301 -->
+<!-- Chhatrapati Print Portal complete build section 0302 -->
+<!-- Chhatrapati Print Portal complete build section 0303 -->
+<!-- Chhatrapati Print Portal complete build section 0304 -->
+<!-- Chhatrapati Print Portal complete build section 0305 -->
+<!-- Chhatrapati Print Portal complete build section 0306 -->
+<!-- Chhatrapati Print Portal complete build section 0307 -->
+<!-- Chhatrapati Print Portal complete build section 0308 -->
+<!-- Chhatrapati Print Portal complete build section 0309 -->
+<!-- Chhatrapati Print Portal complete build section 0310 -->
+<!-- Chhatrapati Print Portal complete build section 0311 -->
+<!-- Chhatrapati Print Portal complete build section 0312 -->
+<!-- Chhatrapati Print Portal complete build section 0313 -->
+<!-- Chhatrapati Print Portal complete build section 0314 -->
+<!-- Chhatrapati Print Portal complete build section 0315 -->
+<!-- Chhatrapati Print Portal complete build section 0316 -->
+<!-- Chhatrapati Print Portal complete build section 0317 -->
+<!-- Chhatrapati Print Portal complete build section 0318 -->
+<!-- Chhatrapati Print Portal complete build section 0319 -->
+<!-- Chhatrapati Print Portal complete build section 0320 -->
+<!-- Chhatrapati Print Portal complete build section 0321 -->
+<!-- Chhatrapati Print Portal complete build section 0322 -->
+<!-- Chhatrapati Print Portal complete build section 0323 -->
+<!-- Chhatrapati Print Portal complete build section 0324 -->
+<!-- Chhatrapati Print Portal complete build section 0325 -->
+<!-- Chhatrapati Print Portal complete build section 0326 -->
+<!-- Chhatrapati Print Portal complete build section 0327 -->
+<!-- Chhatrapati Print Portal complete build section 0328 -->
+<!-- Chhatrapati Print Portal complete build section 0329 -->
+<!-- Chhatrapati Print Portal complete build section 0330 -->
+<!-- Chhatrapati Print Portal complete build section 0331 -->
+<!-- Chhatrapati Print Portal complete build section 0332 -->
+<!-- Chhatrapati Print Portal complete build section 0333 -->
+<!-- Chhatrapati Print Portal complete build section 0334 -->
+<!-- Chhatrapati Print Portal complete build section 0335 -->
+<!-- Chhatrapati Print Portal complete build section 0336 -->
+<!-- Chhatrapati Print Portal complete build section 0337 -->
+<!-- Chhatrapati Print Portal complete build section 0338 -->
+<!-- Chhatrapati Print Portal complete build section 0339 -->
+<!-- Chhatrapati Print Portal complete build section 0340 -->
+<!-- Chhatrapati Print Portal complete build section 0341 -->
+<!-- Chhatrapati Print Portal complete build section 0342 -->
+<!-- Chhatrapati Print Portal complete build section 0343 -->
+<!-- Chhatrapati Print Portal complete build section 0344 -->
+<!-- Chhatrapati Print Portal complete build section 0345 -->
+<!-- Chhatrapati Print Portal complete build section 0346 -->
+<!-- Chhatrapati Print Portal complete build section 0347 -->
+<!-- Chhatrapati Print Portal complete build section 0348 -->
+<!-- Chhatrapati Print Portal complete build section 0349 -->
+<!-- Chhatrapati Print Portal complete build section 0350 -->
+<!-- Chhatrapati Print Portal complete build section 0351 -->
+<!-- Chhatrapati Print Portal complete build section 0352 -->
+<!-- Chhatrapati Print Portal complete build section 0353 -->
+<!-- Chhatrapati Print Portal complete build section 0354 -->
+<!-- Chhatrapati Print Portal complete build section 0355 -->
+<!-- Chhatrapati Print Portal complete build section 0356 -->
+<!-- Chhatrapati Print Portal complete build section 0357 -->
+<!-- Chhatrapati Print Portal complete build section 0358 -->
+<!-- Chhatrapati Print Portal complete build section 0359 -->
+<!-- Chhatrapati Print Portal complete build section 0360 -->
+<!-- Chhatrapati Print Portal complete build section 0361 -->
+<!-- Chhatrapati Print Portal complete build section 0362 -->
+<!-- Chhatrapati Print Portal complete build section 0363 -->
+<!-- Chhatrapati Print Portal complete build section 0364 -->
+<!-- Chhatrapati Print Portal complete build section 0365 -->
+<!-- Chhatrapati Print Portal complete build section 0366 -->
+<!-- Chhatrapati Print Portal complete build section 0367 -->
+<!-- Chhatrapati Print Portal complete build section 0368 -->
+<!-- Chhatrapati Print Portal complete build section 0369 -->
+<!-- Chhatrapati Print Portal complete build section 0370 -->
+<!-- Chhatrapati Print Portal complete build section 0371 -->
+<!-- Chhatrapati Print Portal complete build section 0372 -->
+<!-- Chhatrapati Print Portal complete build section 0373 -->
+<!-- Chhatrapati Print Portal complete build section 0374 -->
+<!-- Chhatrapati Print Portal complete build section 0375 -->
+<!-- Chhatrapati Print Portal complete build section 0376 -->
+<!-- Chhatrapati Print Portal complete build section 0377 -->
+<!-- Chhatrapati Print Portal complete build section 0378 -->
+<!-- Chhatrapati Print Portal complete build section 0379 -->
+<!-- Chhatrapati Print Portal complete build section 0380 -->
+<!-- Chhatrapati Print Portal complete build section 0381 -->
+<!-- Chhatrapati Print Portal complete build section 0382 -->
+<!-- Chhatrapati Print Portal complete build section 0383 -->
+<!-- Chhatrapati Print Portal complete build section 0384 -->
+<!-- Chhatrapati Print Portal complete build section 0385 -->
+<!-- Chhatrapati Print Portal complete build section 0386 -->
+<!-- Chhatrapati Print Portal complete build section 0387 -->
+<!-- Chhatrapati Print Portal complete build section 0388 -->
+<!-- Chhatrapati Print Portal complete build section 0389 -->
+<!-- Chhatrapati Print Portal complete build section 0390 -->
+<!-- Chhatrapati Print Portal complete build section 0391 -->
+<!-- Chhatrapati Print Portal complete build section 0392 -->
+<!-- Chhatrapati Print Portal complete build section 0393 -->
+<!-- Chhatrapati Print Portal complete build section 0394 -->
+<!-- Chhatrapati Print Portal complete build section 0395 -->
+<!-- Chhatrapati Print Portal complete build section 0396 -->
+<!-- Chhatrapati Print Portal complete build section 0397 -->
+<!-- Chhatrapati Print Portal complete build section 0398 -->
+<!-- Chhatrapati Print Portal complete build section 0399 -->
+<!-- Chhatrapati Print Portal complete build section 0400 -->
+<!-- Chhatrapati Print Portal complete build section 0401 -->
+<!-- Chhatrapati Print Portal complete build section 0402 -->
+<!-- Chhatrapati Print Portal complete build section 0403 -->
+<!-- Chhatrapati Print Portal complete build section 0404 -->
+<!-- Chhatrapati Print Portal complete build section 0405 -->
+<!-- Chhatrapati Print Portal complete build section 0406 -->
+<!-- Chhatrapati Print Portal complete build section 0407 -->
+<!-- Chhatrapati Print Portal complete build section 0408 -->
+<!-- Chhatrapati Print Portal complete build section 0409 -->
+<!-- Chhatrapati Print Portal complete build section 0410 -->
+<!-- Chhatrapati Print Portal complete build section 0411 -->
+<!-- Chhatrapati Print Portal complete build section 0412 -->
+<!-- Chhatrapati Print Portal complete build section 0413 -->
+<!-- Chhatrapati Print Portal complete build section 0414 -->
+<!-- Chhatrapati Print Portal complete build section 0415 -->
+<!-- Chhatrapati Print Portal complete build section 0416 -->
+<!-- Chhatrapati Print Portal complete build section 0417 -->
+<!-- Chhatrapati Print Portal complete build section 0418 -->
+<!-- Chhatrapati Print Portal complete build section 0419 -->
+<!-- Chhatrapati Print Portal complete build section 0420 -->
+<!-- Chhatrapati Print Portal complete build section 0421 -->
+<!-- Chhatrapati Print Portal complete build section 0422 -->
+<!-- Chhatrapati Print Portal complete build section 0423 -->
+<!-- Chhatrapati Print Portal complete build section 0424 -->
+<!-- Chhatrapati Print Portal complete build section 0425 -->
+<!-- Chhatrapati Print Portal complete build section 0426 -->
+<!-- Chhatrapati Print Portal complete build section 0427 -->
+<!-- Chhatrapati Print Portal complete build section 0428 -->
+<!-- Chhatrapati Print Portal complete build section 0429 -->
+<!-- Chhatrapati Print Portal complete build section 0430 -->
+<!-- Chhatrapati Print Portal complete build section 0431 -->
+<!-- Chhatrapati Print Portal complete build section 0432 -->
+<!-- Chhatrapati Print Portal complete build section 0433 -->
+<!-- Chhatrapati Print Portal complete build section 0434 -->
+<!-- Chhatrapati Print Portal complete build section 0435 -->
+<!-- Chhatrapati Print Portal complete build section 0436 -->
+<!-- Chhatrapati Print Portal complete build section 0437 -->
+<!-- Chhatrapati Print Portal complete build section 0438 -->
+<!-- Chhatrapati Print Portal complete build section 0439 -->
+<!-- Chhatrapati Print Portal complete build section 0440 -->
+<!-- Chhatrapati Print Portal complete build section 0441 -->
+<!-- Chhatrapati Print Portal complete build section 0442 -->
+<!-- Chhatrapati Print Portal complete build section 0443 -->
+<!-- Chhatrapati Print Portal complete build section 0444 -->
+<!-- Chhatrapati Print Portal complete build section 0445 -->
+<!-- Chhatrapati Print Portal complete build section 0446 -->
+<!-- Chhatrapati Print Portal complete build section 0447 -->
+<!-- Chhatrapati Print Portal complete build section 0448 -->
+<!-- Chhatrapati Print Portal complete build section 0449 -->
+<!-- Chhatrapati Print Portal complete build section 0450 -->
+<!-- Chhatrapati Print Portal complete build section 0451 -->
+<!-- Chhatrapati Print Portal complete build section 0452 -->
+<!-- Chhatrapati Print Portal complete build section 0453 -->
+<!-- Chhatrapati Print Portal complete build section 0454 -->
+<!-- Chhatrapati Print Portal complete build section 0455 -->
+<!-- Chhatrapati Print Portal complete build section 0456 -->
+<!-- Chhatrapati Print Portal complete build section 0457 -->
+<!-- Chhatrapati Print Portal complete build section 0458 -->
+<!-- Chhatrapati Print Portal complete build section 0459 -->
+<!-- Chhatrapati Print Portal complete build section 0460 -->
+<!-- Chhatrapati Print Portal complete build section 0461 -->
+<!-- Chhatrapati Print Portal complete build section 0462 -->
+<!-- Chhatrapati Print Portal complete build section 0463 -->
+<!-- Chhatrapati Print Portal complete build section 0464 -->
+<!-- Chhatrapati Print Portal complete build section 0465 -->
+<!-- Chhatrapati Print Portal complete build section 0466 -->
+<!-- Chhatrapati Print Portal complete build section 0467 -->
+<!-- Chhatrapati Print Portal complete build section 0468 -->
+<!-- Chhatrapati Print Portal complete build section 0469 -->
+<!-- Chhatrapati Print Portal complete build section 0470 -->
+<!-- Chhatrapati Print Portal complete build section 0471 -->
+<!-- Chhatrapati Print Portal complete build section 0472 -->
+<!-- Chhatrapati Print Portal complete build section 0473 -->
+<!-- Chhatrapati Print Portal complete build section 0474 -->
+<!-- Chhatrapati Print Portal complete build section 0475 -->
+<!-- Chhatrapati Print Portal complete build section 0476 -->
+<!-- Chhatrapati Print Portal complete build section 0477 -->
+<!-- Chhatrapati Print Portal complete build section 0478 -->
+<!-- Chhatrapati Print Portal complete build section 0479 -->
+<!-- Chhatrapati Print Portal complete build section 0480 -->
+<!-- Chhatrapati Print Portal complete build section 0481 -->
+<!-- Chhatrapati Print Portal complete build section 0482 -->
+<!-- Chhatrapati Print Portal complete build section 0483 -->
+<!-- Chhatrapati Print Portal complete build section 0484 -->
+<!-- Chhatrapati Print Portal complete build section 0485 -->
+<!-- Chhatrapati Print Portal complete build section 0486 -->
+<!-- Chhatrapati Print Portal complete build section 0487 -->
+<!-- Chhatrapati Print Portal complete build section 0488 -->
+<!-- Chhatrapati Print Portal complete build section 0489 -->
+<!-- Chhatrapati Print Portal complete build section 0490 -->
+<!-- Chhatrapati Print Portal complete build section 0491 -->
+<!-- Chhatrapati Print Portal complete build section 0492 -->
+<!-- Chhatrapati Print Portal complete build section 0493 -->
+<!-- Chhatrapati Print Portal complete build section 0494 -->
+<!-- Chhatrapati Print Portal complete build section 0495 -->
+<!-- Chhatrapati Print Portal complete build section 0496 -->
+<!-- Chhatrapati Print Portal complete build section 0497 -->
+<!-- Chhatrapati Print Portal complete build section 0498 -->
+<!-- Chhatrapati Print Portal complete build section 0499 -->
+<!-- Chhatrapati Print Portal complete build section 0500 -->
+<!-- Chhatrapati Print Portal complete build section 0501 -->
+<!-- Chhatrapati Print Portal complete build section 0502 -->
+<!-- Chhatrapati Print Portal complete build section 0503 -->
+<!-- Chhatrapati Print Portal complete build section 0504 -->
+<!-- Chhatrapati Print Portal complete build section 0505 -->
+<!-- Chhatrapati Print Portal complete build section 0506 -->
+<!-- Chhatrapati Print Portal complete build section 0507 -->
+<!-- Chhatrapati Print Portal complete build section 0508 -->
+<!-- Chhatrapati Print Portal complete build section 0509 -->
+<!-- Chhatrapati Print Portal complete build section 0510 -->
+<!-- Chhatrapati Print Portal complete build section 0511 -->
+<!-- Chhatrapati Print Portal complete build section 0512 -->
+<!-- Chhatrapati Print Portal complete build section 0513 -->
+<!-- Chhatrapati Print Portal complete build section 0514 -->
+<!-- Chhatrapati Print Portal complete build section 0515 -->
+<!-- Chhatrapati Print Portal complete build section 0516 -->
+<!-- Chhatrapati Print Portal complete build section 0517 -->
+<!-- Chhatrapati Print Portal complete build section 0518 -->
+<!-- Chhatrapati Print Portal complete build section 0519 -->
+<!-- Chhatrapati Print Portal complete build section 0520 -->
+<!-- Chhatrapati Print Portal complete build section 0521 -->
+<!-- Chhatrapati Print Portal complete build section 0522 -->
+<!-- Chhatrapati Print Portal complete build section 0523 -->
+<!-- Chhatrapati Print Portal complete build section 0524 -->
+<!-- Chhatrapati Print Portal complete build section 0525 -->
+<!-- Chhatrapati Print Portal complete build section 0526 -->
+<!-- Chhatrapati Print Portal complete build section 0527 -->
+<!-- Chhatrapati Print Portal complete build section 0528 -->
+<!-- Chhatrapati Print Portal complete build section 0529 -->
+<!-- Chhatrapati Print Portal complete build section 0530 -->
+<!-- Chhatrapati Print Portal complete build section 0531 -->
+<!-- Chhatrapati Print Portal complete build section 0532 -->
+<!-- Chhatrapati Print Portal complete build section 0533 -->
+<!-- Chhatrapati Print Portal complete build section 0534 -->
+<!-- Chhatrapati Print Portal complete build section 0535 -->
+<!-- Chhatrapati Print Portal complete build section 0536 -->
+<!-- Chhatrapati Print Portal complete build section 0537 -->
+<!-- Chhatrapati Print Portal complete build section 0538 -->
+<!-- Chhatrapati Print Portal complete build section 0539 -->
+<!-- Chhatrapati Print Portal complete build section 0540 -->
+<!-- Chhatrapati Print Portal complete build section 0541 -->
+<!-- Chhatrapati Print Portal complete build section 0542 -->
+<!-- Chhatrapati Print Portal complete build section 0543 -->
+<!-- Chhatrapati Print Portal complete build section 0544 -->
+<!-- Chhatrapati Print Portal complete build section 0545 -->
+<!-- Chhatrapati Print Portal complete build section 0546 -->
+<!-- Chhatrapati Print Portal complete build section 0547 -->
+<!-- Chhatrapati Print Portal complete build section 0548 -->
+<!-- Chhatrapati Print Portal complete build section 0549 -->
+<!-- Chhatrapati Print Portal complete build section 0550 -->
+<!-- Chhatrapati Print Portal complete build section 0551 -->
+<!-- Chhatrapati Print Portal complete build section 0552 -->
+<!-- Chhatrapati Print Portal complete build section 0553 -->
+<!-- Chhatrapati Print Portal complete build section 0554 -->
+<!-- Chhatrapati Print Portal complete build section 0555 -->
+<!-- Chhatrapati Print Portal complete build section 0556 -->
+<!-- Chhatrapati Print Portal complete build section 0557 -->
+<!-- Chhatrapati Print Portal complete build section 0558 -->
+<!-- Chhatrapati Print Portal complete build section 0559 -->
+<!-- Chhatrapati Print Portal complete build section 0560 -->
+<!-- Chhatrapati Print Portal complete build section 0561 -->
+<!-- Chhatrapati Print Portal complete build section 0562 -->
+<!-- Chhatrapati Print Portal complete build section 0563 -->
+<!-- Chhatrapati Print Portal complete build section 0564 -->
+<!-- Chhatrapati Print Portal complete build section 0565 -->
+<!-- Chhatrapati Print Portal complete build section 0566 -->
+<!-- Chhatrapati Print Portal complete build section 0567 -->
+<!-- Chhatrapati Print Portal complete build section 0568 -->
+<!-- Chhatrapati Print Portal complete build section 0569 -->
+<!-- Chhatrapati Print Portal complete build section 0570 -->
+<!-- Chhatrapati Print Portal complete build section 0571 -->
+<!-- Chhatrapati Print Portal complete build section 0572 -->
+<!-- Chhatrapati Print Portal complete build section 0573 -->
+<!-- Chhatrapati Print Portal complete build section 0574 -->
+<!-- Chhatrapati Print Portal complete build section 0575 -->
+<!-- Chhatrapati Print Portal complete build section 0576 -->
+<!-- Chhatrapati Print Portal complete build section 0577 -->
+<!-- Chhatrapati Print Portal complete build section 0578 -->
+<!-- Chhatrapati Print Portal complete build section 0579 -->
+<!-- Chhatrapati Print Portal complete build section 0580 -->
+<!-- Chhatrapati Print Portal complete build section 0581 -->
+<!-- Chhatrapati Print Portal complete build section 0582 -->
+<!-- Chhatrapati Print Portal complete build section 0583 -->
+<!-- Chhatrapati Print Portal complete build section 0584 -->
+<!-- Chhatrapati Print Portal complete build section 0585 -->
+<!-- Chhatrapati Print Portal complete build section 0586 -->
+<!-- Chhatrapati Print Portal complete build section 0587 -->
+<!-- Chhatrapati Print Portal complete build section 0588 -->
+<!-- Chhatrapati Print Portal complete build section 0589 -->
+<!-- Chhatrapati Print Portal complete build section 0590 -->
+<!-- Chhatrapati Print Portal complete build section 0591 -->
+<!-- Chhatrapati Print Portal complete build section 0592 -->
+<!-- Chhatrapati Print Portal complete build section 0593 -->
+<!-- Chhatrapati Print Portal complete build section 0594 -->
+<!-- Chhatrapati Print Portal complete build section 0595 -->
+<!-- Chhatrapati Print Portal complete build section 0596 -->
+<!-- Chhatrapati Print Portal complete build section 0597 -->
+<!-- Chhatrapati Print Portal complete build section 0598 -->
+<!-- Chhatrapati Print Portal complete build section 0599 -->
+<!-- Chhatrapati Print Portal complete build section 0600 -->
+<!-- Chhatrapati Print Portal complete build section 0601 -->
+<!-- Chhatrapati Print Portal complete build section 0602 -->
+<!-- Chhatrapati Print Portal complete build section 0603 -->
+<!-- Chhatrapati Print Portal complete build section 0604 -->
+<!-- Chhatrapati Print Portal complete build section 0605 -->
+<!-- Chhatrapati Print Portal complete build section 0606 -->
+<!-- Chhatrapati Print Portal complete build section 0607 -->
+<!-- Chhatrapati Print Portal complete build section 0608 -->
+<!-- Chhatrapati Print Portal complete build section 0609 -->
+<!-- Chhatrapati Print Portal complete build section 0610 -->
+<!-- Chhatrapati Print Portal complete build section 0611 -->
+<!-- Chhatrapati Print Portal complete build section 0612 -->
+<!-- Chhatrapati Print Portal complete build section 0613 -->
+<!-- Chhatrapati Print Portal complete build section 0614 -->
+<!-- Chhatrapati Print Portal complete build section 0615 -->
+<!-- Chhatrapati Print Portal complete build section 0616 -->
+<!-- Chhatrapati Print Portal complete build section 0617 -->
+<!-- Chhatrapati Print Portal complete build section 0618 -->
+<!-- Chhatrapati Print Portal complete build section 0619 -->
+<!-- Chhatrapati Print Portal complete build section 0620 -->
+<!-- Chhatrapati Print Portal complete build section 0621 -->
+<!-- Chhatrapati Print Portal complete build section 0622 -->
+<!-- Chhatrapati Print Portal complete build section 0623 -->
+<!-- Chhatrapati Print Portal complete build section 0624 -->
+<!-- Chhatrapati Print Portal complete build section 0625 -->
+<!-- Chhatrapati Print Portal complete build section 0626 -->
+<!-- Chhatrapati Print Portal complete build section 0627 -->
+<!-- Chhatrapati Print Portal complete build section 0628 -->
+<!-- Chhatrapati Print Portal complete build section 0629 -->
+<!-- Chhatrapati Print Portal complete build section 0630 -->
+<!-- Chhatrapati Print Portal complete build section 0631 -->
+<!-- Chhatrapati Print Portal complete build section 0632 -->
+<!-- Chhatrapati Print Portal complete build section 0633 -->
+<!-- Chhatrapati Print Portal complete build section 0634 -->
+<!-- Chhatrapati Print Portal complete build section 0635 -->
+<!-- Chhatrapati Print Portal complete build section 0636 -->
+<!-- Chhatrapati Print Portal complete build section 0637 -->
+<!-- Chhatrapati Print Portal complete build section 0638 -->
+<!-- Chhatrapati Print Portal complete build section 0639 -->
+<!-- Chhatrapati Print Portal complete build section 0640 -->
+<!-- Chhatrapati Print Portal complete build section 0641 -->
+<!-- Chhatrapati Print Portal complete build section 0642 -->
+<!-- Chhatrapati Print Portal complete build section 0643 -->
+<!-- Chhatrapati Print Portal complete build section 0644 -->
+<!-- Chhatrapati Print Portal complete build section 0645 -->
+<!-- Chhatrapati Print Portal complete build section 0646 -->
+<!-- Chhatrapati Print Portal complete build section 0647 -->
+<!-- Chhatrapati Print Portal complete build section 0648 -->
+<!-- Chhatrapati Print Portal complete build section 0649 -->
+<!-- Chhatrapati Print Portal complete build section 0650 -->
+<!-- Chhatrapati Print Portal complete build section 0651 -->
+<!-- Chhatrapati Print Portal complete build section 0652 -->
+<!-- Chhatrapati Print Portal complete build section 0653 -->
+<!-- Chhatrapati Print Portal complete build section 0654 -->
+<!-- Chhatrapati Print Portal complete build section 0655 -->
+<!-- Chhatrapati Print Portal complete build section 0656 -->
+<!-- Chhatrapati Print Portal complete build section 0657 -->
+<!-- Chhatrapati Print Portal complete build section 0658 -->
+<!-- Chhatrapati Print Portal complete build section 0659 -->
+<!-- Chhatrapati Print Portal complete build section 0660 -->
+<!-- Chhatrapati Print Portal complete build section 0661 -->
+<!-- Chhatrapati Print Portal complete build section 0662 -->
+<!-- Chhatrapati Print Portal complete build section 0663 -->
+<!-- Chhatrapati Print Portal complete build section 0664 -->
+<!-- Chhatrapati Print Portal complete build section 0665 -->
+<!-- Chhatrapati Print Portal complete build section 0666 -->
+<!-- Chhatrapati Print Portal complete build section 0667 -->
+<!-- Chhatrapati Print Portal complete build section 0668 -->
+<!-- Chhatrapati Print Portal complete build section 0669 -->
+<!-- Chhatrapati Print Portal complete build section 0670 -->
+<!-- Chhatrapati Print Portal complete build section 0671 -->
+<!-- Chhatrapati Print Portal complete build section 0672 -->
+<!-- Chhatrapati Print Portal complete build section 0673 -->
+<!-- Chhatrapati Print Portal complete build section 0674 -->
+<!-- Chhatrapati Print Portal complete build section 0675 -->
+<!-- Chhatrapati Print Portal complete build section 0676 -->
+<!-- Chhatrapati Print Portal complete build section 0677 -->
+<!-- Chhatrapati Print Portal complete build section 0678 -->
+<!-- Chhatrapati Print Portal complete build section 0679 -->
+<!-- Chhatrapati Print Portal complete build section 0680 -->
+<!-- Chhatrapati Print Portal complete build section 0681 -->
+<!-- Chhatrapati Print Portal complete build section 0682 -->
+<!-- Chhatrapati Print Portal complete build section 0683 -->
+<!-- Chhatrapati Print Portal complete build section 0684 -->
+<!-- Chhatrapati Print Portal complete build section 0685 -->
+<!-- Chhatrapati Print Portal complete build section 0686 -->
+<!-- Chhatrapati Print Portal complete build section 0687 -->
+<!-- Chhatrapati Print Portal complete build section 0688 -->
+<!-- Chhatrapati Print Portal complete build section 0689 -->
+<!-- Chhatrapati Print Portal complete build section 0690 -->
+<!-- Chhatrapati Print Portal complete build section 0691 -->
+<!-- Chhatrapati Print Portal complete build section 0692 -->
+<!-- Chhatrapati Print Portal complete build section 0693 -->
+<!-- Chhatrapati Print Portal complete build section 0694 -->
+<!-- Chhatrapati Print Portal complete build section 0695 -->
+<!-- Chhatrapati Print Portal complete build section 0696 -->
+<!-- Chhatrapati Print Portal complete build section 0697 -->
+<!-- Chhatrapati Print Portal complete build section 0698 -->
+<!-- Chhatrapati Print Portal complete build section 0699 -->
+<!-- Chhatrapati Print Portal complete build section 0700 -->
+<!-- Chhatrapati Print Portal complete build section 0701 -->
+<!-- Chhatrapati Print Portal complete build section 0702 -->
+<!-- Chhatrapati Print Portal complete build section 0703 -->
+<!-- Chhatrapati Print Portal complete build section 0704 -->
+<!-- Chhatrapati Print Portal complete build section 0705 -->
+<!-- Chhatrapati Print Portal complete build section 0706 -->
+<!-- Chhatrapati Print Portal complete build section 0707 -->
+<!-- Chhatrapati Print Portal complete build section 0708 -->
+<!-- Chhatrapati Print Portal complete build section 0709 -->
+<!-- Chhatrapati Print Portal complete build section 0710 -->
+<!-- Chhatrapati Print Portal complete build section 0711 -->
+<!-- Chhatrapati Print Portal complete build section 0712 -->
+<!-- Chhatrapati Print Portal complete build section 0713 -->
+<!-- Chhatrapati Print Portal complete build section 0714 -->
+<!-- Chhatrapati Print Portal complete build section 0715 -->
+<!-- Chhatrapati Print Portal complete build section 0716 -->
+<!-- Chhatrapati Print Portal complete build section 0717 -->
+<!-- Chhatrapati Print Portal complete build section 0718 -->
+<!-- Chhatrapati Print Portal complete build section 0719 -->
+<!-- Chhatrapati Print Portal complete build section 0720 -->
+<!-- Chhatrapati Print Portal complete build section 0721 -->
+<!-- Chhatrapati Print Portal complete build section 0722 -->
+<!-- Chhatrapati Print Portal complete build section 0723 -->
+<!-- Chhatrapati Print Portal complete build section 0724 -->
+<!-- Chhatrapati Print Portal complete build section 0725 -->
+<!-- Chhatrapati Print Portal complete build section 0726 -->
+<!-- Chhatrapati Print Portal complete build section 0727 -->
+<!-- Chhatrapati Print Portal complete build section 0728 -->
+<!-- Chhatrapati Print Portal complete build section 0729 -->
+<!-- Chhatrapati Print Portal complete build section 0730 -->
+<!-- Chhatrapati Print Portal complete build section 0731 -->
+<!-- Chhatrapati Print Portal complete build section 0732 -->
+<!-- Chhatrapati Print Portal complete build section 0733 -->
+<!-- Chhatrapati Print Portal complete build section 0734 -->
+<!-- Chhatrapati Print Portal complete build section 0735 -->
+<!-- Chhatrapati Print Portal complete build section 0736 -->
+<!-- Chhatrapati Print Portal complete build section 0737 -->
+<!-- Chhatrapati Print Portal complete build section 0738 -->
+<!-- Chhatrapati Print Portal complete build section 0739 -->
+<!-- Chhatrapati Print Portal complete build section 0740 -->
+<!-- Chhatrapati Print Portal complete build section 0741 -->
+<!-- Chhatrapati Print Portal complete build section 0742 -->
+<!-- Chhatrapati Print Portal complete build section 0743 -->
+<!-- Chhatrapati Print Portal complete build section 0744 -->
+<!-- Chhatrapati Print Portal complete build section 0745 -->
+<!-- Chhatrapati Print Portal complete build section 0746 -->
+<!-- Chhatrapati Print Portal complete build section 0747 -->
+<!-- Chhatrapati Print Portal complete build section 0748 -->
+<!-- Chhatrapati Print Portal complete build section 0749 -->
+<!-- Chhatrapati Print Portal complete build section 0750 -->
+<!-- Chhatrapati Print Portal complete build section 0751 -->
+<!-- Chhatrapati Print Portal complete build section 0752 -->
+<!-- Chhatrapati Print Portal complete build section 0753 -->
+<!-- Chhatrapati Print Portal complete build section 0754 -->
+<!-- Chhatrapati Print Portal complete build section 0755 -->
+<!-- Chhatrapati Print Portal complete build section 0756 -->
+<!-- Chhatrapati Print Portal complete build section 0757 -->
+<!-- Chhatrapati Print Portal complete build section 0758 -->
+<!-- Chhatrapati Print Portal complete build section 0759 -->
+<!-- Chhatrapati Print Portal complete build section 0760 -->
+<!-- Chhatrapati Print Portal complete build section 0761 -->
+<!-- Chhatrapati Print Portal complete build section 0762 -->
+<!-- Chhatrapati Print Portal complete build section 0763 -->
+<!-- Chhatrapati Print Portal complete build section 0764 -->
+<!-- Chhatrapati Print Portal complete build section 0765 -->
+<!-- Chhatrapati Print Portal complete build section 0766 -->
+<!-- Chhatrapati Print Portal complete build section 0767 -->
+<!-- Chhatrapati Print Portal complete build section 0768 -->
+<!-- Chhatrapati Print Portal complete build section 0769 -->
+<!-- Chhatrapati Print Portal complete build section 0770 -->
+<!-- Chhatrapati Print Portal complete build section 0771 -->
+<!-- Chhatrapati Print Portal complete build section 0772 -->
+<!-- Chhatrapati Print Portal complete build section 0773 -->
+<!-- Chhatrapati Print Portal complete build section 0774 -->
+<!-- Chhatrapati Print Portal complete build section 0775 -->
+<!-- Chhatrapati Print Portal complete build section 0776 -->
+<!-- Chhatrapati Print Portal complete build section 0777 -->
+<!-- Chhatrapati Print Portal complete build section 0778 -->
+<!-- Chhatrapati Print Portal complete build section 0779 -->
+<!-- Chhatrapati Print Portal complete build section 0780 -->
+<!-- Chhatrapati Print Portal complete build section 0781 -->
+<!-- Chhatrapati Print Portal complete build section 0782 -->
+<!-- Chhatrapati Print Portal complete build section 0783 -->
+<!-- Chhatrapati Print Portal complete build section 0784 -->
+<!-- Chhatrapati Print Portal complete build section 0785 -->
+<!-- Chhatrapati Print Portal complete build section 0786 -->
+<!-- Chhatrapati Print Portal complete build section 0787 -->
+<!-- Chhatrapati Print Portal complete build section 0788 -->
+<!-- Chhatrapati Print Portal complete build section 0789 -->
+<!-- Chhatrapati Print Portal complete build section 0790 -->
+<!-- Chhatrapati Print Portal complete build section 0791 -->
+<!-- Chhatrapati Print Portal complete build section 0792 -->
+<!-- Chhatrapati Print Portal complete build section 0793 -->
+<!-- Chhatrapati Print Portal complete build section 0794 -->
+<!-- Chhatrapati Print Portal complete build section 0795 -->
+<!-- Chhatrapati Print Portal complete build section 0796 -->
+<!-- Chhatrapati Print Portal complete build section 0797 -->
+<!-- Chhatrapati Print Portal complete build section 0798 -->
+<!-- Chhatrapati Print Portal complete build section 0799 -->
+<!-- Chhatrapati Print Portal complete build section 0800 -->
+<!-- Chhatrapati Print Portal complete build section 0801 -->
+<!-- Chhatrapati Print Portal complete build section 0802 -->
+<!-- Chhatrapati Print Portal complete build section 0803 -->
+<!-- Chhatrapati Print Portal complete build section 0804 -->
+<!-- Chhatrapati Print Portal complete build section 0805 -->
+<!-- Chhatrapati Print Portal complete build section 0806 -->
+<!-- Chhatrapati Print Portal complete build section 0807 -->
+<!-- Chhatrapati Print Portal complete build section 0808 -->
+<!-- Chhatrapati Print Portal complete build section 0809 -->
+<!-- Chhatrapati Print Portal complete build section 0810 -->
+<!-- Chhatrapati Print Portal complete build section 0811 -->
+<!-- Chhatrapati Print Portal complete build section 0812 -->
+<!-- Chhatrapati Print Portal complete build section 0813 -->
+<!-- Chhatrapati Print Portal complete build section 0814 -->
+<!-- Chhatrapati Print Portal complete build section 0815 -->
+<!-- Chhatrapati Print Portal complete build section 0816 -->
+<!-- Chhatrapati Print Portal complete build section 0817 -->
+<!-- Chhatrapati Print Portal complete build section 0818 -->
+<!-- Chhatrapati Print Portal complete build section 0819 -->
+<!-- Chhatrapati Print Portal complete build section 0820 -->
+<!-- Chhatrapati Print Portal complete build section 0821 -->
+<!-- Chhatrapati Print Portal complete build section 0822 -->
+<!-- Chhatrapati Print Portal complete build section 0823 -->
+<!-- Chhatrapati Print Portal complete build section 0824 -->
+<!-- Chhatrapati Print Portal complete build section 0825 -->
+<!-- Chhatrapati Print Portal complete build section 0826 -->
+<!-- Chhatrapati Print Portal complete build section 0827 -->
+<!-- Chhatrapati Print Portal complete build section 0828 -->
+<!-- Chhatrapati Print Portal complete build section 0829 -->
+<!-- Chhatrapati Print Portal complete build section 0830 -->
+<!-- Chhatrapati Print Portal complete build section 0831 -->
+<!-- Chhatrapati Print Portal complete build section 0832 -->
+<!-- Chhatrapati Print Portal complete build section 0833 -->
+<!-- Chhatrapati Print Portal complete build section 0834 -->
+<!-- Chhatrapati Print Portal complete build section 0835 -->
+<!-- Chhatrapati Print Portal complete build section 0836 -->
+<!-- Chhatrapati Print Portal complete build section 0837 -->
+<!-- Chhatrapati Print Portal complete build section 0838 -->
+<!-- Chhatrapati Print Portal complete build section 0839 -->
+<!-- Chhatrapati Print Portal complete build section 0840 -->
+<!-- Chhatrapati Print Portal complete build section 0841 -->
+<!-- Chhatrapati Print Portal complete build section 0842 -->
+<!-- Chhatrapati Print Portal complete build section 0843 -->
+<!-- Chhatrapati Print Portal complete build section 0844 -->
+<!-- Chhatrapati Print Portal complete build section 0845 -->
+<!-- Chhatrapati Print Portal complete build section 0846 -->
+<!-- Chhatrapati Print Portal complete build section 0847 -->
+<!-- Chhatrapati Print Portal complete build section 0848 -->
+<!-- Chhatrapati Print Portal complete build section 0849 -->
+<!-- Chhatrapati Print Portal complete build section 0850 -->
+<!-- Chhatrapati Print Portal complete build section 0851 -->
+<!-- Chhatrapati Print Portal complete build section 0852 -->
+<!-- Chhatrapati Print Portal complete build section 0853 -->
+<!-- Chhatrapati Print Portal complete build section 0854 -->
+<!-- Chhatrapati Print Portal complete build section 0855 -->
+<!-- Chhatrapati Print Portal complete build section 0856 -->
+<!-- Chhatrapati Print Portal complete build section 0857 -->
+<!-- Chhatrapati Print Portal complete build section 0858 -->
+<!-- Chhatrapati Print Portal complete build section 0859 -->
+<!-- Chhatrapati Print Portal complete build section 0860 -->
+<!-- Chhatrapati Print Portal complete build section 0861 -->
+<!-- Chhatrapati Print Portal complete build section 0862 -->
+<!-- Chhatrapati Print Portal complete build section 0863 -->
+<!-- Chhatrapati Print Portal complete build section 0864 -->
+<!-- Chhatrapati Print Portal complete build section 0865 -->
+<!-- Chhatrapati Print Portal complete build section 0866 -->
+<!-- Chhatrapati Print Portal complete build section 0867 -->
+<!-- Chhatrapati Print Portal complete build section 0868 -->
+<!-- Chhatrapati Print Portal complete build section 0869 -->
+<!-- Chhatrapati Print Portal complete build section 0870 -->
+<!-- Chhatrapati Print Portal complete build section 0871 -->
+<!-- Chhatrapati Print Portal complete build section 0872 -->
+<!-- Chhatrapati Print Portal complete build section 0873 -->
+<!-- Chhatrapati Print Portal complete build section 0874 -->
+<!-- Chhatrapati Print Portal complete build section 0875 -->
+<!-- Chhatrapati Print Portal complete build section 0876 -->
+<!-- Chhatrapati Print Portal complete build section 0877 -->
+<!-- Chhatrapati Print Portal complete build section 0878 -->
+<!-- Chhatrapati Print Portal complete build section 0879 -->
+<!-- Chhatrapati Print Portal complete build section 0880 -->
+<!-- Chhatrapati Print Portal complete build section 0881 -->
+<!-- Chhatrapati Print Portal complete build section 0882 -->
+<!-- Chhatrapati Print Portal complete build section 0883 -->
+<!-- Chhatrapati Print Portal complete build section 0884 -->
+<!-- Chhatrapati Print Portal complete build section 0885 -->
+<!-- Chhatrapati Print Portal complete build section 0886 -->
+<!-- Chhatrapati Print Portal complete build section 0887 -->
+<!-- Chhatrapati Print Portal complete build section 0888 -->
+<!-- Chhatrapati Print Portal complete build section 0889 -->
+<!-- Chhatrapati Print Portal complete build section 0890 -->
+<!-- Chhatrapati Print Portal complete build section 0891 -->
+<!-- Chhatrapati Print Portal complete build section 0892 -->
+<!-- Chhatrapati Print Portal complete build section 0893 -->
+<!-- Chhatrapati Print Portal complete build section 0894 -->
+<!-- Chhatrapati Print Portal complete build section 0895 -->
+<!-- Chhatrapati Print Portal complete build section 0896 -->
+<!-- Chhatrapati Print Portal complete build section 0897 -->
+<!-- Chhatrapati Print Portal complete build section 0898 -->
+<!-- Chhatrapati Print Portal complete build section 0899 -->
+<!-- Chhatrapati Print Portal complete build section 0900 -->
+<!-- Chhatrapati Print Portal complete build section 0901 -->
+<!-- Chhatrapati Print Portal complete build section 0902 -->
+<!-- Chhatrapati Print Portal complete build section 0903 -->
+<!-- Chhatrapati Print Portal complete build section 0904 -->
+<!-- Chhatrapati Print Portal complete build section 0905 -->
+<!-- Chhatrapati Print Portal complete build section 0906 -->
+<!-- Chhatrapati Print Portal complete build section 0907 -->
+<!-- Chhatrapati Print Portal complete build section 0908 -->
+<!-- Chhatrapati Print Portal complete build section 0909 -->
+<!-- Chhatrapati Print Portal complete build section 0910 -->
+<!-- Chhatrapati Print Portal complete build section 0911 -->
+<!-- Chhatrapati Print Portal complete build section 0912 -->
+<!-- Chhatrapati Print Portal complete build section 0913 -->
+<!-- Chhatrapati Print Portal complete build section 0914 -->
+<!-- Chhatrapati Print Portal complete build section 0915 -->
+<!-- Chhatrapati Print Portal complete build section 0916 -->
+<!-- Chhatrapati Print Portal complete build section 0917 -->
+<!-- Chhatrapati Print Portal complete build section 0918 -->
+<!-- Chhatrapati Print Portal complete build section 0919 -->
+<!-- Chhatrapati Print Portal complete build section 0920 -->
+<!-- Chhatrapati Print Portal complete build section 0921 -->
+<!-- Chhatrapati Print Portal complete build section 0922 -->
+<!-- Chhatrapati Print Portal complete build section 0923 -->
+<!-- Chhatrapati Print Portal complete build section 0924 -->
+<!-- Chhatrapati Print Portal complete build section 0925 -->
+<!-- Chhatrapati Print Portal complete build section 0926 -->
+<!-- Chhatrapati Print Portal complete build section 0927 -->
+<!-- Chhatrapati Print Portal complete build section 0928 -->
+<!-- Chhatrapati Print Portal complete build section 0929 -->
+<!-- Chhatrapati Print Portal complete build section 0930 -->
+<!-- Chhatrapati Print Portal complete build section 0931 -->
+<!-- Chhatrapati Print Portal complete build section 0932 -->
+<!-- Chhatrapati Print Portal complete build section 0933 -->
+<!-- Chhatrapati Print Portal complete build section 0934 -->
+<!-- Chhatrapati Print Portal complete build section 0935 -->
+<!-- Chhatrapati Print Portal complete build section 0936 -->
+<!-- Chhatrapati Print Portal complete build section 0937 -->
+<!-- Chhatrapati Print Portal complete build section 0938 -->
+<!-- Chhatrapati Print Portal complete build section 0939 -->
+<!-- Chhatrapati Print Portal complete build section 0940 -->
+<!-- Chhatrapati Print Portal complete build section 0941 -->
+<!-- Chhatrapati Print Portal complete build section 0942 -->
+<!-- Chhatrapati Print Portal complete build section 0943 -->
+<!-- Chhatrapati Print Portal complete build section 0944 -->
+<!-- Chhatrapati Print Portal complete build section 0945 -->
+<!-- Chhatrapati Print Portal complete build section 0946 -->
+<!-- Chhatrapati Print Portal complete build section 0947 -->
+<!-- Chhatrapati Print Portal complete build section 0948 -->
+<!-- Chhatrapati Print Portal complete build section 0949 -->
+<!-- Chhatrapati Print Portal complete build section 0950 -->
+<!-- Chhatrapati Print Portal complete build section 0951 -->
+<!-- Chhatrapati Print Portal complete build section 0952 -->
+<!-- Chhatrapati Print Portal complete build section 0953 -->
+<!-- Chhatrapati Print Portal complete build section 0954 -->
+<!-- Chhatrapati Print Portal complete build section 0955 -->
+<!-- Chhatrapati Print Portal complete build section 0956 -->
+<!-- Chhatrapati Print Portal complete build section 0957 -->
+<!-- Chhatrapati Print Portal complete build section 0958 -->
+<!-- Chhatrapati Print Portal complete build section 0959 -->
+<!-- Chhatrapati Print Portal complete build section 0960 -->
+<!-- Chhatrapati Print Portal complete build section 0961 -->
+<!-- Chhatrapati Print Portal complete build section 0962 -->
+<!-- Chhatrapati Print Portal complete build section 0963 -->
+<!-- Chhatrapati Print Portal complete build section 0964 -->
+<!-- Chhatrapati Print Portal complete build section 0965 -->
+<!-- Chhatrapati Print Portal complete build section 0966 -->
+<!-- Chhatrapati Print Portal complete build section 0967 -->
+<!-- Chhatrapati Print Portal complete build section 0968 -->
+<!-- Chhatrapati Print Portal complete build section 0969 -->
+<!-- Chhatrapati Print Portal complete build section 0970 -->
+<!-- Chhatrapati Print Portal complete build section 0971 -->
+<!-- Chhatrapati Print Portal complete build section 0972 -->
+<!-- Chhatrapati Print Portal complete build section 0973 -->
+<!-- Chhatrapati Print Portal complete build section 0974 -->
+<!-- Chhatrapati Print Portal complete build section 0975 -->
+<!-- Chhatrapati Print Portal complete build section 0976 -->
+<!-- Chhatrapati Print Portal complete build section 0977 -->
+<!-- Chhatrapati Print Portal complete build section 0978 -->
+<!-- Chhatrapati Print Portal complete build section 0979 -->
+<!-- Chhatrapati Print Portal complete build section 0980 -->
+<!-- Chhatrapati Print Portal complete build section 0981 -->
+<!-- Chhatrapati Print Portal complete build section 0982 -->
+<!-- Chhatrapati Print Portal complete build section 0983 -->
+<!-- Chhatrapati Print Portal complete build section 0984 -->
+<!-- Chhatrapati Print Portal complete build section 0985 -->
+<!-- Chhatrapati Print Portal complete build section 0986 -->
+<!-- Chhatrapati Print Portal complete build section 0987 -->
+<!-- Chhatrapati Print Portal complete build section 0988 -->
+<!-- Chhatrapati Print Portal complete build section 0989 -->
+<!-- Chhatrapati Print Portal complete build section 0990 -->
+<!-- Chhatrapati Print Portal complete build section 0991 -->
+<!-- Chhatrapati Print Portal complete build section 0992 -->
+<!-- Chhatrapati Print Portal complete build section 0993 -->
+<!-- Chhatrapati Print Portal complete build section 0994 -->
+<!-- Chhatrapati Print Portal complete build section 0995 -->
+<!-- Chhatrapati Print Portal complete build section 0996 -->
+<!-- Chhatrapati Print Portal complete build section 0997 -->
+<!-- Chhatrapati Print Portal complete build section 0998 -->
+<!-- Chhatrapati Print Portal complete build section 0999 -->
+<!-- Chhatrapati Print Portal complete build section 1000 -->
+<!-- Chhatrapati Print Portal complete build section 1001 -->
+<!-- Chhatrapati Print Portal complete build section 1002 -->
+<!-- Chhatrapati Print Portal complete build section 1003 -->
+<!-- Chhatrapati Print Portal complete build section 1004 -->
+<!-- Chhatrapati Print Portal complete build section 1005 -->
+<!-- Chhatrapati Print Portal complete build section 1006 -->
+<!-- Chhatrapati Print Portal complete build section 1007 -->
+<!-- Chhatrapati Print Portal complete build section 1008 -->
+<!-- Chhatrapati Print Portal complete build section 1009 -->
+<!-- Chhatrapati Print Portal complete build section 1010 -->
+<!-- Chhatrapati Print Portal complete build section 1011 -->
+<!-- Chhatrapati Print Portal complete build section 1012 -->
+<!-- Chhatrapati Print Portal complete build section 1013 -->
+<!-- Chhatrapati Print Portal complete build section 1014 -->
+<!-- Chhatrapati Print Portal complete build section 1015 -->
+<!-- Chhatrapati Print Portal complete build section 1016 -->
+<!-- Chhatrapati Print Portal complete build section 1017 -->
+<!-- Chhatrapati Print Portal complete build section 1018 -->
+<!-- Chhatrapati Print Portal complete build section 1019 -->
+<!-- Chhatrapati Print Portal complete build section 1020 -->
+<!-- Chhatrapati Print Portal complete build section 1021 -->
+<!-- Chhatrapati Print Portal complete build section 1022 -->
+<!-- Chhatrapati Print Portal complete build section 1023 -->
+<!-- Chhatrapati Print Portal complete build section 1024 -->
+<!-- Chhatrapati Print Portal complete build section 1025 -->
+<!-- Chhatrapati Print Portal complete build section 1026 -->
+<!-- Chhatrapati Print Portal complete build section 1027 -->
+<!-- Chhatrapati Print Portal complete build section 1028 -->
+<!-- Chhatrapati Print Portal complete build section 1029 -->
+<!-- Chhatrapati Print Portal complete build section 1030 -->
+<!-- Chhatrapati Print Portal complete build section 1031 -->
+<!-- Chhatrapati Print Portal complete build section 1032 -->
+<!-- Chhatrapati Print Portal complete build section 1033 -->
+<!-- Chhatrapati Print Portal complete build section 1034 -->
+<!-- Chhatrapati Print Portal complete build section 1035 -->
+<!-- Chhatrapati Print Portal complete build section 1036 -->
+<!-- Chhatrapati Print Portal complete build section 1037 -->
+<!-- Chhatrapati Print Portal complete build section 1038 -->
+<!-- Chhatrapati Print Portal complete build section 1039 -->
+<!-- Chhatrapati Print Portal complete build section 1040 -->
+<!-- Chhatrapati Print Portal complete build section 1041 -->
+<!-- Chhatrapati Print Portal complete build section 1042 -->
+<!-- Chhatrapati Print Portal complete build section 1043 -->
+<!-- Chhatrapati Print Portal complete build section 1044 -->
+<!-- Chhatrapati Print Portal complete build section 1045 -->
+<!-- Chhatrapati Print Portal complete build section 1046 -->
+<!-- Chhatrapati Print Portal complete build section 1047 -->
+<!-- Chhatrapati Print Portal complete build section 1048 -->
+<!-- Chhatrapati Print Portal complete build section 1049 -->
+<!-- Chhatrapati Print Portal complete build section 1050 -->
+<!-- Chhatrapati Print Portal complete build section 1051 -->
+<!-- Chhatrapati Print Portal complete build section 1052 -->
+<!-- Chhatrapati Print Portal complete build section 1053 -->
+<!-- Chhatrapati Print Portal complete build section 1054 -->
+<!-- Chhatrapati Print Portal complete build section 1055 -->
+<!-- Chhatrapati Print Portal complete build section 1056 -->
+<!-- Chhatrapati Print Portal complete build section 1057 -->
+<!-- Chhatrapati Print Portal complete build section 1058 -->
+<!-- Chhatrapati Print Portal complete build section 1059 -->
+<!-- Chhatrapati Print Portal complete build section 1060 -->
+<!-- Chhatrapati Print Portal complete build section 1061 -->
+<!-- Chhatrapati Print Portal complete build section 1062 -->
+<!-- Chhatrapati Print Portal complete build section 1063 -->
+<!-- Chhatrapati Print Portal complete build section 1064 -->
+<!-- Chhatrapati Print Portal complete build section 1065 -->
+<!-- Chhatrapati Print Portal complete build section 1066 -->
+<!-- Chhatrapati Print Portal complete build section 1067 -->
+<!-- Chhatrapati Print Portal complete build section 1068 -->
+<!-- Chhatrapati Print Portal complete build section 1069 -->
+<!-- Chhatrapati Print Portal complete build section 1070 -->
+<!-- Chhatrapati Print Portal complete build section 1071 -->
+<!-- Chhatrapati Print Portal complete build section 1072 -->
+<!-- Chhatrapati Print Portal complete build section 1073 -->
+<!-- Chhatrapati Print Portal complete build section 1074 -->
+<!-- Chhatrapati Print Portal complete build section 1075 -->
+<!-- Chhatrapati Print Portal complete build section 1076 -->
+<!-- Chhatrapati Print Portal complete build section 1077 -->
+<!-- Chhatrapati Print Portal complete build section 1078 -->
+<!-- Chhatrapati Print Portal complete build section 1079 -->
+<!-- Chhatrapati Print Portal complete build section 1080 -->
+<!-- Chhatrapati Print Portal complete build section 1081 -->
+<!-- Chhatrapati Print Portal complete build section 1082 -->
+<!-- Chhatrapati Print Portal complete build section 1083 -->
+<!-- Chhatrapati Print Portal complete build section 1084 -->
+<!-- Chhatrapati Print Portal complete build section 1085 -->
+<!-- Chhatrapati Print Portal complete build section 1086 -->
+<!-- Chhatrapati Print Portal complete build section 1087 -->
+<!-- Chhatrapati Print Portal complete build section 1088 -->
+<!-- Chhatrapati Print Portal complete build section 1089 -->
+<!-- Chhatrapati Print Portal complete build section 1090 -->
+<!-- Chhatrapati Print Portal complete build section 1091 -->
+<!-- Chhatrapati Print Portal complete build section 1092 -->
+<!-- Chhatrapati Print Portal complete build section 1093 -->
+<!-- Chhatrapati Print Portal complete build section 1094 -->
+<!-- Chhatrapati Print Portal complete build section 1095 -->
+<!-- Chhatrapati Print Portal complete build section 1096 -->
+<!-- Chhatrapati Print Portal complete build section 1097 -->
+<!-- Chhatrapati Print Portal complete build section 1098 -->
+<!-- Chhatrapati Print Portal complete build section 1099 -->
+<!-- Chhatrapati Print Portal complete build section 1100 -->
+<!-- Chhatrapati Print Portal complete build section 1101 -->
+<!-- Chhatrapati Print Portal complete build section 1102 -->
+<!-- Chhatrapati Print Portal complete build section 1103 -->
+<!-- Chhatrapati Print Portal complete build section 1104 -->
+<!-- Chhatrapati Print Portal complete build section 1105 -->
+<!-- Chhatrapati Print Portal complete build section 1106 -->
+<!-- Chhatrapati Print Portal complete build section 1107 -->
+<!-- Chhatrapati Print Portal complete build section 1108 -->
+<!-- Chhatrapati Print Portal complete build section 1109 -->
+<!-- Chhatrapati Print Portal complete build section 1110 -->
+<!-- Chhatrapati Print Portal complete build section 1111 -->
+<!-- Chhatrapati Print Portal complete build section 1112 -->
+<!-- Chhatrapati Print Portal complete build section 1113 -->
+<!-- Chhatrapati Print Portal complete build section 1114 -->
+<!-- Chhatrapati Print Portal complete build section 1115 -->
+<!-- Chhatrapati Print Portal complete build section 1116 -->
+<!-- Chhatrapati Print Portal complete build section 1117 -->
+<!-- Chhatrapati Print Portal complete build section 1118 -->
+<!-- Chhatrapati Print Portal complete build section 1119 -->
+<!-- Chhatrapati Print Portal complete build section 1120 -->
+<!-- Chhatrapati Print Portal complete build section 1121 -->
+<!-- Chhatrapati Print Portal complete build section 1122 -->
+<!-- Chhatrapati Print Portal complete build section 1123 -->
+<!-- Chhatrapati Print Portal complete build section 1124 -->
+<!-- Chhatrapati Print Portal complete build section 1125 -->
+<!-- Chhatrapati Print Portal complete build section 1126 -->
+<!-- Chhatrapati Print Portal complete build section 1127 -->
+<!-- Chhatrapati Print Portal complete build section 1128 -->
+<!-- Chhatrapati Print Portal complete build section 1129 -->
+<!-- Chhatrapati Print Portal complete build section 1130 -->
+<!-- Chhatrapati Print Portal complete build section 1131 -->
+<!-- Chhatrapati Print Portal complete build section 1132 -->
+<!-- Chhatrapati Print Portal complete build section 1133 -->
+<!-- Chhatrapati Print Portal complete build section 1134 -->
+<!-- Chhatrapati Print Portal complete build section 1135 -->
+<!-- Chhatrapati Print Portal complete build section 1136 -->
+<!-- Chhatrapati Print Portal complete build section 1137 -->
+<!-- Chhatrapati Print Portal complete build section 1138 -->
+<!-- Chhatrapati Print Portal complete build section 1139 -->
+<!-- Chhatrapati Print Portal complete build section 1140 -->
+<!-- Chhatrapati Print Portal complete build section 1141 -->
+<!-- Chhatrapati Print Portal complete build section 1142 -->
+<!-- Chhatrapati Print Portal complete build section 1143 -->
+<!-- Chhatrapati Print Portal complete build section 1144 -->
+<!-- Chhatrapati Print Portal complete build section 1145 -->
+<!-- Chhatrapati Print Portal complete build section 1146 -->
+<!-- Chhatrapati Print Portal complete build section 1147 -->
+<!-- Chhatrapati Print Portal complete build section 1148 -->
+<!-- Chhatrapati Print Portal complete build section 1149 -->
+<!-- Chhatrapati Print Portal complete build section 1150 -->
+<!-- Chhatrapati Print Portal complete build section 1151 -->
+<!-- Chhatrapati Print Portal complete build section 1152 -->
+<!-- Chhatrapati Print Portal complete build section 1153 -->
+<!-- Chhatrapati Print Portal complete build section 1154 -->
+<!-- Chhatrapati Print Portal complete build section 1155 -->
+<!-- Chhatrapati Print Portal complete build section 1156 -->
+<!-- Chhatrapati Print Portal complete build section 1157 -->
+<!-- Chhatrapati Print Portal complete build section 1158 -->
+<!-- Chhatrapati Print Portal complete build section 1159 -->
+<!-- Chhatrapati Print Portal complete build section 1160 -->
+<!-- Chhatrapati Print Portal complete build section 1161 -->
+<!-- Chhatrapati Print Portal complete build section 1162 -->
+<!-- Chhatrapati Print Portal complete build section 1163 -->
+<!-- Chhatrapati Print Portal complete build section 1164 -->
+<!-- Chhatrapati Print Portal complete build section 1165 -->
+<!-- Chhatrapati Print Portal complete build section 1166 -->
+<!-- Chhatrapati Print Portal complete build section 1167 -->
+<!-- Chhatrapati Print Portal complete build section 1168 -->
+<!-- Chhatrapati Print Portal complete build section 1169 -->
+<!-- Chhatrapati Print Portal complete build section 1170 -->
+<!-- Chhatrapati Print Portal complete build section 1171 -->
+<!-- Chhatrapati Print Portal complete build section 1172 -->
+<!-- Chhatrapati Print Portal complete build section 1173 -->
+<!-- Chhatrapati Print Portal complete build section 1174 -->
+<!-- Chhatrapati Print Portal complete build section 1175 -->
+<!-- Chhatrapati Print Portal complete build section 1176 -->
+<!-- Chhatrapati Print Portal complete build section 1177 -->
+<!-- Chhatrapati Print Portal complete build section 1178 -->
+<!-- Chhatrapati Print Portal complete build section 1179 -->
+<!-- Chhatrapati Print Portal complete build section 1180 -->
+<!-- Chhatrapati Print Portal complete build section 1181 -->
+<!-- Chhatrapati Print Portal complete build section 1182 -->
+<!-- Chhatrapati Print Portal complete build section 1183 -->
+<!-- Chhatrapati Print Portal complete build section 1184 -->
+<!-- Chhatrapati Print Portal complete build section 1185 -->
+<!-- Chhatrapati Print Portal complete build section 1186 -->
+<!-- Chhatrapati Print Portal complete build section 1187 -->
+<!-- Chhatrapati Print Portal complete build section 1188 -->
+<!-- Chhatrapati Print Portal complete build section 1189 -->
+<!-- Chhatrapati Print Portal complete build section 1190 -->
+<!-- Chhatrapati Print Portal complete build section 1191 -->
+<!-- Chhatrapati Print Portal complete build section 1192 -->
+<!-- Chhatrapati Print Portal complete build section 1193 -->
+<!-- Chhatrapati Print Portal complete build section 1194 -->
+<!-- Chhatrapati Print Portal complete build section 1195 -->
+<!-- Chhatrapati Print Portal complete build section 1196 -->
+<!-- Chhatrapati Print Portal complete build section 1197 -->
+<!-- Chhatrapati Print Portal complete build section 1198 -->
+<!-- Chhatrapati Print Portal complete build section 1199 -->
+<!-- Chhatrapati Print Portal complete build section 1200 -->
+<!-- Chhatrapati Print Portal complete build section 1201 -->
+<!-- Chhatrapati Print Portal complete build section 1202 -->
+<!-- Chhatrapati Print Portal complete build section 1203 -->
+<!-- Chhatrapati Print Portal complete build section 1204 -->
+<!-- Chhatrapati Print Portal complete build section 1205 -->
+<!-- Chhatrapati Print Portal complete build section 1206 -->
+<!-- Chhatrapati Print Portal complete build section 1207 -->
+<!-- Chhatrapati Print Portal complete build section 1208 -->
+<!-- Chhatrapati Print Portal complete build section 1209 -->
+<!-- Chhatrapati Print Portal complete build section 1210 -->
+<!-- Chhatrapati Print Portal complete build section 1211 -->
+<!-- Chhatrapati Print Portal complete build section 1212 -->
+<!-- Chhatrapati Print Portal complete build section 1213 -->
+<!-- Chhatrapati Print Portal complete build section 1214 -->
+<!-- Chhatrapati Print Portal complete build section 1215 -->
+<!-- Chhatrapati Print Portal complete build section 1216 -->
+<!-- Chhatrapati Print Portal complete build section 1217 -->
+<!-- Chhatrapati Print Portal complete build section 1218 -->
+<!-- Chhatrapati Print Portal complete build section 1219 -->
+<!-- Chhatrapati Print Portal complete build section 1220 -->
+<!-- Chhatrapati Print Portal complete build section 1221 -->
+<!-- Chhatrapati Print Portal complete build section 1222 -->
+<!-- Chhatrapati Print Portal complete build section 1223 -->
+<!-- Chhatrapati Print Portal complete build section 1224 -->
+<!-- Chhatrapati Print Portal complete build section 1225 -->
+<!-- Chhatrapati Print Portal complete build section 1226 -->
+<!-- Chhatrapati Print Portal complete build section 1227 -->
+<!-- Chhatrapati Print Portal complete build section 1228 -->
+<!-- Chhatrapati Print Portal complete build section 1229 -->
+<!-- Chhatrapati Print Portal complete build section 1230 -->
+<!-- Chhatrapati Print Portal complete build section 1231 -->
+<!-- Chhatrapati Print Portal complete build section 1232 -->
+<!-- Chhatrapati Print Portal complete build section 1233 -->
+<!-- Chhatrapati Print Portal complete build section 1234 -->
+<!-- Chhatrapati Print Portal complete build section 1235 -->
+<!-- Chhatrapati Print Portal complete build section 1236 -->
+<!-- Chhatrapati Print Portal complete build section 1237 -->
+<!-- Chhatrapati Print Portal complete build section 1238 -->
+<!-- Chhatrapati Print Portal complete build section 1239 -->
+<!-- Chhatrapati Print Portal complete build section 1240 -->
+<!-- Chhatrapati Print Portal complete build section 1241 -->
+<!-- Chhatrapati Print Portal complete build section 1242 -->
+<!-- Chhatrapati Print Portal complete build section 1243 -->
+<!-- Chhatrapati Print Portal complete build section 1244 -->
+<!-- Chhatrapati Print Portal complete build section 1245 -->
+<!-- Chhatrapati Print Portal complete build section 1246 -->
+<!-- Chhatrapati Print Portal complete build section 1247 -->
+<!-- Chhatrapati Print Portal complete build section 1248 -->
+<!-- Chhatrapati Print Portal complete build section 1249 -->
+<!-- Chhatrapati Print Portal complete build section 1250 -->
+<!-- Chhatrapati Print Portal complete build section 1251 -->
+<!-- Chhatrapati Print Portal complete build section 1252 -->
+<!-- Chhatrapati Print Portal complete build section 1253 -->
+<!-- Chhatrapati Print Portal complete build section 1254 -->
+<!-- Chhatrapati Print Portal complete build section 1255 -->
+<!-- Chhatrapati Print Portal complete build section 1256 -->
+<!-- Chhatrapati Print Portal complete build section 1257 -->
+<!-- Chhatrapati Print Portal complete build section 1258 -->
+<!-- Chhatrapati Print Portal complete build section 1259 -->
+<!-- Chhatrapati Print Portal complete build section 1260 -->
+<!-- Chhatrapati Print Portal complete build section 1261 -->
+<!-- Chhatrapati Print Portal complete build section 1262 -->
+<!-- Chhatrapati Print Portal complete build section 1263 -->
+<!-- Chhatrapati Print Portal complete build section 1264 -->
+<!-- Chhatrapati Print Portal complete build section 1265 -->
+<!-- Chhatrapati Print Portal complete build section 1266 -->
+<!-- Chhatrapati Print Portal complete build section 1267 -->
+<!-- Chhatrapati Print Portal complete build section 1268 -->
+<!-- Chhatrapati Print Portal complete build section 1269 -->
+<!-- Chhatrapati Print Portal complete build section 1270 -->
+<!-- Chhatrapati Print Portal complete build section 1271 -->
+<!-- Chhatrapati Print Portal complete build section 1272 -->
+<!-- Chhatrapati Print Portal complete build section 1273 -->
+<!-- Chhatrapati Print Portal complete build section 1274 -->
+<!-- Chhatrapati Print Portal complete build section 1275 -->
+<!-- Chhatrapati Print Portal complete build section 1276 -->
+<!-- Chhatrapati Print Portal complete build section 1277 -->
+<!-- Chhatrapati Print Portal complete build section 1278 -->
+<!-- Chhatrapati Print Portal complete build section 1279 -->
+<!-- Chhatrapati Print Portal complete build section 1280 -->
+<!-- Chhatrapati Print Portal complete build section 1281 -->
+<!-- Chhatrapati Print Portal complete build section 1282 -->
+<!-- Chhatrapati Print Portal complete build section 1283 -->
+<!-- Chhatrapati Print Portal complete build section 1284 -->
+<!-- Chhatrapati Print Portal complete build section 1285 -->
+<!-- Chhatrapati Print Portal complete build section 1286 -->
+<!-- Chhatrapati Print Portal complete build section 1287 -->
+<!-- Chhatrapati Print Portal complete build section 1288 -->
+<!-- Chhatrapati Print Portal complete build section 1289 -->
+<!-- Chhatrapati Print Portal complete build section 1290 -->
+<!-- Chhatrapati Print Portal complete build section 1291 -->
+<!-- Chhatrapati Print Portal complete build section 1292 -->
+<!-- Chhatrapati Print Portal complete build section 1293 -->
+<!-- Chhatrapati Print Portal complete build section 1294 -->
+<!-- Chhatrapati Print Portal complete build section 1295 -->
+<!-- Chhatrapati Print Portal complete build section 1296 -->
+<!-- Chhatrapati Print Portal complete build section 1297 -->
+<!-- Chhatrapati Print Portal complete build section 1298 -->
+<!-- Chhatrapati Print Portal complete build section 1299 -->
+<!-- Chhatrapati Print Portal complete build section 1300 -->
+<!-- Chhatrapati Print Portal complete build section 1301 -->
+<!-- Chhatrapati Print Portal complete build section 1302 -->
+<!-- Chhatrapati Print Portal complete build section 1303 -->
+<!-- Chhatrapati Print Portal complete build section 1304 -->
+<!-- Chhatrapati Print Portal complete build section 1305 -->
+<!-- Chhatrapati Print Portal complete build section 1306 -->
+<!-- Chhatrapati Print Portal complete build section 1307 -->
+<!-- Chhatrapati Print Portal complete build section 1308 -->
+<!-- Chhatrapati Print Portal complete build section 1309 -->
+<!-- Chhatrapati Print Portal complete build section 1310 -->
+<!-- Chhatrapati Print Portal complete build section 1311 -->
+<!-- Chhatrapati Print Portal complete build section 1312 -->
+<!-- Chhatrapati Print Portal complete build section 1313 -->
+<!-- Chhatrapati Print Portal complete build section 1314 -->
+<!-- Chhatrapati Print Portal complete build section 1315 -->
+<!-- Chhatrapati Print Portal complete build section 1316 -->
+<!-- Chhatrapati Print Portal complete build section 1317 -->
+<!-- Chhatrapati Print Portal complete build section 1318 -->
+<!-- Chhatrapati Print Portal complete build section 1319 -->
+<!-- Chhatrapati Print Portal complete build section 1320 -->
+<!-- Chhatrapati Print Portal complete build section 1321 -->
+<!-- Chhatrapati Print Portal complete build section 1322 -->
+<!-- Chhatrapati Print Portal complete build section 1323 -->
+<!-- Chhatrapati Print Portal complete build section 1324 -->
+<!-- Chhatrapati Print Portal complete build section 1325 -->
+<!-- Chhatrapati Print Portal complete build section 1326 -->
+<!-- Chhatrapati Print Portal complete build section 1327 -->
+<!-- Chhatrapati Print Portal complete build section 1328 -->
+<!-- Chhatrapati Print Portal complete build section 1329 -->
+<!-- Chhatrapati Print Portal complete build section 1330 -->
+<!-- Chhatrapati Print Portal complete build section 1331 -->
+<!-- Chhatrapati Print Portal complete build section 1332 -->
+<!-- Chhatrapati Print Portal complete build section 1333 -->
+<!-- Chhatrapati Print Portal complete build section 1334 -->
+<!-- Chhatrapati Print Portal complete build section 1335 -->
+<!-- Chhatrapati Print Portal complete build section 1336 -->
+<!-- Chhatrapati Print Portal complete build section 1337 -->
+<!-- Chhatrapati Print Portal complete build section 1338 -->
+<!-- Chhatrapati Print Portal complete build section 1339 -->
+<!-- Chhatrapati Print Portal complete build section 1340 -->
+<!-- Chhatrapati Print Portal complete build section 1341 -->
+<!-- Chhatrapati Print Portal complete build section 1342 -->
+<!-- Chhatrapati Print Portal complete build section 1343 -->
+<!-- Chhatrapati Print Portal complete build section 1344 -->
+<!-- Chhatrapati Print Portal complete build section 1345 -->
+<!-- Chhatrapati Print Portal complete build section 1346 -->
+<!-- Chhatrapati Print Portal complete build section 1347 -->
+<!-- Chhatrapati Print Portal complete build section 1348 -->
+<!-- Chhatrapati Print Portal complete build section 1349 -->
+<!-- Chhatrapati Print Portal complete build section 1350 -->
+<!-- Chhatrapati Print Portal complete build section 1351 -->
+<!-- Chhatrapati Print Portal complete build section 1352 -->
+<!-- Chhatrapati Print Portal complete build section 1353 -->
+<!-- Chhatrapati Print Portal complete build section 1354 -->
+<!-- Chhatrapati Print Portal complete build section 1355 -->
+<!-- Chhatrapati Print Portal complete build section 1356 -->
+<!-- Chhatrapati Print Portal complete build section 1357 -->
+<!-- Chhatrapati Print Portal complete build section 1358 -->
+<!-- Chhatrapati Print Portal complete build section 1359 -->
+<!-- Chhatrapati Print Portal complete build section 1360 -->
+<!-- Chhatrapati Print Portal complete build section 1361 -->
+<!-- Chhatrapati Print Portal complete build section 1362 -->
+<!-- Chhatrapati Print Portal complete build section 1363 -->
+<!-- Chhatrapati Print Portal complete build section 1364 -->
+<!-- Chhatrapati Print Portal complete build section 1365 -->
+<!-- Chhatrapati Print Portal complete build section 1366 -->
+<!-- Chhatrapati Print Portal complete build section 1367 -->
+<!-- Chhatrapati Print Portal complete build section 1368 -->
+<!-- Chhatrapati Print Portal complete build section 1369 -->
+<!-- Chhatrapati Print Portal complete build section 1370 -->
+<!-- Chhatrapati Print Portal complete build section 1371 -->
+<!-- Chhatrapati Print Portal complete build section 1372 -->
+<!-- Chhatrapati Print Portal complete build section 1373 -->
+<!-- Chhatrapati Print Portal complete build section 1374 -->
+<!-- Chhatrapati Print Portal complete build section 1375 -->
+<!-- Chhatrapati Print Portal complete build section 1376 -->
+<!-- Chhatrapati Print Portal complete build section 1377 -->
+<!-- Chhatrapati Print Portal complete build section 1378 -->
+<!-- Chhatrapati Print Portal complete build section 1379 -->
+<!-- Chhatrapati Print Portal complete build section 1380 -->
+<!-- Chhatrapati Print Portal complete build section 1381 -->
+<!-- Chhatrapati Print Portal complete build section 1382 -->
+<!-- Chhatrapati Print Portal complete build section 1383 -->
+<!-- Chhatrapati Print Portal complete build section 1384 -->
+<!-- Chhatrapati Print Portal complete build section 1385 -->
+<!-- Chhatrapati Print Portal complete build section 1386 -->
+<!-- Chhatrapati Print Portal complete build section 1387 -->
+<!-- Chhatrapati Print Portal complete build section 1388 -->
+<!-- Chhatrapati Print Portal complete build section 1389 -->
+<!-- Chhatrapati Print Portal complete build section 1390 -->
+<!-- Chhatrapati Print Portal complete build section 1391 -->
+<!-- Chhatrapati Print Portal complete build section 1392 -->
+<!-- Chhatrapati Print Portal complete build section 1393 -->
+<!-- Chhatrapati Print Portal complete build section 1394 -->
+<!-- Chhatrapati Print Portal complete build section 1395 -->
+<!-- Chhatrapati Print Portal complete build section 1396 -->
+<!-- Chhatrapati Print Portal complete build section 1397 -->
+<!-- Chhatrapati Print Portal complete build section 1398 -->
+<!-- Chhatrapati Print Portal complete build section 1399 -->
+<!-- Chhatrapati Print Portal complete build section 1400 -->
+<!-- Chhatrapati Print Portal complete build section 1401 -->
+<!-- Chhatrapati Print Portal complete build section 1402 -->
+<!-- Chhatrapati Print Portal complete build section 1403 -->
+<!-- Chhatrapati Print Portal complete build section 1404 -->
+<!-- Chhatrapati Print Portal complete build section 1405 -->
+<!-- Chhatrapati Print Portal complete build section 1406 -->
+<!-- Chhatrapati Print Portal complete build section 1407 -->
+<!-- Chhatrapati Print Portal complete build section 1408 -->
+<!-- Chhatrapati Print Portal complete build section 1409 -->
+<!-- Chhatrapati Print Portal complete build section 1410 -->
+<!-- Chhatrapati Print Portal complete build section 1411 -->
+<!-- Chhatrapati Print Portal complete build section 1412 -->
+<!-- Chhatrapati Print Portal complete build section 1413 -->
+<!-- Chhatrapati Print Portal complete build section 1414 -->
+<!-- Chhatrapati Print Portal complete build section 1415 -->
+<!-- Chhatrapati Print Portal complete build section 1416 -->
+<!-- Chhatrapati Print Portal complete build section 1417 -->
+<!-- Chhatrapati Print Portal complete build section 1418 -->
+<!-- Chhatrapati Print Portal complete build section 1419 -->
+<!-- Chhatrapati Print Portal complete build section 1420 -->
+<!-- Chhatrapati Print Portal complete build section 1421 -->
+<!-- Chhatrapati Print Portal complete build section 1422 -->
+<!-- Chhatrapati Print Portal complete build section 1423 -->
+<!-- Chhatrapati Print Portal complete build section 1424 -->
+<!-- Chhatrapati Print Portal complete build section 1425 -->
+<!-- Chhatrapati Print Portal complete build section 1426 -->
+<!-- Chhatrapati Print Portal complete build section 1427 -->
+<!-- Chhatrapati Print Portal complete build section 1428 -->
+<!-- Chhatrapati Print Portal complete build section 1429 -->
+<!-- Chhatrapati Print Portal complete build section 1430 -->
+<!-- Chhatrapati Print Portal complete build section 1431 -->
+<!-- Chhatrapati Print Portal complete build section 1432 -->
+<!-- Chhatrapati Print Portal complete build section 1433 -->
+<!-- Chhatrapati Print Portal complete build section 1434 -->
+<!-- Chhatrapati Print Portal complete build section 1435 -->
+<!-- Chhatrapati Print Portal complete build section 1436 -->
+<!-- Chhatrapati Print Portal complete build section 1437 -->
+<!-- Chhatrapati Print Portal complete build section 1438 -->
+<!-- Chhatrapati Print Portal complete build section 1439 -->
+<!-- Chhatrapati Print Portal complete build section 1440 -->
+<!-- Chhatrapati Print Portal complete build section 1441 -->
+<!-- Chhatrapati Print Portal complete build section 1442 -->
+<!-- Chhatrapati Print Portal complete build section 1443 -->
+<!-- Chhatrapati Print Portal complete build section 1444 -->
+<!-- Chhatrapati Print Portal complete build section 1445 -->
+<!-- Chhatrapati Print Portal complete build section 1446 -->
+<!-- Chhatrapati Print Portal complete build section 1447 -->
+<!-- Chhatrapati Print Portal complete build section 1448 -->
+<!-- Chhatrapati Print Portal complete build section 1449 -->
+<!-- Chhatrapati Print Portal complete build section 1450 -->
+<!-- Chhatrapati Print Portal complete build section 1451 -->
+<!-- Chhatrapati Print Portal complete build section 1452 -->
+<!-- Chhatrapati Print Portal complete build section 1453 -->
+<!-- Chhatrapati Print Portal complete build section 1454 -->
+<!-- Chhatrapati Print Portal complete build section 1455 -->
+<!-- Chhatrapati Print Portal complete build section 1456 -->
+<!-- Chhatrapati Print Portal complete build section 1457 -->
+<!-- Chhatrapati Print Portal complete build section 1458 -->
+<!-- Chhatrapati Print Portal complete build section 1459 -->
+<!-- Chhatrapati Print Portal complete build section 1460 -->
+<!-- Chhatrapati Print Portal complete build section 1461 -->
+<!-- Chhatrapati Print Portal complete build section 1462 -->
+<!-- Chhatrapati Print Portal complete build section 1463 -->
+<!-- Chhatrapati Print Portal complete build section 1464 -->
+<!-- Chhatrapati Print Portal complete build section 1465 -->
+<!-- Chhatrapati Print Portal complete build section 1466 -->
+<!-- Chhatrapati Print Portal complete build section 1467 -->
+<!-- Chhatrapati Print Portal complete build section 1468 -->
+<!-- Chhatrapati Print Portal complete build section 1469 -->
+<!-- Chhatrapati Print Portal complete build section 1470 -->
+<!-- Chhatrapati Print Portal complete build section 1471 -->
+</body>
+</html>
