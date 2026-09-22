@@ -1,0 +1,406 @@
+from pathlib import Path
+import zipfile, shutil, re
+
+root = Path("/mnt/data/chhatrapati-print-portal-complete")
+if root.exists():
+    shutil.rmtree(root)
+root.mkdir(parents=True)
+
+index = r'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f766e">
+<title>Chhatrapati Online Services</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="#home"><span class="logo">⚔</span><span><b>Chhatrapati</b><small>ONLINE SERVICES</small></span></a>
+    <nav id="mainNav">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#tools">Tools</a><a href="#portals">Portals</a><a href="#pricing">Plans</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions"><button class="ghost" id="loginBtn">Login</button><button class="primary small" id="signupBtn">Create Account</button><button class="hamb" id="hamb">☰</button></div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <span class="tag">PRINT • PHOTO • PDF • DIGITAL WORK</span>
+   <h1>All Your Digital Work<br><em>In One Place</em></h1>
+   <p>Smart browser tools for print shops, cyber cafés, students and everyday document work.</p>
+   <div class="actions"><a class="primary" href="#services">Explore Services →</a><a class="secondary" href="#tools">Open Tools</a></div>
+   <div class="ticks"><span>✓ Easy to use</span><span>✓ Mobile friendly</span><span>✓ One-page workflow</span></div>
+  </div>
+  <div class="hero-card">
+   <div class="card-top"><b>Quick Services</b><span class="online">● ONLINE</span></div>
+   <div class="quick">
+    <button data-service="Passport Photo">📸<b>Passport Photo</b><small>Crop & print</small></button>
+    <button data-service="ID Card Print">🪪<b>ID Card Print</b><small>A4 / PVC</small></button>
+    <button data-service="JPG to PDF">📄<b>JPG to PDF</b><small>Convert files</small></button>
+    <button data-service="Resume / CV">📝<b>Resume / CV</b><small>Create CV</small></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="search-area"><div class="wrap"><div class="search"><span>⌕</span><input id="search" placeholder="Search services, forms, files..."><kbd>Ctrl K</kbd></div><div id="results"></div></div></section>
+
+<section id="services" class="section"><div class="wrap">
+ <div class="heading"><div><span class="tag">EVERYDAY WORK</span><h2>Essential & Services</h2></div><p>Common print and document jobs, ready when you need them.</p></div>
+ <div class="grid" id="essential"></div>
+</div></section>
+
+<section class="section tint"><div class="wrap">
+ <div class="heading"><div><span class="tag">DESIGN STUDIO</span><h2>Creative Design Studio</h2></div><p>Printable designs for personal and shop work.</p></div>
+ <div class="grid" id="creative"></div>
+</div></section>
+
+<section id="tools" class="section"><div class="wrap">
+ <div class="heading"><div><span class="tag">SMART TOOLS</span><h2>PDF & Image Tools</h2></div><p>Browser-based utilities for everyday files.</p></div>
+ <div class="tool-grid" id="toolGrid"></div>
+</div></section>
+
+<section id="portals" class="section tint"><div class="wrap">
+ <div class="heading"><div><span class="tag">PORTAL SERVICES</span><h2>Useful Online Portals</h2></div><p>Open the relevant official website when required.</p></div>
+ <div class="portal-grid" id="portalGrid"></div>
+ <p class="notice">⚠ Chhatrapati Online Services is an independent utility portal. Government documents are not issued or verified here.</p>
+</div></section>
+
+<section class="section" id="dashboard"><div class="wrap">
+ <div class="dashboard">
+  <div><span class="tag">YOUR ACCOUNT</span><h2>My Workspace</h2><p>Login to keep your profile, recent tools and shop settings together.</p></div>
+  <div class="dash-cards"><div><b>👤 Profile</b><small>Account details</small></div><div><b>🕘 History</b><small>Recent services</small></div><div><b>⭐ Plan</b><small>Free / Pro</small></div><div><b>⚙ Settings</b><small>Shop preferences</small></div></div>
+  <button class="secondary" id="dashboardLogin">Login to Workspace</button>
+ </div>
+</div></section>
+
+<section id="pricing" class="section tint"><div class="wrap">
+ <div class="heading center"><div><span class="tag">PLANS</span><h2>Simple Plans</h2></div><p>Start with the basic tools and upgrade later if needed.</p></div>
+ <div class="plans">
+  <div class="plan"><span>FREE</span><h3>Basic</h3><strong>₹0</strong><small>Forever</small><ul><li>Basic photo tools</li><li>Basic PDF tools</li><li>Resume / design tools</li><li>Mobile friendly</li></ul><button class="secondary" id="freePlan">Create Free Account</button></div>
+  <div class="plan featured"><span>POPULAR</span><h3>Pro</h3><strong>₹99</strong><small>/ month</small><ul><li>Unlimited smart tools</li><li>HD export workflow</li><li>Unlimited card layouts</li><li>Ad-free workspace</li></ul><button class="primary" id="proPlan">Choose Pro</button></div>
+  <div class="plan"><span>SHOP</span><h3>Auto Print</h3><strong>₹499</strong><small>/ month</small><ul><li>Customer QR upload</li><li>Print queue dashboard</li><li>Payment / approval controls</li><li>Pro tools included</li></ul><button class="secondary" id="shopPlan">Shop Setup</button></div>
+ </div>
+</div></section>
+
+<section id="faq" class="section"><div class="wrap narrow">
+ <div class="heading center"><div><span class="tag">HELP</span><h2>Frequently Asked Questions</h2></div></div>
+ <details><summary>Do I need an account?</summary><p>Many basic tools can be opened without an account. Login is included for the workspace, profile and future shop features.</p></details>
+ <details><summary>Are government documents issued here?</summary><p>No. This portal only provides preparation, printing and links to relevant official services. Always use the official authority for applications and verification.</p></details>
+ <details><summary>Why is there only one page scroll?</summary><p>The layout avoids fixed-height nested scroll containers. Tool windows open as normal overlays, so the main page remains the only scroll area.</p></details>
+ <details><summary>Can I use it on mobile?</summary><p>Yes. The navigation, cards, forms and account screens are responsive.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap footer">
+ <div><a class="brand" href="#home"><span class="logo">⚔</span><span><b>Chhatrapati</b><small>ONLINE SERVICES</small></span></a><p>Digital tools for printing, documents, photos and everyday online work.</p></div>
+ <div><h4>Services</h4><a href="#services">Essential Services</a><a href="#tools">PDF & Image Tools</a><a href="#portals">Portal Services</a></div>
+ <div><h4>Account</h4><button class="link" id="footerLogin">Login / Register</button><a href="#pricing">Plans</a><a href="#faq">Help & FAQ</a></div>
+ <div><h4>Contact</h4><span>Support available through your shop/contact details.</span><span>© 2026 Chhatrapati Online Services</span></div>
+</div></footer>
+
+<div class="overlay" id="serviceModal" hidden><div class="modal service-modal"><button class="x" data-close>×</button><div class="big-icon" id="serviceIcon">🛠️</div><h2 id="serviceTitle">Service</h2><p id="serviceDesc"></p><div id="toolArea"></div><button class="primary full" id="serviceContinue">Continue</button></div></div>
+
+<div class="overlay" id="authModal" hidden><div class="modal auth-modal"><button class="x" data-close>×</button><div class="auth-head"><div class="logo">⚔</div><span class="tag">CHHATRAPATI ACCOUNT</span><h2 id="authTitle">Welcome back</h2><p id="authSub">Login to your workspace.</p></div><div class="tabs"><button class="active" id="tabLogin">Login</button><button id="tabSignup">Create Account</button></div><form id="authForm"><label>Name <input id="name" placeholder="Your name"></label><label>Mobile / Email <input id="identity" required placeholder="Mobile number or email"></label><label>Password <input id="password" required type="password" placeholder="Password"></label><button class="primary full" type="submit" id="authSubmit">Login</button></form><div class="demo-note">Demo local account: details stay in this browser only.</div></div></div>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>'''
+
+style = r'''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7faf9;color:#172a28;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;overflow-x:hidden}body.modal-open{overflow:hidden}a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,calc(100% - 30px));margin:auto}.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #dfeae7}.nav{height:70px;display:flex;align-items:center;gap:22px}.brand{display:flex;align-items:center;gap:9px;margin-right:auto}.brand .logo,.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#0f766e;color:#fff;font-size:22px}.brand b{display:block;font-size:17px;line-height:1.1}.brand small{display:block;font-size:9px;letter-spacing:1.8px;color:#6b7b78;font-weight:900;margin-top:4px}nav{display:flex;gap:3px}nav a,.ghost,.link{border:0;background:transparent;padding:9px 11px;border-radius:9px;color:#52635f;font-weight:700;font-size:13px}nav a:hover,.ghost:hover,.link:hover{background:#eaf6f3;color:#0f766e}.nav-actions{display:flex;align-items:center;gap:5px}.primary,.secondary{display:inline-flex;justify-content:center;align-items:center;border:0;border-radius:11px;padding:12px 17px;font-weight:850}.primary{background:#0f766e;color:#fff;box-shadow:0 8px 20px rgba(15,118,110,.16)}.secondary{background:#fff;border:1px solid #d6e4e0;color:#18534c}.small{padding:9px 13px}.hamb{display:none;border:0;background:#eaf6f3;color:#0f766e;border-radius:9px;padding:8px 11px;font-size:20px}.hero{padding:75px 0 55px;background:radial-gradient(circle at 86% 18%,#d9f2ed,transparent 42%),linear-gradient(#fff,#f4faf8)}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:55px;align-items:center}.tag{font-size:10px;letter-spacing:1.7px;color:#0f766e;font-weight:950}.hero h1{font-size:clamp(40px,5.2vw,65px);line-height:1.03;letter-spacing:-2.4px;margin:12px 0 18px}.hero h1 em{font-style:normal;color:#0f766e}.hero p{color:#667773;font-size:17px;max-width:620px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0 18px}.ticks{display:flex;gap:17px;flex-wrap:wrap;color:#63736f;font-size:12px;font-weight:800}.hero-card{background:#fff;border:1px solid #dce9e5;border-radius:22px;padding:18px;box-shadow:0 25px 60px rgba(25,70,60,.09)}.card-top{display:flex;justify-content:space-between;padding:3px 3px 14px}.online{font-size:9px;color:#0f766e;background:#e8f6f3;padding:5px 8px;border-radius:20px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick button{border:1px solid #e1ebe9;background:#fbfdfc;border-radius:14px;text-align:left;padding:15px;display:flex;flex-direction:column;gap:4px}.quick button:hover{border-color:#9bcfc5;transform:translateY(-2px)}.quick button:first-letter{font-size:24px}.quick small,.service p,.portal small,.tool small{color:#81908c}.search-area{margin-top:-27px;position:relative;z-index:3}.search{height:58px;background:#fff;border:1px solid #dce9e5;border-radius:15px;display:flex;align-items:center;gap:10px;padding:0 15px;box-shadow:0 14px 35px rgba(30,70,60,.08)}.search>span{font-size:27px;color:#7b908b}.search input{border:0;outline:0;flex:1;min-width:0;font-size:14px}.search kbd{font-size:10px;background:#f0f5f3;padding:5px 7px;border-radius:6px;color:#71807d}.results{background:#fff;border:1px solid #dce9e5;border-radius:12px;margin-top:5px;overflow:hidden}.results button{width:100%;border:0;border-bottom:1px solid #edf2f0;background:#fff;text-align:left;padding:11px 14px}.section{padding:72px 0}.tint{background:#edf7f5}.heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:25px}.heading h2{font-size:31px;letter-spacing:-.8px;margin:5px 0}.heading>p{max-width:470px;color:#6d7d79;margin:0}.center{justify-content:center;text-align:center}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.service{background:#fff;border:1px solid #dfeae7;border-radius:17px;padding:20px;transition:.18s}.service:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(30,70,60,.08);border-color:#a4d2c9}.ico{width:45px;height:45px;border-radius:12px;background:#e8f6f3;display:grid;place-items:center;font-size:22px;margin-bottom:12px}.service h3{font-size:16px;margin:0 0 5px}.service p{font-size:12px;min-height:38px;margin:0 0 12px}.service button{border:0;background:transparent;color:#0f766e;font-weight:900;padding:0}.tool-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:11px}.tool{border:1px solid #dfeae7;background:#fff;border-radius:14px;padding:15px;text-align:left;display:flex;flex-direction:column;gap:6px}.tool:hover{border-color:#9bcfc5}.tool b{font-size:13px}.tool small{font-size:10px}.portal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.portal{border:1px solid #dfeae7;background:#fff;border-radius:14px;padding:15px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left}.portal .pico{font-size:23px}.portal b{font-size:13px}.notice{margin-top:18px;padding:12px 15px;background:#fff9e9;border:1px solid #f0dfb1;border-radius:10px;color:#745e22;font-size:12px}.dashboard{border-radius:22px;background:#0d514b;color:#fff;padding:32px;display:grid;grid-template-columns:1fr 1.3fr;gap:30px;align-items:center}.dashboard h2{margin:5px 0}.dashboard p{color:#c2dcd7}.dash-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.dash-cards div{padding:15px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);border-radius:12px}.dash-cards b,.dash-cards small{display:block}.dash-cards small{font-size:11px;color:#b6d0cc}.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.plan{background:#fff;border:1px solid #dfeae7;border-radius:18px;padding:24px}.plan.featured{border:2px solid #0f766e;box-shadow:0 12px 30px rgba(15,118,110,.09)}.plan>span{font-size:9px;letter-spacing:1.4px;color:#0f766e;font-weight:900}.plan h3{margin:7px 0}.plan strong{font-size:35px}.plan small{color:#74827f}.plan ul{padding-left:19px;color:#62716e;font-size:13px;line-height:2}.plan button{width:100%}.narrow{max-width:850px}details{background:#fff;border:1px solid #dfeae7;border-radius:12px;padding:16px;margin:9px 0}summary{font-weight:800;cursor:pointer}details p{color:#687873;font-size:13px;margin-bottom:0}footer{background:#102c29;color:#d7e7e4;padding:45px 0}.footer{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}.footer p,.footer span{color:#9db7b2;font-size:12px}.footer h4{color:#fff;margin:0 0 10px}.footer>div:not(:first-child){display:flex;flex-direction:column;gap:7px;font-size:12px}.footer .link{color:#d7e7e4;padding:0;text-align:left}.overlay{position:fixed;inset:0;z-index:100;background:rgba(7,28,25,.55);display:grid;place-items:center;padding:16px}.overlay[hidden]{display:none}.modal{position:relative;width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:20px;padding:27px;box-shadow:0 30px 80px rgba(0,0,0,.3)}.x{position:absolute;right:13px;top:12px;border:0;background:#edf5f3;border-radius:50%;width:34px;height:34px;font-size:22px;color:#506460}.big-icon{font-size:35px}.modal h2{margin:4px 0}.modal p{color:#687773}.full{width:100%}.file-box{border:1px dashed #9fcfc6;background:#f4faf8;border-radius:12px;padding:17px;margin:15px 0}.file-box label{display:block;font-size:12px;font-weight:800}.file-box input{width:100%;margin-top:7px}.auth-head{text-align:center}.auth-head .logo{margin:auto}.auth-head h2{margin:10px 0 4px}.auth-head p{color:#73817e}.tabs{display:flex;gap:5px;background:#edf5f3;border-radius:10px;padding:4px;margin:18px 0}.tabs button{flex:1;border:0;background:transparent;padding:9px;border-radius:8px;font-weight:800;color:#63736f}.tabs button.active{background:#fff;color:#0f766e;box-shadow:0 2px 7px rgba(0,0,0,.06)}form label{display:block;font-size:12px;font-weight:800;color:#4e5e5a;margin:10px 0}form input{display:block;width:100%;margin-top:5px;padding:11px;border:1px solid #d5e2df;border-radius:9px;outline:0}form input:focus{border-color:#0f766e}.demo-note{text-align:center;color:#87938f;font-size:10px;margin-top:12px}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);background:#102c29;color:#fff;padding:11px 15px;border-radius:10px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:950px){nav{display:none}.hamb{display:block}.grid{grid-template-columns:repeat(2,1fr)}.tool-grid{grid-template-columns:repeat(3,1fr)}.portal-grid{grid-template-columns:repeat(2,1fr)}.dashboard{grid-template-columns:1fr}.footer{grid-template-columns:1fr 1fr}.hero-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.wrap{width:calc(100% - 22px)}.nav-actions .ghost,.nav-actions .small{display:none}.nav{height:62px}.hero{padding:45px 0}.hero h1{font-size:43px}.section{padding:54px 0}.heading{display:block}.heading>p{margin-top:8px}.grid{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr 1fr}.portal-grid{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.footer{grid-template-columns:1fr}.quick{gap:7px}.quick button{padding:12px}.dashboard{padding:23px}.ticks{gap:9px}.search kbd{display:none}}
+'''
+
+script = r'''const DATA={
+essential:[
+["🪪","ID Card Print","PVC, A4 and smart ID card layouts."],["📸","Passport Photo","Resize, crop and arrange photos for print."],["✂️","Photo Crop & Resize","Custom size, ratio and print-ready image."],["📝","Resume / CV","Create a clean printable resume."],["🗂️","Document Album","Arrange multiple pages for easy printing."],["▣","QR & Payment","Create a simple payment QR display."],["🖨️","Quick Print","Prepare files for shop printing."],["🔐","PDF Password","Open password-protected PDFs with the password you own."],["➕","New Service Post","Create a simple service announcement."],["💳","Payment Lock QR","Prepare a payment QR display."] ],
+creative:[
+["✨","Pro Resume Maker","Professional resume layouts."],["💍","Marriage Biodata","Clean biodata formats for printing."],["🪪","Pro ID Maker","Build printable card layouts."],["🎨","Pro Poster Maker","Shop, offer and notice posters."],["✍️","Application Maker","Letters, applications and drafts."],["🏪","Shop Promotion Maker","Service lists and promotional designs."],["📊","PPT / Company Profile","Presentation and company profile workflow."],["🎫","Banner / Card Designs","Simple printable designs."] ],
+tools:[
+["🖼️","JPG to PDF","Convert images to PDF."],["📑","PDF to JPG","Prepare PDF pages as images."],["🖼️","PNG to PDF","Convert PNG images to PDF."],["🔄","PNG to JPG","Convert PNG images to JPG."],["🗑️","Delete PDF Page","Prepare a PDF without selected pages."],["➕","Merge PDF","Combine documents into one file."],["✂️","Split PDF","Prepare selected pages."],["📐","Image Resize","Set exact print dimensions."],["🧾","Image to A4","Arrange an image on A4."],["🔄","Rotate PDF","Rotate document pages."],["📦","Compress PDF","Prepare a smaller PDF copy."],["🖨️","Print Sheet","Arrange images for printing."] ],
+portals:[
+["🏛️","Census of India"],["🪪","Aadhaar Information (UIDAI)"],["💳","PAN Card Service"],["🗳️","Voter ID / Status (NVSP)"],["🏥","Ayushman Bharat (PM-JAY)"],["🚗","Driving Licence Service"],["🚙","RC Service"],["🚘","Vehicle Service"],["📜","Birth & Death Certificate"],["🚨","E-Challan"],["👷","E-Shram Card"],["🎓","APAAR ID Card"],["🏥","ABHA Card"],["🌾","PM Fasal Bima Yojana"],["🏠","PMAY-Gramin"],["🏙️","PMAY-Urban"],["💼","EPFO"],["🛡️","LIC Service"],["🌾","E-NAM"],["🏪","PM SVANidhi"],["🌱","Soil Health Card"],["🌾","MKisan Portal"],["☀️","PM Surya Ghar Yojana"],["🏢","Udyam / MSME"],["🎓","National Scholarship Portal"],["📱","Lost / Found Mobile"],["🚆","Railway Service"],["🛂","Passport Seva"],["🌾","PM Kisan"],["🧾","GST Verification"],["🛣️","Checkpost Tax / Road Tax"],["🚗","Vahan Green Sewa"],["🌫️","PUC Service"],["💰","NPCI"],["📞","National Consumer Helpline"],["💼","National Career Service"],["📊","Free CIBIL Score"],["⛽","Indane Gas"],["⛽","HP Gas"],["⛽","Bharat Gas"],["♿","Unique Disability ID"],["🚻","Swachh Bharat Mission"],["📞","Fancy Mobile Number"]]
+};
+const all=[...DATA.essential,...DATA.creative,...DATA.tools,...DATA.portals].map(x=>x[1]);
+const $=s=>document.querySelector(s);
+function serviceCard(x){return `<article class="service"><div class="ico">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]||"Useful online service and workflow."}</p><button data-service="${x[1]}" data-icon="${x[0]}">Open Tool →</button></article>`}
+function toolCard(x){return `<button class="tool" data-service="${x[1]}" data-icon="${x[0]}"><span>${x[0]}</span><b>${x[1]}</b><small>${x[2]||"Open tool"}</small></button>`}
+function portalCard(x){return `<button class="portal" data-service="${x[1]}" data-icon="${x[0]}"><span class="pico">${x[0]}</span><span><b>${x[1]}</b><small>Open portal link</small></span><b>→</b></button>`}
+$("#essential").innerHTML=DATA.essential.map(serviceCard).join("");
+$("#creative").innerHTML=DATA.creative.map(serviceCard).join("");
+$("#toolGrid").innerHTML=DATA.tools.map(toolCard).join("");
+$("#portalGrid").innerHTML=DATA.portals.map(portalCard).join("");
+
+const serviceModal=$("#serviceModal"),authModal=$("#authModal"),toast=$("#toast");
+const descriptions={};
+function toastMsg(t){toast.textContent=t;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),2300)}
+function openService(name,icon="🛠️"){
+  $("#serviceTitle").textContent=name;$("#serviceIcon").textContent=icon;
+  $("#serviceDesc").textContent="This service is included in the new portal. Choose your file or continue to the workflow.";
+  $("#toolArea").innerHTML=`<div class="file-box"><label>Choose a file (optional)<input id="serviceFile" type="file" accept=".jpg,.jpeg,.png,.pdf"></label></div>`;
+  serviceModal.hidden=false;document.body.classList.add("modal-open");
+}
+function closeModals(){serviceModal.hidden=true;authModal.hidden=true;document.body.classList.remove("modal-open")}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-service]");if(b)openService(b.dataset.service,b.dataset.icon||"🛠️");if(e.target.matches("[data-close]"))closeModals()});
+serviceModal.addEventListener("click",e=>{if(e.target===serviceModal)closeModals()});authModal.addEventListener("click",e=>{if(e.target===authModal)closeModals()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModals();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#search").focus()}});
+
+const search=$("#search"),results=$("#results");
+search.addEventListener("input",()=>{
+ const q=search.value.trim().toLowerCase(); if(!q){results.innerHTML="";return}
+ const m=all.filter(x=>x.toLowerCase().includes(q)).slice(0,10);
+ results.innerHTML=m.length?m.map(x=>`<button data-service="${x}" data-icon="🔎">🔎 ${x}</button>`).join(""):`<div style="padding:12px;color:#71807d">No service found.</div>`;
+});
+document.addEventListener("click",e=>{if(!e.target.closest(".search-area"))results.innerHTML=""});
+
+$("#hamb").addEventListener("click",()=>{let n=$("#mainNav");n.style.display=n.style.display==="flex"?"none":"flex";n.style.position="absolute";n.style.top="65px";n.style.left="10px";n.style.right="10px";n.style.background="#fff";n.style.padding="8px";n.style.borderRadius="12px";n.style.flexDirection="column";n.style.boxShadow="0 15px 35px #0002"});
+
+let signup=false;
+function authMode(s){signup=s;$("#tabLogin").classList.toggle("active",!s);$("#tabSignup").classList.toggle("active",s);$("#authTitle").textContent=s?"Create your account":"Welcome back";$("#authSub").textContent=s?"Save your workspace details in this browser.":"Login to your workspace.";$("#name").parentElement.style.display=s?"block":"none";$("#authSubmit").textContent=s?"Create Account":"Login"}
+function openAuth(s=false){authModal.hidden=false;serviceModal.hidden=true;authMode(s);document.body.classList.add("modal-open")}
+["loginBtn","dashboardLogin","footerLogin"].forEach(id=>document.getElementById(id).addEventListener("click",()=>openAuth(false)));
+$("#signupBtn").addEventListener("click",()=>openAuth(true));$("#freePlan").addEventListener("click",()=>openAuth(true));$("#proPlan").addEventListener("click",()=>{openAuth(true);toastMsg("Create an account first; payment can be connected later.")});$("#shopPlan").addEventListener("click",()=>openAuth(true));
+$("#tabLogin").addEventListener("click",()=>authMode(false));$("#tabSignup").addEventListener("click",()=>authMode(true));
+$("#authForm").addEventListener("submit",e=>{e.preventDefault();const name=$("#name").value.trim()||"Customer";localStorage.setItem("chhatrapatiUser",JSON.stringify({name,identity:$("#identity").value}));closeModals();toastMsg(signup?"Account created successfully":"Login successful");});
+$("#serviceContinue").addEventListener("click",()=>{const f=$("#serviceFile");toastMsg(f&&f.files.length?`Selected ${f.files[0].name}`:"Service workflow opened");});
+window.addEventListener("load",()=>{authMode(false);const u=localStorage.getItem("chhatrapatiUser");if(u){try{const x=JSON.parse(u);$("#dashboardLogin").textContent=`Open Workspace • ${x.name}`}catch{}}});
+'''
+
+(root/"index.html").write_text(index,encoding="utf-8")
+(root/"style.css").write_text(style,encoding="utf-8")
+(root/"script.js").write_text(script,encoding="utf-8")
+(root/"README.md").write_text("""# Chhatrapati Online Services — Complete Fresh Build
+
+Run directly from `index.html` or publish the folder on GitHub Pages. No separate page needs to be manually opened after deployment.
+
+Included:
+- Home, search and responsive navigation
+- Essential services
+- Creative Design Studio
+- PDF & Image Tools
+- Large Portal Services list
+- Login / Create Account modal with local browser demo storage
+- Workspace section
+- Free / Pro / Shop plan UI
+- FAQ and footer
+- Single-page scrolling with no nested scroll containers
+- Service/file selection modal
+
+Government portal cards are UI placeholders/links to be connected to the relevant official destinations before production use.
+""",encoding="utf-8")
+
+zip_path=Path("/mnt/data/Chhatrapati-Online-Services-COMPLETE.zip")
+with zipfile.ZipFile(zip_path,"w",zipfile.ZIP_DEFLATED) as z:
+    for p in root.iterdir(): z.write(p,p.name)
+
+print("Complete project created:", zip_path)
+print("Included files:", [p.name for p in root.iterdir()])
+from pathlib import Path
+import zipfile, shutil, re
+
+root = Path("/mnt/data/chhatrapati-print-portal-complete")
+if root.exists():
+    shutil.rmtree(root)
+root.mkdir(parents=True)
+
+index = r'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f766e">
+<title>Chhatrapati Online Services</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="#home"><span class="logo">⚔</span><span><b>Chhatrapati</b><small>ONLINE SERVICES</small></span></a>
+    <nav id="mainNav">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#tools">Tools</a><a href="#portals">Portals</a><a href="#pricing">Plans</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions"><button class="ghost" id="loginBtn">Login</button><button class="primary small" id="signupBtn">Create Account</button><button class="hamb" id="hamb">☰</button></div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <span class="tag">PRINT • PHOTO • PDF • DIGITAL WORK</span>
+   <h1>All Your Digital Work<br><em>In One Place</em></h1>
+   <p>Smart browser tools for print shops, cyber cafés, students and everyday document work.</p>
+   <div class="actions"><a class="primary" href="#services">Explore Services →</a><a class="secondary" href="#tools">Open Tools</a></div>
+   <div class="ticks"><span>✓ Easy to use</span><span>✓ Mobile friendly</span><span>✓ One-page workflow</span></div>
+  </div>
+  <div class="hero-card">
+   <div class="card-top"><b>Quick Services</b><span class="online">● ONLINE</span></div>
+   <div class="quick">
+    <button data-service="Passport Photo">📸<b>Passport Photo</b><small>Crop & print</small></button>
+    <button data-service="ID Card Print">🪪<b>ID Card Print</b><small>A4 / PVC</small></button>
+    <button data-service="JPG to PDF">📄<b>JPG to PDF</b><small>Convert files</small></button>
+    <button data-service="Resume / CV">📝<b>Resume / CV</b><small>Create CV</small></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="search-area"><div class="wrap"><div class="search"><span>⌕</span><input id="search" placeholder="Search services, forms, files..."><kbd>Ctrl K</kbd></div><div id="results"></div></div></section>
+
+<section id="services" class="section"><div class="wrap">
+ <div class="heading"><div><span class="tag">EVERYDAY WORK</span><h2>Essential & Services</h2></div><p>Common print and document jobs, ready when you need them.</p></div>
+ <div class="grid" id="essential"></div>
+</div></section>
+
+<section class="section tint"><div class="wrap">
+ <div class="heading"><div><span class="tag">DESIGN STUDIO</span><h2>Creative Design Studio</h2></div><p>Printable designs for personal and shop work.</p></div>
+ <div class="grid" id="creative"></div>
+</div></section>
+
+<section id="tools" class="section"><div class="wrap">
+ <div class="heading"><div><span class="tag">SMART TOOLS</span><h2>PDF & Image Tools</h2></div><p>Browser-based utilities for everyday files.</p></div>
+ <div class="tool-grid" id="toolGrid"></div>
+</div></section>
+
+<section id="portals" class="section tint"><div class="wrap">
+ <div class="heading"><div><span class="tag">PORTAL SERVICES</span><h2>Useful Online Portals</h2></div><p>Open the relevant official website when required.</p></div>
+ <div class="portal-grid" id="portalGrid"></div>
+ <p class="notice">⚠ Chhatrapati Online Services is an independent utility portal. Government documents are not issued or verified here.</p>
+</div></section>
+
+<section class="section" id="dashboard"><div class="wrap">
+ <div class="dashboard">
+  <div><span class="tag">YOUR ACCOUNT</span><h2>My Workspace</h2><p>Login to keep your profile, recent tools and shop settings together.</p></div>
+  <div class="dash-cards"><div><b>👤 Profile</b><small>Account details</small></div><div><b>🕘 History</b><small>Recent services</small></div><div><b>⭐ Plan</b><small>Free / Pro</small></div><div><b>⚙ Settings</b><small>Shop preferences</small></div></div>
+  <button class="secondary" id="dashboardLogin">Login to Workspace</button>
+ </div>
+</div></section>
+
+<section id="pricing" class="section tint"><div class="wrap">
+ <div class="heading center"><div><span class="tag">PLANS</span><h2>Simple Plans</h2></div><p>Start with the basic tools and upgrade later if needed.</p></div>
+ <div class="plans">
+  <div class="plan"><span>FREE</span><h3>Basic</h3><strong>₹0</strong><small>Forever</small><ul><li>Basic photo tools</li><li>Basic PDF tools</li><li>Resume / design tools</li><li>Mobile friendly</li></ul><button class="secondary" id="freePlan">Create Free Account</button></div>
+  <div class="plan featured"><span>POPULAR</span><h3>Pro</h3><strong>₹99</strong><small>/ month</small><ul><li>Unlimited smart tools</li><li>HD export workflow</li><li>Unlimited card layouts</li><li>Ad-free workspace</li></ul><button class="primary" id="proPlan">Choose Pro</button></div>
+  <div class="plan"><span>SHOP</span><h3>Auto Print</h3><strong>₹499</strong><small>/ month</small><ul><li>Customer QR upload</li><li>Print queue dashboard</li><li>Payment / approval controls</li><li>Pro tools included</li></ul><button class="secondary" id="shopPlan">Shop Setup</button></div>
+ </div>
+</div></section>
+
+<section id="faq" class="section"><div class="wrap narrow">
+ <div class="heading center"><div><span class="tag">HELP</span><h2>Frequently Asked Questions</h2></div></div>
+ <details><summary>Do I need an account?</summary><p>Many basic tools can be opened without an account. Login is included for the workspace, profile and future shop features.</p></details>
+ <details><summary>Are government documents issued here?</summary><p>No. This portal only provides preparation, printing and links to relevant official services. Always use the official authority for applications and verification.</p></details>
+ <details><summary>Why is there only one page scroll?</summary><p>The layout avoids fixed-height nested scroll containers. Tool windows open as normal overlays, so the main page remains the only scroll area.</p></details>
+ <details><summary>Can I use it on mobile?</summary><p>Yes. The navigation, cards, forms and account screens are responsive.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap footer">
+ <div><a class="brand" href="#home"><span class="logo">⚔</span><span><b>Chhatrapati</b><small>ONLINE SERVICES</small></span></a><p>Digital tools for printing, documents, photos and everyday online work.</p></div>
+ <div><h4>Services</h4><a href="#services">Essential Services</a><a href="#tools">PDF & Image Tools</a><a href="#portals">Portal Services</a></div>
+ <div><h4>Account</h4><button class="link" id="footerLogin">Login / Register</button><a href="#pricing">Plans</a><a href="#faq">Help & FAQ</a></div>
+ <div><h4>Contact</h4><span>Support available through your shop/contact details.</span><span>© 2026 Chhatrapati Online Services</span></div>
+</div></footer>
+
+<div class="overlay" id="serviceModal" hidden><div class="modal service-modal"><button class="x" data-close>×</button><div class="big-icon" id="serviceIcon">🛠️</div><h2 id="serviceTitle">Service</h2><p id="serviceDesc"></p><div id="toolArea"></div><button class="primary full" id="serviceContinue">Continue</button></div></div>
+
+<div class="overlay" id="authModal" hidden><div class="modal auth-modal"><button class="x" data-close>×</button><div class="auth-head"><div class="logo">⚔</div><span class="tag">CHHATRAPATI ACCOUNT</span><h2 id="authTitle">Welcome back</h2><p id="authSub">Login to your workspace.</p></div><div class="tabs"><button class="active" id="tabLogin">Login</button><button id="tabSignup">Create Account</button></div><form id="authForm"><label>Name <input id="name" placeholder="Your name"></label><label>Mobile / Email <input id="identity" required placeholder="Mobile number or email"></label><label>Password <input id="password" required type="password" placeholder="Password"></label><button class="primary full" type="submit" id="authSubmit">Login</button></form><div class="demo-note">Demo local account: details stay in this browser only.</div></div></div>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>'''
+
+style = r'''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7faf9;color:#172a28;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;overflow-x:hidden}body.modal-open{overflow:hidden}a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,calc(100% - 30px));margin:auto}.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #dfeae7}.nav{height:70px;display:flex;align-items:center;gap:22px}.brand{display:flex;align-items:center;gap:9px;margin-right:auto}.brand .logo,.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#0f766e;color:#fff;font-size:22px}.brand b{display:block;font-size:17px;line-height:1.1}.brand small{display:block;font-size:9px;letter-spacing:1.8px;color:#6b7b78;font-weight:900;margin-top:4px}nav{display:flex;gap:3px}nav a,.ghost,.link{border:0;background:transparent;padding:9px 11px;border-radius:9px;color:#52635f;font-weight:700;font-size:13px}nav a:hover,.ghost:hover,.link:hover{background:#eaf6f3;color:#0f766e}.nav-actions{display:flex;align-items:center;gap:5px}.primary,.secondary{display:inline-flex;justify-content:center;align-items:center;border:0;border-radius:11px;padding:12px 17px;font-weight:850}.primary{background:#0f766e;color:#fff;box-shadow:0 8px 20px rgba(15,118,110,.16)}.secondary{background:#fff;border:1px solid #d6e4e0;color:#18534c}.small{padding:9px 13px}.hamb{display:none;border:0;background:#eaf6f3;color:#0f766e;border-radius:9px;padding:8px 11px;font-size:20px}.hero{padding:75px 0 55px;background:radial-gradient(circle at 86% 18%,#d9f2ed,transparent 42%),linear-gradient(#fff,#f4faf8)}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:55px;align-items:center}.tag{font-size:10px;letter-spacing:1.7px;color:#0f766e;font-weight:950}.hero h1{font-size:clamp(40px,5.2vw,65px);line-height:1.03;letter-spacing:-2.4px;margin:12px 0 18px}.hero h1 em{font-style:normal;color:#0f766e}.hero p{color:#667773;font-size:17px;max-width:620px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0 18px}.ticks{display:flex;gap:17px;flex-wrap:wrap;color:#63736f;font-size:12px;font-weight:800}.hero-card{background:#fff;border:1px solid #dce9e5;border-radius:22px;padding:18px;box-shadow:0 25px 60px rgba(25,70,60,.09)}.card-top{display:flex;justify-content:space-between;padding:3px 3px 14px}.online{font-size:9px;color:#0f766e;background:#e8f6f3;padding:5px 8px;border-radius:20px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick button{border:1px solid #e1ebe9;background:#fbfdfc;border-radius:14px;text-align:left;padding:15px;display:flex;flex-direction:column;gap:4px}.quick button:hover{border-color:#9bcfc5;transform:translateY(-2px)}.quick button:first-letter{font-size:24px}.quick small,.service p,.portal small,.tool small{color:#81908c}.search-area{margin-top:-27px;position:relative;z-index:3}.search{height:58px;background:#fff;border:1px solid #dce9e5;border-radius:15px;display:flex;align-items:center;gap:10px;padding:0 15px;box-shadow:0 14px 35px rgba(30,70,60,.08)}.search>span{font-size:27px;color:#7b908b}.search input{border:0;outline:0;flex:1;min-width:0;font-size:14px}.search kbd{font-size:10px;background:#f0f5f3;padding:5px 7px;border-radius:6px;color:#71807d}.results{background:#fff;border:1px solid #dce9e5;border-radius:12px;margin-top:5px;overflow:hidden}.results button{width:100%;border:0;border-bottom:1px solid #edf2f0;background:#fff;text-align:left;padding:11px 14px}.section{padding:72px 0}.tint{background:#edf7f5}.heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:25px}.heading h2{font-size:31px;letter-spacing:-.8px;margin:5px 0}.heading>p{max-width:470px;color:#6d7d79;margin:0}.center{justify-content:center;text-align:center}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.service{background:#fff;border:1px solid #dfeae7;border-radius:17px;padding:20px;transition:.18s}.service:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(30,70,60,.08);border-color:#a4d2c9}.ico{width:45px;height:45px;border-radius:12px;background:#e8f6f3;display:grid;place-items:center;font-size:22px;margin-bottom:12px}.service h3{font-size:16px;margin:0 0 5px}.service p{font-size:12px;min-height:38px;margin:0 0 12px}.service button{border:0;background:transparent;color:#0f766e;font-weight:900;padding:0}.tool-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:11px}.tool{border:1px solid #dfeae7;background:#fff;border-radius:14px;padding:15px;text-align:left;display:flex;flex-direction:column;gap:6px}.tool:hover{border-color:#9bcfc5}.tool b{font-size:13px}.tool small{font-size:10px}.portal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.portal{border:1px solid #dfeae7;background:#fff;border-radius:14px;padding:15px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left}.portal .pico{font-size:23px}.portal b{font-size:13px}.notice{margin-top:18px;padding:12px 15px;background:#fff9e9;border:1px solid #f0dfb1;border-radius:10px;color:#745e22;font-size:12px}.dashboard{border-radius:22px;background:#0d514b;color:#fff;padding:32px;display:grid;grid-template-columns:1fr 1.3fr;gap:30px;align-items:center}.dashboard h2{margin:5px 0}.dashboard p{color:#c2dcd7}.dash-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.dash-cards div{padding:15px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);border-radius:12px}.dash-cards b,.dash-cards small{display:block}.dash-cards small{font-size:11px;color:#b6d0cc}.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.plan{background:#fff;border:1px solid #dfeae7;border-radius:18px;padding:24px}.plan.featured{border:2px solid #0f766e;box-shadow:0 12px 30px rgba(15,118,110,.09)}.plan>span{font-size:9px;letter-spacing:1.4px;color:#0f766e;font-weight:900}.plan h3{margin:7px 0}.plan strong{font-size:35px}.plan small{color:#74827f}.plan ul{padding-left:19px;color:#62716e;font-size:13px;line-height:2}.plan button{width:100%}.narrow{max-width:850px}details{background:#fff;border:1px solid #dfeae7;border-radius:12px;padding:16px;margin:9px 0}summary{font-weight:800;cursor:pointer}details p{color:#687873;font-size:13px;margin-bottom:0}footer{background:#102c29;color:#d7e7e4;padding:45px 0}.footer{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}.footer p,.footer span{color:#9db7b2;font-size:12px}.footer h4{color:#fff;margin:0 0 10px}.footer>div:not(:first-child){display:flex;flex-direction:column;gap:7px;font-size:12px}.footer .link{color:#d7e7e4;padding:0;text-align:left}.overlay{position:fixed;inset:0;z-index:100;background:rgba(7,28,25,.55);display:grid;place-items:center;padding:16px}.overlay[hidden]{display:none}.modal{position:relative;width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:20px;padding:27px;box-shadow:0 30px 80px rgba(0,0,0,.3)}.x{position:absolute;right:13px;top:12px;border:0;background:#edf5f3;border-radius:50%;width:34px;height:34px;font-size:22px;color:#506460}.big-icon{font-size:35px}.modal h2{margin:4px 0}.modal p{color:#687773}.full{width:100%}.file-box{border:1px dashed #9fcfc6;background:#f4faf8;border-radius:12px;padding:17px;margin:15px 0}.file-box label{display:block;font-size:12px;font-weight:800}.file-box input{width:100%;margin-top:7px}.auth-head{text-align:center}.auth-head .logo{margin:auto}.auth-head h2{margin:10px 0 4px}.auth-head p{color:#73817e}.tabs{display:flex;gap:5px;background:#edf5f3;border-radius:10px;padding:4px;margin:18px 0}.tabs button{flex:1;border:0;background:transparent;padding:9px;border-radius:8px;font-weight:800;color:#63736f}.tabs button.active{background:#fff;color:#0f766e;box-shadow:0 2px 7px rgba(0,0,0,.06)}form label{display:block;font-size:12px;font-weight:800;color:#4e5e5a;margin:10px 0}form input{display:block;width:100%;margin-top:5px;padding:11px;border:1px solid #d5e2df;border-radius:9px;outline:0}form input:focus{border-color:#0f766e}.demo-note{text-align:center;color:#87938f;font-size:10px;margin-top:12px}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);background:#102c29;color:#fff;padding:11px 15px;border-radius:10px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:950px){nav{display:none}.hamb{display:block}.grid{grid-template-columns:repeat(2,1fr)}.tool-grid{grid-template-columns:repeat(3,1fr)}.portal-grid{grid-template-columns:repeat(2,1fr)}.dashboard{grid-template-columns:1fr}.footer{grid-template-columns:1fr 1fr}.hero-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.wrap{width:calc(100% - 22px)}.nav-actions .ghost,.nav-actions .small{display:none}.nav{height:62px}.hero{padding:45px 0}.hero h1{font-size:43px}.section{padding:54px 0}.heading{display:block}.heading>p{margin-top:8px}.grid{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr 1fr}.portal-grid{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.footer{grid-template-columns:1fr}.quick{gap:7px}.quick button{padding:12px}.dashboard{padding:23px}.ticks{gap:9px}.search kbd{display:none}}
+'''
+
+script = r'''const DATA={
+essential:[
+["🪪","ID Card Print","PVC, A4 and smart ID card layouts."],["📸","Passport Photo","Resize, crop and arrange photos for print."],["✂️","Photo Crop & Resize","Custom size, ratio and print-ready image."],["📝","Resume / CV","Create a clean printable resume."],["🗂️","Document Album","Arrange multiple pages for easy printing."],["▣","QR & Payment","Create a simple payment QR display."],["🖨️","Quick Print","Prepare files for shop printing."],["🔐","PDF Password","Open password-protected PDFs with the password you own."],["➕","New Service Post","Create a simple service announcement."],["💳","Payment Lock QR","Prepare a payment QR display."] ],
+creative:[
+["✨","Pro Resume Maker","Professional resume layouts."],["💍","Marriage Biodata","Clean biodata formats for printing."],["🪪","Pro ID Maker","Build printable card layouts."],["🎨","Pro Poster Maker","Shop, offer and notice posters."],["✍️","Application Maker","Letters, applications and drafts."],["🏪","Shop Promotion Maker","Service lists and promotional designs."],["📊","PPT / Company Profile","Presentation and company profile workflow."],["🎫","Banner / Card Designs","Simple printable designs."] ],
+tools:[
+["🖼️","JPG to PDF","Convert images to PDF."],["📑","PDF to JPG","Prepare PDF pages as images."],["🖼️","PNG to PDF","Convert PNG images to PDF."],["🔄","PNG to JPG","Convert PNG images to JPG."],["🗑️","Delete PDF Page","Prepare a PDF without selected pages."],["➕","Merge PDF","Combine documents into one file."],["✂️","Split PDF","Prepare selected pages."],["📐","Image Resize","Set exact print dimensions."],["🧾","Image to A4","Arrange an image on A4."],["🔄","Rotate PDF","Rotate document pages."],["📦","Compress PDF","Prepare a smaller PDF copy."],["🖨️","Print Sheet","Arrange images for printing."] ],
+portals:[
+["🏛️","Census of India"],["🪪","Aadhaar Information (UIDAI)"],["💳","PAN Card Service"],["🗳️","Voter ID / Status (NVSP)"],["🏥","Ayushman Bharat (PM-JAY)"],["🚗","Driving Licence Service"],["🚙","RC Service"],["🚘","Vehicle Service"],["📜","Birth & Death Certificate"],["🚨","E-Challan"],["👷","E-Shram Card"],["🎓","APAAR ID Card"],["🏥","ABHA Card"],["🌾","PM Fasal Bima Yojana"],["🏠","PMAY-Gramin"],["🏙️","PMAY-Urban"],["💼","EPFO"],["🛡️","LIC Service"],["🌾","E-NAM"],["🏪","PM SVANidhi"],["🌱","Soil Health Card"],["🌾","MKisan Portal"],["☀️","PM Surya Ghar Yojana"],["🏢","Udyam / MSME"],["🎓","National Scholarship Portal"],["📱","Lost / Found Mobile"],["🚆","Railway Service"],["🛂","Passport Seva"],["🌾","PM Kisan"],["🧾","GST Verification"],["🛣️","Checkpost Tax / Road Tax"],["🚗","Vahan Green Sewa"],["🌫️","PUC Service"],["💰","NPCI"],["📞","National Consumer Helpline"],["💼","National Career Service"],["📊","Free CIBIL Score"],["⛽","Indane Gas"],["⛽","HP Gas"],["⛽","Bharat Gas"],["♿","Unique Disability ID"],["🚻","Swachh Bharat Mission"],["📞","Fancy Mobile Number"]]
+};
+const all=[...DATA.essential,...DATA.creative,...DATA.tools,...DATA.portals].map(x=>x[1]);
+const $=s=>document.querySelector(s);
+function serviceCard(x){return `<article class="service"><div class="ico">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]||"Useful online service and workflow."}</p><button data-service="${x[1]}" data-icon="${x[0]}">Open Tool →</button></article>`}
+function toolCard(x){return `<button class="tool" data-service="${x[1]}" data-icon="${x[0]}"><span>${x[0]}</span><b>${x[1]}</b><small>${x[2]||"Open tool"}</small></button>`}
+function portalCard(x){return `<button class="portal" data-service="${x[1]}" data-icon="${x[0]}"><span class="pico">${x[0]}</span><span><b>${x[1]}</b><small>Open portal link</small></span><b>→</b></button>`}
+$("#essential").innerHTML=DATA.essential.map(serviceCard).join("");
+$("#creative").innerHTML=DATA.creative.map(serviceCard).join("");
+$("#toolGrid").innerHTML=DATA.tools.map(toolCard).join("");
+$("#portalGrid").innerHTML=DATA.portals.map(portalCard).join("");
+
+const serviceModal=$("#serviceModal"),authModal=$("#authModal"),toast=$("#toast");
+const descriptions={};
+function toastMsg(t){toast.textContent=t;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),2300)}
+function openService(name,icon="🛠️"){
+  $("#serviceTitle").textContent=name;$("#serviceIcon").textContent=icon;
+  $("#serviceDesc").textContent="This service is included in the new portal. Choose your file or continue to the workflow.";
+  $("#toolArea").innerHTML=`<div class="file-box"><label>Choose a file (optional)<input id="serviceFile" type="file" accept=".jpg,.jpeg,.png,.pdf"></label></div>`;
+  serviceModal.hidden=false;document.body.classList.add("modal-open");
+}
+function closeModals(){serviceModal.hidden=true;authModal.hidden=true;document.body.classList.remove("modal-open")}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-service]");if(b)openService(b.dataset.service,b.dataset.icon||"🛠️");if(e.target.matches("[data-close]"))closeModals()});
+serviceModal.addEventListener("click",e=>{if(e.target===serviceModal)closeModals()});authModal.addEventListener("click",e=>{if(e.target===authModal)closeModals()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModals();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#search").focus()}});
+
+const search=$("#search"),results=$("#results");
+search.addEventListener("input",()=>{
+ const q=search.value.trim().toLowerCase(); if(!q){results.innerHTML="";return}
+ const m=all.filter(x=>x.toLowerCase().includes(q)).slice(0,10);
+ results.innerHTML=m.length?m.map(x=>`<button data-service="${x}" data-icon="🔎">🔎 ${x}</button>`).join(""):`<div style="padding:12px;color:#71807d">No service found.</div>`;
+});
+document.addEventListener("click",e=>{if(!e.target.closest(".search-area"))results.innerHTML=""});
+
+$("#hamb").addEventListener("click",()=>{let n=$("#mainNav");n.style.display=n.style.display==="flex"?"none":"flex";n.style.position="absolute";n.style.top="65px";n.style.left="10px";n.style.right="10px";n.style.background="#fff";n.style.padding="8px";n.style.borderRadius="12px";n.style.flexDirection="column";n.style.boxShadow="0 15px 35px #0002"});
+
+let signup=false;
+function authMode(s){signup=s;$("#tabLogin").classList.toggle("active",!s);$("#tabSignup").classList.toggle("active",s);$("#authTitle").textContent=s?"Create your account":"Welcome back";$("#authSub").textContent=s?"Save your workspace details in this browser.":"Login to your workspace.";$("#name").parentElement.style.display=s?"block":"none";$("#authSubmit").textContent=s?"Create Account":"Login"}
+function openAuth(s=false){authModal.hidden=false;serviceModal.hidden=true;authMode(s);document.body.classList.add("modal-open")}
+["loginBtn","dashboardLogin","footerLogin"].forEach(id=>document.getElementById(id).addEventListener("click",()=>openAuth(false)));
+$("#signupBtn").addEventListener("click",()=>openAuth(true));$("#freePlan").addEventListener("click",()=>openAuth(true));$("#proPlan").addEventListener("click",()=>{openAuth(true);toastMsg("Create an account first; payment can be connected later.")});$("#shopPlan").addEventListener("click",()=>openAuth(true));
+$("#tabLogin").addEventListener("click",()=>authMode(false));$("#tabSignup").addEventListener("click",()=>authMode(true));
+$("#authForm").addEventListener("submit",e=>{e.preventDefault();const name=$("#name").value.trim()||"Customer";localStorage.setItem("chhatrapatiUser",JSON.stringify({name,identity:$("#identity").value}));closeModals();toastMsg(signup?"Account created successfully":"Login successful");});
+$("#serviceContinue").addEventListener("click",()=>{const f=$("#serviceFile");toastMsg(f&&f.files.length?`Selected ${f.files[0].name}`:"Service workflow opened");});
+window.addEventListener("load",()=>{authMode(false);const u=localStorage.getItem("chhatrapatiUser");if(u){try{const x=JSON.parse(u);$("#dashboardLogin").textContent=`Open Workspace • ${x.name}`}catch{}}});
+'''
+
+(root/"index.html").write_text(index,encoding="utf-8")
+(root/"style.css").write_text(style,encoding="utf-8")
+(root/"script.js").write_text(script,encoding="utf-8")
+(root/"README.md").write_text("""# Chhatrapati Online Services — Complete Fresh Build
+
+Run directly from `index.html` or publish the folder on GitHub Pages. No separate page needs to be manually opened after deployment.
+
+Included:
+- Home, search and responsive navigation
+- Essential services
+- Creative Design Studio
+- PDF & Image Tools
+- Large Portal Services list
+- Login / Create Account modal with local browser demo storage
+- Workspace section
+- Free / Pro / Shop plan UI
+- FAQ and footer
+- Single-page scrolling with no nested scroll containers
+- Service/file selection modal
+
+Government portal cards are UI placeholders/links to be connected to the relevant official destinations before production use.
+""",encoding="utf-8")
+
+zip_path=Path("/mnt/data/Chhatrapati-Online-Services-COMPLETE.zip")
+with zipfile.ZipFile(zip_path,"w",zipfile.ZIP_DEFLATED) as z:
+    for p in root.iterdir(): z.write(p,p.name)
+
+print("Complete project created:", zip_path)
+print("Included files:", [p.name for p in root.iterdir()])
