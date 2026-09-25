@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chhatrapati Print Portal — Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Chhatrapati Print Portal</h1>
+    <p>Card Generator</p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h2>📄 PDF Upload</h2>
+    <p class="muted">PDF निवडा. मजकूर उपलब्ध असल्यास माहिती वाचण्याचा प्रयत्न केला जाईल.</p>
+    <input id="pdfInput" type="file" accept="application/pdf">
+    <div id="status" class="status">PDF निवडलेली नाही.</div>
+  </section>
+
+  <section class="panel">
+    <h2>🪪 Card Format</h2>
+    <div class="grid">
+      <label>Format
+        <select id="cardType">
+          <option value="reference">Document Reference Card</option>
+          <option value="mahasarathi">Maha Sarathi Reference Card</option>
+          <option value="farmer">Farmer ID Reference Card</option>
+          <option value="ration">Ration Card Reference</option>
+        </select>
+      </label>
+      <label>Name
+        <input id="name" placeholder="नाव">
+      </label>
+      <label>Date of Birth
+        <input id="dob" placeholder="DD/MM/YYYY">
+      </label>
+      <label>Gender
+        <input id="gender" placeholder="Gender">
+      </label>
+      <label>Document No.
+        <input id="docNo" placeholder="क्रमांक">
+      </label>
+      <label>Address
+        <textarea id="address" rows="3" placeholder="पत्ता"></textarea>
+      </label>
+    </div>
+    <button id="previewBtn">Preview Update</button>
+  </section>
+
+  <section class="panel">
+    <div class="preview-head">
+      <h2>👁️ Preview</h2>
+      <div>
+        <button id="printBtn">🖨️ Print</button>
+        <button id="downloadBtn">📥 Download HTML</button>
+      </div>
+    </div>
+    <div class="preview-wrap">
+      <div id="card" class="card">
+        <div class="card-title">DOCUMENT REFERENCE</div>
+        <div class="card-body">
+          <div class="photo-box">PHOTO</div>
+          <div class="info">
+            <div><b>नाव:</b> <span data-out="name">—</span></div>
+            <div><b>DOB:</b> <span data-out="dob">—</span></div>
+            <div><b>Gender:</b> <span data-out="gender">—</span></div>
+            <div><b>क्रमांक:</b> <span data-out="docNo">—</span></div>
+            <div><b>पत्ता:</b> <span data-out="address">—</span></div>
+          </div>
+        </div>
+        <div class="notice">REFERENCE / PRINT FORMAT — अधिकृत दस्तऐवजाची जागा घेणारे नाही.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Chhatrapati Print Portal</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+<script src="app.js" type="module"></script>
+</body>
+</html>
